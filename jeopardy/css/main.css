@@ -16,29 +16,47 @@ body {
   color: #060CE9; 
 }
 
-.col-md {
-  display: flex;
+.col-sm-2{
+  display: flexbox;
+  background-color: #060CE9;
+  padding-top: 20px;
+  border: .5px solid gray;
+  margin: 0 auto;
+}
+
+.col-sm-2 h4{
+height: 100px;
+padding-top: 10px;
+}
+
+.col-sm-12 {
   justify-content: center;
   align-items: center;
   height: 120px;
   background-color: #060CE9;
-  border: 1px solid gray;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 25px;
+ 
 }
 
 .col-md h2{
   height: 120px;
   text-align: center;
   margin: 0;
-  position: absolute
+  position: absolute;
   top: 50%; 
   left: 50%;
 }
 
-.category {
+.category-name {
   font-family: Teko;
   color: white; 
-  font-size: 3em;
+  font-size: 300%;
   line-height: 80%;
+  position:relative;
 }
 
 h4 {
@@ -50,7 +68,8 @@ h5 {
 }
 
 .price {
-  font-size: 3em;
+  font-size: 4em;
+  font-family: Teko;
 }
 
 .cost:hover {
