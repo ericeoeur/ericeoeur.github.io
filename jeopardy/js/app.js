@@ -1,256 +1,110 @@
 const gameCategories = {
-    category1: [{
-        categoryName: 'The Simpsons'
-      }, {
-        costQuestionAnswer: [{
-          cost: 200,
-          question: "Whats lisas dog name",
-          answer: "cat"
-        }],
-      },
-      {
-        costQuestionAnswer: [{
-          cost: 400,
-          question: "Whats lisas cat name",
-          answer: "weee"
-        }],
-      },
-      {
-        costQuestionAnswer: [{
-          cost: 600,
-          question: "Whats lisas werer name",
-          answer: "ass"
-        }],
-      },
-      {
-        costQuestionAnswer: [{
-          cost: 800,
-          question: "Whats lisas ewewewe name",
-          answer: "qaaaaa"
-        }],
-      },
-      {
-        costQuestionAnswer: [{
-          cost: 1000,
-          question: "Whats lisas la name",
-          answer: "weeenus"
-        }],
-      },
-    ],
-    
-    //end of Category 1 
+  category1: [{categoryName: 'Famous People of Color'
+    }, {
+      costQuestionAnswer: [{cost: 200, question: "This minister and Civil Rights Activist was born on January 15, 1929.", answers: ["Dalai Lama", "Martin Luther King Jr.", "Frances Scott Key", "Malcolm X"], correctAnswer: "Martin Luther King Jr."}],
+    },
+    { costQuestionAnswer: [{cost: 400, question: "This singer is known for hits such as 'Single Ladies' and 'Irreplaceable'", answers: ["Beyoncé", "Aaliyah", "Jhene Aiko", "Sade"], correctAnswer: "Beyoncé"}],
+    },
+    { costQuestionAnswer: [{cost: 600, question: "He is known for movies such as 'Drunken Master' and 'Rush Hour'", answers: ["Bruce Lee", "Diego Luna", "Ken Wantanabe", "Jackie Chan"], correctAnswer: "Jackie Chan"}],
+    },
+    {costQuestionAnswer: [{cost: 800, question: "'Kiss from a Rose' was his popular hit in 1994.'", answers: ["Coolio", "La Bouche", "Seal", "Brian McKnight"], correctAnswer: "Seal"}],
+    },
+    {costQuestionAnswer: [{cost: 1000, question: "Author of 'The Next American Revolution' this Detroit-based Chinese-American social activist passed away in 2015." , answers: ["Grace Lee Boggs", "Yuri Kochiyama", "Erika Lee", "Wei-Han Huang"], correctAnswer: "Grace Lee Boggs"}],
+    }], //end of Category 1 
 
-category2: [{
-  categoryName: 'The Simpsons'
+  category2: [{categoryName: 'Steven Universe'
+  }, {
+    costQuestionAnswer: [{cost: 200, question: "Used to protect his loved ones, Steven's weapon is a pink this ",answers: ["Shield", "Sword", "Mace", "Trident"], correctAnswer: "Shield"}],
+  },
+  { costQuestionAnswer: [{cost: 400, question: "The name of the city where the Crystal Gems reside", answers: ["Port City", "Ocean Town", "Emeryville", "Beach City"], correctAnswer: "Beach City"}],
+  },
+  { costQuestionAnswer: [{cost: 600, question: "When Pearl and Amethyst fuse, they form this:", answers: ["Sugilite", "Zoicite", "Opal", "Obsidian"], correctAnswer: "Opal"}],
+  },
+  {costQuestionAnswer: [{cost: 800, question: "This creator of Steven Universe is also known for their work on Cartoon Network's 'Adventure Time'", answers: ["Nancy Cartwright", "Rebecca Sugar", "DeeDee Magno Hall", "Ian Jones-Quarterly"], correctAnswer: "Rebecca Sugar"}],
+  },
+  {costQuestionAnswer: [{cost: 1000, question: "Garnet is known as a fusion between", answers: ["Ruby and Peridot", "Sapphire and Jade", "Amethyst and Jasper", "Ruby and Sapphire"], correctAnswer: "test"}],
+  }], //end of Category 2 
+
+  category3: [{categoryName: '00s Music'
 }, {
-  costQuestionAnswer: [{
-    cost: 200,
-    question: "Whats lisas dog name",
-    answer: "cat"
-  }],
+  costQuestionAnswer: [{cost: 200, question: "Often spelling her name in music, this 'London Bridge' singer is also a member of the Black Eye Peas",answers: ["Fergie", "Derpy", "JLO", "Conor Oberst"], correctAnswer: "Fergie"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 400,
-    question: "Whats lisas cat name",
-    answer: "weee"
-  }],
+{ costQuestionAnswer: [{cost: 400, question: "Known for the album 'Transatlanticism' this indie band's lead singer also created the band 'The Postal Service'", answers: ["Jared Leto", "Anthony White", "Ben Gibbard", "Dustin Krenshue"], correctAnswer: "Ben Gibbard"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 600,
-    question: "Whats lisas werer name",
-    answer: "ass"
-  }],
+{ costQuestionAnswer: [{cost: 600, question: "The film Shrek featured this artist's hit song 'Cigarettes and Chocolate Milk'", answers: ["Lily Allen", "The Shins", "Feist", "Rufus Wainwright"], correctAnswer: "Rufus Wainwright"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 800,
-    question: "Whats lisas ewewewe name",
-    answer: "qaaaaa"
-  }],
+{costQuestionAnswer: [{cost: 800, question: "This Russian-born American songwriter is famous for their songs 'Fidelity' and 'Samson'", answers: ["Andrew Bird", "Coco Rosie", "Regina Spektor", "Sufjan Stevens"], correctAnswer: "Regina Spektor"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 1000,
-    question: "Whats lisas la name",
-    answer: "weeenus"
-  }],
-},
-], //end of Category 2 
+{costQuestionAnswer: [{cost: 1000, question: "This artist began naming their albums after all 50 US states but only made two albums featuring 'Illinois' and 'Michigan'", answers: ["Mark Ronson", "Sufjan Stevens", "Elliot Smith", "Minus the Bear"], correctAnswer: "Sufjan Stevens"}],
+}], //end of Category 3 
 
-category3: [{
-  categoryName: 'The Simpsons'
+category4: [{categoryName: 'Capitals'
 }, {
-  costQuestionAnswer: [{
-    cost: 200,
-    question: "Whats lisas dog name",
-    answer: "cat"
-  }],
+costQuestionAnswer: [{cost: 200, question: "China", answers: ["Shanghai", "Beijing", "Guangzhou", "Hong Kong"], correctAnswer: "Beijing"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 400,
-    question: "Whats lisas cat name",
-    answer: "weee"
-  }],
+{ costQuestionAnswer: [{cost: 400, question: "Mexico", answers: ["Mexico City", "Aguascalientes", "Oaxaca", "Guadalajara"], correctAnswer: "Mexico City"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 600,
-    question: "Whats lisas werer name",
-    answer: "ass"
-  }],
+{ costQuestionAnswer: [{cost: 600, question: "Hungary", answers: ["Miskolc", "Szeged", "Pécs", "Budapest"], correctAnswer: "Budapest"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 800,
-    question: "Whats lisas ewewewe name",
-    answer: "qaaaaa"
-  }],
+{costQuestionAnswer: [{cost: 800, question: "Cambodia", answers: ["Siem Reap", "Battambang", "Phnom Penh", "Sihanoukville"], correctAnswer: "Phnom Penh"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 1000,
-    question: "Whats lisas la name",
-    answer: "weeenus"
-  }],
-},
-], //end of Category 3 
+{costQuestionAnswer: [{cost: 1000, question: "Slovenia", answers: ["Ljubljana", "Bled", "Maribor", "Koper"], correctAnswer: "Ljubljana"}],
+}], //end of Category 2 
 
-category4: [{
-  categoryName: 'The Simpsons'
+category5: [{categoryName: '90s Television'
 }, {
-  costQuestionAnswer: [{
-    cost: 200,
-    question: "Whats lisas dog name",
-    answer: "cat"
-  }],
+costQuestionAnswer: [{cost: 200, question: "This animated show featured characters including 'Bart', 'Lisa', and 'Maggie'",answers: ["South Park", "The Simpsons", "The Critic", "Animaniacs"], correctAnswer: "test"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 400,
-    question: "Whats lisas cat name",
-    answer: "weee"
-  }],
+{ costQuestionAnswer: [{cost: 400, question: "Moesha starred this famous R&B Singer", answers: ["Monica", "Brandy", "Lauryn Hill", "Janet Jackson"], correctAnswer: "Brandy"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 600,
-    question: "Whats lisas werer name",
-    answer: "ass"
-  }],
+{ costQuestionAnswer: [{cost: 600, question: "Claire Danes and Jared Leto starred in this short-lived teenage drama on ABC", answers: ["Queer as Folk", "Step by Step", "Family Matters", "My So-Called Life"], correctAnswer: "My So-Called Life"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 800,
-    question: "Whats lisas ewewewe name",
-    answer: "qaaaaa"
-  }],
+{costQuestionAnswer: [{cost: 800, question: "This show centered on six people consisting of four women and two men living in Prospect Heights, Brooklyn.", answers: ["Martin", "Living Single", "Sister Sister", "Family Matters"], correctAnswer: "Living Single"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 1000,
-    question: "Whats lisas la name",
-    answer: "weeenus"
-  }],
-},
-], //end of Category 4 
+{costQuestionAnswer: [{cost: 1000, question: "Helen Hunt and Paul Riser starred in this sitcom about a newly wed couple in New York", answers: ["Mad About You", "Caroline in the City", "Spin City", "Coach"], correctAnswer: "Mad About You"}],
+}], //end of Category 5 
 
-category5: [{
-  categoryName: 'The Simpsons'
+category6: [{categoryName: 'Final Fantasy'
 }, {
-  costQuestionAnswer: [{
-    cost: 200,
-    question: "Whats lisas dog name",
-    answer: "cat"
-  }],
+costQuestionAnswer: [{cost: 200, question: "Cloud, Tifa, Aeris, Barret, Sephiroth", answers: ["Final Fantasy 3", "Final Fantasy 8", "Final Fantasy 9", "Final Fantasy 7"], correctAnswer: "Final Fantasy 7"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 400,
-    question: "Whats lisas cat name",
-    answer: "weee"
-  }],
+{ costQuestionAnswer: [{cost: 400, question: "Zidane, Garnet, Eiko, Stiner", answers: ["Final Fantasy 9", "Final Fantasy 2", "Final Fantasy 13", "Final Fantasy 3"], correctAnswer: "Final Fantasy 9"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 600,
-    question: "Whats lisas werer name",
-    answer: "ass"
-  }],
+{ costQuestionAnswer: [{cost: 600, question: "Lighting, Sazh, Oerba, Hope", answers: ["Final Fantasy 13", "Final Fantasy 4", "Final Fantasy 8", "Final Fantasy"], correctAnswer: "Final Fantasy 13"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 800,
-    question: "Whats lisas ewewewe name",
-    answer: "qaaaaa"
-  }],
+{costQuestionAnswer: [{cost: 800, question: "Squall, Rinoa, Selphie, Quistis", answers: ["Final Fantasy 2", "Final Fantasy 8", "Final Fantasy 15", "Final Fantasy 5"], correctAnswer: "Final Fantasy 8"}],
 },
-{
-  costQuestionAnswer: [{
-    cost: 1000,
-    question: "Whats lisas la name",
-    answer: "weeenus"
-  }],
-},
-], //end of Category 5
-
-category6: [{
-  categoryName: 'The Simpsons'
-}, {
-  costQuestionAnswer: [{
-    cost: 200,
-    question: "Whats lisas dog name",
-    answer: "cat"
-  }],
-},
-{
-  costQuestionAnswer: [{
-    cost: 400,
-    question: "Whats lisas cat name",
-    answer: "weee"
-  }],
-},
-{
-  costQuestionAnswer: [{
-    cost: 600,
-    question: "Whats lisas werer name",
-    answer: "ass"
-  }],
-},
-{
-  costQuestionAnswer: [{
-    cost: 800,
-    question: "Whats lisas ewewewe name",
-    answer: "qaaaaa"
-  }],
-},
-{
-  costQuestionAnswer: [{
-    cost: 1000,
-    question: "Whats lisas la name",
-    answer: "weeenus"
-  }],
-},
-], //end of Category 6 
-
+{costQuestionAnswer: [{cost: 1000, question: "Rydia, Cecil, Edward, Golbez", answers: ["Final Fantasy 16", "Final Fantasy 13", "Final Fantasy 4", "Final Fantasy"], correctAnswer: "Final Fantasy 4"}],
+}], //end of Category 6 
 }; //end of gamecategories array
-console.log(gameCategories);
 
 
 
-// $(() => {
 
-// let $answer = $('.cost');
+//console.log(gameCategories.category1); //name for each category
+//console.log(gameCategories.category1[0].categoryName); //name for each category
 
-// console.log($answer);
+//interate over each category and get all the information from each category
 
-// $answer.on('click', (e) => {
-//   console.log($(e.currentTarget).children().text()); //the text of the number 
-//   console.log($(e.currentTarget).parent().parent());
-// });
+for (let categories in gameCategories){
+  console.log(gameCategories[categories][0].categoryName); //print all names from the array
+  console.log(gameCategories[categories][5].costQuestionAnswer[0]); //print all names from the array
+
+}
 
 
 
-// });
+
+
+
+let $answer = $('.cost');
+
+console.log($answer);
+
+$answer.on('click', (e) => {
+  console.log($(e.currentTarget).children().text()); //the text of the number 
+  console.log($(e.currentTarget).parent().parent());
+});
+
+
+
