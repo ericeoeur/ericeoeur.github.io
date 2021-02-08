@@ -16,6 +16,15 @@ body {
   color: #060CE9; 
 }
 
+.score {
+  font-family: Teko;
+  font-size: 2em;
+  background-color: #060CE9;
+  color: white;
+  text-align: left;
+  height: 60px;
+}
+
 .col-sm-2{
   display: flexbox;
   background-color: #060CE9;

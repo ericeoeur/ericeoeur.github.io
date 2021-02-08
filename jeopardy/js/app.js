@@ -1,5 +1,5 @@
 const gameCategories = {
-  category1: [{categoryName: 'Famous People of Color'
+  category1: [{categoryName: 'Famous POCs'
     }, {
       costQuestionAnswer: [{cost: 200, question: "This minister and Civil Rights Activist was born on January 15, 1929.", answers: ["Dalai Lama", "Martin Luther King Jr.", "Frances Scott Key", "Malcolm X"], correctAnswer: "Martin Luther King Jr."}],
     },
@@ -10,7 +10,7 @@ const gameCategories = {
     {costQuestionAnswer: [{cost: 800, question: "'Kiss from a Rose' was his popular hit in 1994.'", answers: ["Coolio", "La Bouche", "Seal", "Brian McKnight"], correctAnswer: "Seal"}],
     },
     {costQuestionAnswer: [{cost: 1000, question: "Author of 'The Next American Revolution' this Detroit-based Chinese-American social activist passed away in 2015." , answers: ["Grace Lee Boggs", "Yuri Kochiyama", "Erika Lee", "Wei-Han Huang"], correctAnswer: "Grace Lee Boggs"}],
-    }], //end of Category 1 
+  }], //end of Category 1 
 
   category2: [{categoryName: 'Steven Universe'
   }, {
@@ -36,74 +36,155 @@ const gameCategories = {
 {costQuestionAnswer: [{cost: 800, question: "This Russian-born American songwriter is famous for their songs 'Fidelity' and 'Samson'", answers: ["Andrew Bird", "Coco Rosie", "Regina Spektor", "Sufjan Stevens"], correctAnswer: "Regina Spektor"}],
 },
 {costQuestionAnswer: [{cost: 1000, question: "This artist began naming their albums after all 50 US states but only made two albums featuring 'Illinois' and 'Michigan'", answers: ["Mark Ronson", "Sufjan Stevens", "Elliot Smith", "Minus the Bear"], correctAnswer: "Sufjan Stevens"}],
-}], //end of Category 3 
+  }], //end of Category 3 
 
-category4: [{categoryName: 'Capitals'
-}, {
-costQuestionAnswer: [{cost: 200, question: "China", answers: ["Shanghai", "Beijing", "Guangzhou", "Hong Kong"], correctAnswer: "Beijing"}],
-},
-{ costQuestionAnswer: [{cost: 400, question: "Mexico", answers: ["Mexico City", "Aguascalientes", "Oaxaca", "Guadalajara"], correctAnswer: "Mexico City"}],
-},
-{ costQuestionAnswer: [{cost: 600, question: "Hungary", answers: ["Miskolc", "Szeged", "Pécs", "Budapest"], correctAnswer: "Budapest"}],
-},
-{costQuestionAnswer: [{cost: 800, question: "Cambodia", answers: ["Siem Reap", "Battambang", "Phnom Penh", "Sihanoukville"], correctAnswer: "Phnom Penh"}],
-},
-{costQuestionAnswer: [{cost: 1000, question: "Slovenia", answers: ["Ljubljana", "Bled", "Maribor", "Koper"], correctAnswer: "Ljubljana"}],
-}], //end of Category 2 
+  category4: [{categoryName: 'Capitals'
+  }, {
+  costQuestionAnswer: [{cost: 200, question: "China", answers: ["Shanghai", "Beijing", "Guangzhou", "Hong Kong"], correctAnswer: "Beijing"}],
+  },
+  { costQuestionAnswer: [{cost: 400, question: "Mexico", answers: ["Mexico City", "Aguascalientes", "Oaxaca", "Guadalajara"], correctAnswer: "Mexico City"}],
+  },
+  { costQuestionAnswer: [{cost: 600, question: "Hungary", answers: ["Miskolc", "Szeged", "Pécs", "Budapest"], correctAnswer: "Budapest"}],
+  },
+  {costQuestionAnswer: [{cost: 800, question: "Cambodia", answers: ["Siem Reap", "Battambang", "Phnom Penh", "Sihanoukville"], correctAnswer: "Phnom Penh"}],
+  },
+  {costQuestionAnswer: [{cost: 1000, question: "Slovenia", answers: ["Ljubljana", "Bled", "Maribor", "Koper"], correctAnswer: "Ljubljana"}],
+  }], //end of Category 2 
 
-category5: [{categoryName: '90s Television'
-}, {
-costQuestionAnswer: [{cost: 200, question: "This animated show featured characters including 'Bart', 'Lisa', and 'Maggie'",answers: ["South Park", "The Simpsons", "The Critic", "Animaniacs"], correctAnswer: "test"}],
-},
-{ costQuestionAnswer: [{cost: 400, question: "Moesha starred this famous R&B Singer", answers: ["Monica", "Brandy", "Lauryn Hill", "Janet Jackson"], correctAnswer: "Brandy"}],
-},
-{ costQuestionAnswer: [{cost: 600, question: "Claire Danes and Jared Leto starred in this short-lived teenage drama on ABC", answers: ["Queer as Folk", "Step by Step", "Family Matters", "My So-Called Life"], correctAnswer: "My So-Called Life"}],
-},
-{costQuestionAnswer: [{cost: 800, question: "This show centered on six people consisting of four women and two men living in Prospect Heights, Brooklyn.", answers: ["Martin", "Living Single", "Sister Sister", "Family Matters"], correctAnswer: "Living Single"}],
-},
-{costQuestionAnswer: [{cost: 1000, question: "Helen Hunt and Paul Riser starred in this sitcom about a newly wed couple in New York", answers: ["Mad About You", "Caroline in the City", "Spin City", "Coach"], correctAnswer: "Mad About You"}],
-}], //end of Category 5 
+  category5: [{categoryName: '90s Television'
+  }, {
+  costQuestionAnswer: [{cost: 200, question: "This animated show featured characters including 'Bart', 'Lisa', and 'Maggie'",answers: ["South Park", "The Simpsons", "The Critic", "Animaniacs"], correctAnswer: "test"}],
+  },
+  { costQuestionAnswer: [{cost: 400, question: "Moesha starred this famous R&B Singer", answers: ["Monica", "Brandy", "Lauryn Hill", "Janet Jackson"], correctAnswer: "Brandy"}],
+  },
+  { costQuestionAnswer: [{cost: 600, question: "Claire Danes and Jared Leto starred in this short-lived teenage drama on ABC", answers: ["Queer as Folk", "Step by Step", "Family Matters", "My So-Called Life"], correctAnswer: "My So-Called Life"}],
+  },
+  {costQuestionAnswer: [{cost: 800, question: "This show centered on six people consisting of four women and two men living in Prospect Heights, Brooklyn.", answers: ["Martin", "Living Single", "Sister Sister", "Family Matters"], correctAnswer: "Living Single"}],
+  },
+  {costQuestionAnswer: [{cost: 1000, question: "Helen Hunt and Paul Riser starred in this sitcom about a newly wed couple in New York", answers: ["Mad About You", "Caroline in the City", "Spin City", "Coach"], correctAnswer: "Mad About You"}],
+  }], //end of Category 5 
 
-category6: [{categoryName: 'Final Fantasy'
-}, {
-costQuestionAnswer: [{cost: 200, question: "Cloud, Tifa, Aeris, Barret, Sephiroth", answers: ["Final Fantasy 3", "Final Fantasy 8", "Final Fantasy 9", "Final Fantasy 7"], correctAnswer: "Final Fantasy 7"}],
-},
-{ costQuestionAnswer: [{cost: 400, question: "Zidane, Garnet, Eiko, Stiner", answers: ["Final Fantasy 9", "Final Fantasy 2", "Final Fantasy 13", "Final Fantasy 3"], correctAnswer: "Final Fantasy 9"}],
-},
-{ costQuestionAnswer: [{cost: 600, question: "Lighting, Sazh, Oerba, Hope", answers: ["Final Fantasy 13", "Final Fantasy 4", "Final Fantasy 8", "Final Fantasy"], correctAnswer: "Final Fantasy 13"}],
-},
-{costQuestionAnswer: [{cost: 800, question: "Squall, Rinoa, Selphie, Quistis", answers: ["Final Fantasy 2", "Final Fantasy 8", "Final Fantasy 15", "Final Fantasy 5"], correctAnswer: "Final Fantasy 8"}],
-},
-{costQuestionAnswer: [{cost: 1000, question: "Rydia, Cecil, Edward, Golbez", answers: ["Final Fantasy 16", "Final Fantasy 13", "Final Fantasy 4", "Final Fantasy"], correctAnswer: "Final Fantasy 4"}],
-}], //end of Category 6 
-}; //end of gamecategories array
-
-
+  category6: [{categoryName: 'Final Fantasy'
+  }, {
+  costQuestionAnswer: [{cost: 200, question: "Cloud, Tifa, Aeris, Barret, Sephiroth", answers: ["Final Fantasy 3", "Final Fantasy 8", "Final Fantasy 9", "Final Fantasy 7"], correctAnswer: "Final Fantasy 7"}],
+  },
+  { costQuestionAnswer: [{cost: 400, question: "Zidane, Garnet, Eiko, Stiner", answers: ["Final Fantasy 9", "Final Fantasy 2", "Final Fantasy 13", "Final Fantasy 3"], correctAnswer: "Final Fantasy 9"}],
+  },
+  { costQuestionAnswer: [{cost: 600, question: "Lighting, Sazh, Oerba, Hope", answers: ["Final Fantasy 13", "Final Fantasy 4", "Final Fantasy 8", "Final Fantasy"], correctAnswer: "Final Fantasy 13"}],
+  },
+  {costQuestionAnswer: [{cost: 800, question: "Squall, Rinoa, Selphie, Quistis", answers: ["Final Fantasy 2", "Final Fantasy 8", "Final Fantasy 15", "Final Fantasy 5"], correctAnswer: "Final Fantasy 8"}],
+  },
+  {costQuestionAnswer: [{cost: 1000, question: "Rydia, Cecil, Edward, Golbez", answers: ["Final Fantasy 16", "Final Fantasy 13", "Final Fantasy 4", "Final Fantasy"], correctAnswer: "Final Fantasy 4"}],
+  }], //end of Category 6 
+  }; //end of gamecategories array
 
 
-//console.log(gameCategories.category1); //name for each category
-//console.log(gameCategories.category1[0].categoryName); //name for each category
-
-//interate over each category and get all the information from each category
-
+//loop over all categories 
 for (let categories in gameCategories){
-  console.log(gameCategories[categories][0].categoryName); //print all names from the array
-  console.log(gameCategories[categories][5].costQuestionAnswer[0]); //print all names from the array
+  let $categories = gameCategories[categories][0].categoryName; //print all names from the array
+  let $questionCost200 = gameCategories[categories][1].costQuestionAnswer[0].cost;
+  let $questionCost400 = gameCategories[categories][2].costQuestionAnswer[0].cost;
+  let $questionCost600 = gameCategories[categories][3].costQuestionAnswer[0].cost;
+  let $questionCost800 = gameCategories[categories][4].costQuestionAnswer[0].cost;
+  let $questionCost1000 = gameCategories[categories][5].costQuestionAnswer[0].cost;
 
+//console.log(gameCategories[categories]);
+  // Dynamically adding questions and answers via jquery
+  const $boardColumns = $(` <div class="col-sm-2 category1">
+  <div class="row">
+  <h4 class="category-name">${ $categories }</h4>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 cost">
+      <h5 class="price ${categories}" id="1"> $${ $questionCost200 }</h5>
+    </div>      
+  </div>  
+  <div class="row">
+    <div class="col-sm-12 cost">
+      <h5 class="price ${categories}" id="2">$${ $questionCost400 }</h5>
+    </div>      
+  </div>
+  <div class="row">
+    <div class="col-sm-12 cost">
+      <h5 class="price ${categories}" id="3">$${ $questionCost600 }</h5>
+    </div>      
+  </div>
+  <div class="row">
+    <div class="col-sm-12 cost">
+      <h5 class="price ${categories}" id="4">$${ $questionCost800 }</h5>
+    </div>      
+  </div>
+  <div class="row">
+    <div class="col-sm-12 cost">
+      <h5 class="price ${categories}" id="5">$${ $questionCost1000 }</h5>
+    </div>      
+  </div>      
+  </div>`);
+
+const gameBoard = $('.board');
+gameBoard.append($boardColumns);
+
+
+
+} //end of for in loop
+
+
+
+
+
+let modalWrap = null;
+const showModal = (e) => {
+
+let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); //getting the category1!!!
+let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
+console.log($currentQuestionNumber);
+
+let $currentQuestion = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].question);
+
+let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
+
+let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
+
+console.log("Current Question: " + $currentQuestion);
+console.log("Current Answer Choices: " + $answerChoices);
+console.log("Correct Answer: " + $correctAnswer);
+
+
+
+  //dont create multiple modals
+  if (modalWrap !== null){
+    modalWrap.remove();
+  }
+  modalWrap = document.createElement('div');
+  modalWrap.innerHTML = `<div class="modal fade" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">${$currentQuestion}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>${$answerChoices}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Pass</button>
+        <button type="button" class="btn btn-primary">Answer</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+document.body.append(modalWrap);
+var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
+modal.show();
 }
 
-
-
-
-
-
 let $answer = $('.cost');
-
-console.log($answer);
-
 $answer.on('click', (e) => {
-  console.log($(e.currentTarget).children().text()); //the text of the number 
-  console.log($(e.currentTarget).parent().parent());
+  //console.log($(e.currentTarget).parent());
+  showModal(e);
+
+  //console.log($(e.currentTarget).children().text()); //the text of the number 
+  //console.log($(e.currentTarget).parent().parent());
 });
 
 
