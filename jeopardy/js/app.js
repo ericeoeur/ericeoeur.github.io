@@ -1,5 +1,7 @@
 //Call your global variables
 let modalWrap = null;
+let score = 0; 
+let timer = null; 
 
 // Jeopardy Game Questions and Answers in an array of objects. 
 const gameCategories = {
@@ -128,11 +130,6 @@ const createGameBoard = () => {
   } //end of for in loop
 }
 
-const startGame = () => {
-
-  //Create the Game Board 
-  createGameBoard();
-}
 
 const addQuestions = (e) => {
   let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); 
@@ -171,10 +168,13 @@ return $answerButtons.on('click', (f) => {
 
 }
 
-const answerButtonClick = ($answerButtons) => {
+// This function's job processes what happens when you click on an answer. 
+const answerButtonClick = (e, $answerChoices, $correctAnswer) => {
+
   $('.answer-button').on('click', (e) => { 
-    const $answerChoice = $(e.currentTarget).text(); //Answer choice working!!
-    console.log($answerChoice);
+    const $currentChoice = $(e.currentTarget).text().trim(); //Current Answer Choice. Trim to eliminate spaces in the beginning and end of the string   
+    checkAnswer(e, $currentChoice, $answerChoices, $correctAnswer); // Run Check Answer Function and pass info of clicked choice 
+    return $currentChoice; //Return the current choice... if needed?
   });
 }
 
@@ -213,7 +213,7 @@ const showModal = (e) => {
   document.body.append(modalWrap);
   var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
 
-  answerButtonClick(e);
+  answerButtonClick(e, $answerChoices, $correctAnswer);
 
   $('.pass-button').on('click', (e) => { 
     console.log("You have skipped this question!!");
@@ -224,6 +224,38 @@ const showModal = (e) => {
 
 
 
+}
+
+
+const startGame = () => {
+
+  //Create the Game Board 
+  createGameBoard();
+
+}
+
+// a function that checks if the answer is correct or not. 
+const checkAnswer = (e, $currentChoice, $answerChoices, $correctAnswer) => {
+
+
+   console.log($currentChoice);
+  // console.log("This is the answer choices: "+ $answerChoices);
+  console.log($correctAnswer);
+
+  if ($currentChoice == $correctAnswer) {
+    console.log("The correct answer was chosen!");
+  } else {
+    console.log("The incorrect answer was chosen!");
+  }
+ 
+
+
+
+}
+
+
+const startTimer = () => {
+//Put code in here for timer to countdown in each of the modals
 }
 
 // Call functions and onclick events here
