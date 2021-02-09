@@ -1,3 +1,7 @@
+//Call your global variables
+let modalWrap = null;
+
+// Jeopardy Game Questions and Answers in an array of objects. 
 const gameCategories = {
   category1: [{categoryName: 'Famous POCs'
     }, {
@@ -78,19 +82,18 @@ const gameCategories = {
   }], //end of Category 6 
   }; //end of gamecategories array
 
+const createGameBoard = () => {
+  //loop over all categories 
+  for (let categories in gameCategories) {
+    let $categories = gameCategories[categories][0].categoryName; //print all names from the array
+    let $questionCost200 = gameCategories[categories][1].costQuestionAnswer[0].cost;
+    let $questionCost400 = gameCategories[categories][2].costQuestionAnswer[0].cost;
+    let $questionCost600 = gameCategories[categories][3].costQuestionAnswer[0].cost;
+    let $questionCost800 = gameCategories[categories][4].costQuestionAnswer[0].cost;
+    let $questionCost1000 = gameCategories[categories][5].costQuestionAnswer[0].cost;
 
-//loop over all categories 
-for (let categories in gameCategories){
-  let $categories = gameCategories[categories][0].categoryName; //print all names from the array
-  let $questionCost200 = gameCategories[categories][1].costQuestionAnswer[0].cost;
-  let $questionCost400 = gameCategories[categories][2].costQuestionAnswer[0].cost;
-  let $questionCost600 = gameCategories[categories][3].costQuestionAnswer[0].cost;
-  let $questionCost800 = gameCategories[categories][4].costQuestionAnswer[0].cost;
-  let $questionCost1000 = gameCategories[categories][5].costQuestionAnswer[0].cost;
-
-//console.log(gameCategories[categories]);
-  // Dynamically adding questions and answers via jquery
-  const $boardColumns = $(` <div class="col-sm-2 category1">
+    // Dynamically adding questions and answers via jquery
+    const $boardColumns = $(` <div class="col-sm-2 category1">
   <div class="row">
   <h4 class="category-name">${ $categories }</h4>
   </div>
@@ -120,39 +123,74 @@ for (let categories in gameCategories){
     </div>      
   </div>      
   </div>`);
+    const gameBoard = $('.board');
+    gameBoard.append($boardColumns);
+  } //end of for in loop
+}
 
-const gameBoard = $('.board');
-gameBoard.append($boardColumns);
+const startGame = () => {
 
+  //Create the Game Board 
+  createGameBoard();
+}
 
+const addQuestions = (e) => {
+  let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); 
+  let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
+  let $currentQuestion = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].question);
+  let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
+  let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
 
-} //end of for in loop
+  console.log($answerChoices.length);
 
+  const $modalBody = $('.modal-body');
 
+  console.log($modalBody);
+  
+  const test = "Test";
+  $modalBody.append(test);
+  
+  for (let i = 0; i <$answerChoices.length; i++) {
+    $modalBody.append(test);
+    
+  } 
+const $answerButtons = ("<div class='row'><div class='center'><div class='col-md-12'><button class='answer-button btn-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[0] + "'> <div class='divider'/>" + $answerChoices[0] + "</button></div></div></div>" + 
 
+"<div class='row'><div class='center'><div class='col-md-12'><button class='answer-button btn-success btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[1] + "'> <div class='divider'/>" + $answerChoices[1] + "</button></div></div></div>" +
 
+"<div class='row'><div class='center'><div class='col-md-12'><button class='answer-button btn-danger btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[2] + "'> <div class='divider'/>" + $answerChoices[2] + "</button></div></div></div>"+
 
-let modalWrap = null;
+"<div class='row'><div class='center'><div class='col-md-12'><button class='answer-button btn-info btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[3] + "'> <div class='divider'/>" + $answerChoices[3] + "</button></div></div></div>"
+);
+
+return $answerButtons;
+
+return $answerButtons.on('click', (f) => {
+  console.log("The button was clicked!");
+});
+
+}
+
+const answerButtonClick = ($answerButtons) => {
+  $('.answer-button').on('click', (e) => { 
+    const $answerChoice = $(e.currentTarget).text(); //Answer choice working!!
+    console.log($answerChoice);
+  });
+}
+
+// Modal Function that shows question, answer, 
 const showModal = (e) => {
 
-let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); //getting the category1!!!
-let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
-console.log($currentQuestionNumber);
-
-let $currentQuestion = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].question);
-
-let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
-
-let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
-
-console.log("Current Question: " + $currentQuestion);
-console.log("Current Answer Choices: " + $answerChoices);
-console.log("Correct Answer: " + $correctAnswer);
-
+  let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); 
+  let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
+  let $currentQuestion = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].question);
+  let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
+  let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
+  let $answerButtons = addQuestions(e);
 
 
   //dont create multiple modals
-  if (modalWrap !== null){
+  if (modalWrap !== null) {
     modalWrap.remove();
   }
   modalWrap = document.createElement('div');
@@ -160,32 +198,52 @@ console.log("Correct Answer: " + $correctAnswer);
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">${$currentQuestion}</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h4 class="modal-title">${$currentQuestion}</h5>
+        <button type="button" class="pass-button btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>${$answerChoices}</p>
+      ${ $answerButtons }
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Pass</button>
-        <button type="button" class="btn btn-primary">Answer</button>
+        <button type="button" class="pass-button btn btn-danger" data-dismiss="modal">Pass</button>
       </div>
     </div>
   </div>
 </div>`;
-document.body.append(modalWrap);
-var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
-modal.show();
+  document.body.append(modalWrap);
+  var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
+
+  answerButtonClick(e);
+
+  $('.pass-button').on('click', (e) => { 
+    console.log("You have skipped this question!!");
+  });
+
+
+  modal.show();
+
+
+
 }
 
-let $answer = $('.cost');
-$answer.on('click', (e) => {
+// Call functions and onclick events here
+startGame(); 
+
+//On Clicks
+let $cost = $('.cost');
+$cost.on('click', (e) => {
   //console.log($(e.currentTarget).parent());
   showModal(e);
+  let $answerButton = $('answer-button');
 
+  console.log($answerButton);
   //console.log($(e.currentTarget).children().text()); //the text of the number 
   //console.log($(e.currentTarget).parent().parent());
 });
+
+
+
+
 
 
 
