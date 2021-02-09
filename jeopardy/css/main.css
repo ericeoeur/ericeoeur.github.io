@@ -81,6 +81,63 @@ h5 {
   font-family: Teko;
 }
 
+.show-price {
+  font-family: Teko;
+  color:  goldenrod;
+  background-color: #060CE9;
+  font-size: 3em;
+  border: 3px solid goldenrod;
+  padding: 10px 10px 3px 0px;
+  
+}
+
+.show-price H4 {
+  line-height: 0.7;
+}
+
+.modal-title {
+ padding: 10px;
+ text-transform: uppercase;
+ color: ghostwhite;
+ line-height: 50%;
+}
+
+.modal-header {
+  background-color: #060CE9;
+}
+
+.modal-body {
+  background-color: goldenrod;
+}
+
+.btn-outline-primary {
+  color: goldenrod; 
+  background-color: #060CE9;
+  background-image: none;
+  border-color: white
+}
+
+.divider {
+  font-family: Teko;
+  font-size: 2em;
+  color: ghostwhite;
+}
+
+.button-row{
+  padding: 2px;
+}
+
+.modal-footer {
+  background-color: goldenrod;
+}
+
+.btn-outline-primary:hover {
+  color: white;
+  background-color: #060CE9;
+  border-color: white;
+}
+
+
 
 .cost:hover {
   transform: scale(1.1);

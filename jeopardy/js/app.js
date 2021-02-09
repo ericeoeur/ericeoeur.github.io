@@ -84,6 +84,7 @@ const gameCategories = {
   }], //end of Category 6 
   }; //end of gamecategories array
 
+// Populate the jeopardy game board with questions from the object array "game categories"
 const createGameBoard = () => {
   //loop over all categories 
   for (let categories in gameCategories) {
@@ -130,7 +131,7 @@ const createGameBoard = () => {
   } //end of for in loop
 }
 
-
+//Dynamically add questions to modal 
 const addQuestions = (e) => {
   let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); 
   let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
@@ -138,55 +139,82 @@ const addQuestions = (e) => {
   let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
   let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
 
-  console.log($answerChoices.length);
+  const $answerButtons = ("<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[0] + "'> <div class='divider'/>" + $answerChoices[0] + "</button></div></div></div>" + 
 
-  const $modalBody = $('.modal-body');
+  "<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[1] + "'> <div class='divider'/>" + $answerChoices[1] + "</button></div></div></div>" +
 
-  console.log($modalBody);
-  
-  const test = "Test";
-  $modalBody.append(test);
-  
-  for (let i = 0; i <$answerChoices.length; i++) {
-    $modalBody.append(test);
-    
-  } 
-const $answerButtons = ("<div class='row'><div class='center'><div class='col-md-12'><button class='answer-button btn-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[0] + "'> <div class='divider'/>" + $answerChoices[0] + "</button></div></div></div>" + 
+  "<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[2] + "'> <div class='divider'/>" + $answerChoices[2] + "</button></div></div></div>"+
 
-"<div class='row'><div class='center'><div class='col-md-12'><button class='answer-button btn-success btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[1] + "'> <div class='divider'/>" + $answerChoices[1] + "</button></div></div></div>" +
+  "<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[3] + "'> <div class='divider'/>" + $answerChoices[3] + "</button></div></div></div>"
+  );
 
-"<div class='row'><div class='center'><div class='col-md-12'><button class='answer-button btn-danger btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[2] + "'> <div class='divider'/>" + $answerChoices[2] + "</button></div></div></div>"+
-
-"<div class='row'><div class='center'><div class='col-md-12'><button class='answer-button btn-info btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[3] + "'> <div class='divider'/>" + $answerChoices[3] + "</button></div></div></div>"
-);
-
-return $answerButtons;
-
-return $answerButtons.on('click', (f) => {
-  console.log("The button was clicked!");
-});
-
+  return $answerButtons;
 }
 
-// This function's job processes what happens when you click on an answer. 
-const answerButtonClick = (e, $answerChoices, $correctAnswer) => {
+//Function that creates a countdown for the modal 
+const startTimer = () => {
+  //Put code in here for timer to countdown in each of the modals
+  }
 
+// This function's job processes what happens when you click on an answer. 
+const answerButtonClick = (e, $answerChoices, $correctAnswer, $currentValue) => {
   $('.answer-button').on('click', (e) => { 
     const $currentChoice = $(e.currentTarget).text().trim(); //Current Answer Choice. Trim to eliminate spaces in the beginning and end of the string   
-    checkAnswer(e, $currentChoice, $answerChoices, $correctAnswer); // Run Check Answer Function and pass info of clicked choice 
+    checkAnswer(e, $currentChoice, $answerChoices, $correctAnswer, $currentValue); // Run Check Answer Function and pass info of clicked choice 
     return $currentChoice; //Return the current choice... if needed?
   });
 }
 
-// Modal Function that shows question, answer, 
+// a function that checks if the answer is correct or not. 
+const checkAnswer = (e, $currentChoice, $answerChoices, $correctAnswer, $currentValue) => {
+//   console.log($currentChoice);
+//  // console.log("This is the answer choices: "+ $answerChoices);
+//  console.log($correctAnswer);
+//console.log ($(e.currentTarget).parent());
+//console.log($currentValue);
+
+ if ($currentChoice == $correctAnswer) {
+   console.log("The correct answer was chosen! You gained " + $currentValue);
+   updateScore($currentValue, true);
+ } else {
+   console.log("The incorrect answer was chosen! You lost " + $currentValue);
+   updateScore($currentValue, false);
+ }
+}
+
+const updateScore = ($currentValue, ifCorrect) => {
+  if (ifCorrect) {
+    console.log(score);
+    score += $currentValue;
+    console.log(score);
+  } else {
+    console.log(score);
+    score -= $currentValue;
+    console.log(score);
+  }
+  const $calculatedScore = $('.calculatedScore');
+   $calculatedScore.text(score);
+
+}
+
+
+// Modal Function that holds question, answer, and timer data. 
 const showModal = (e) => {
 
   let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); 
   let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
   let $currentQuestion = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].question);
+  let $currentValue = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].cost); 
   let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
   let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
   let $answerButtons = addQuestions(e);
+
+  //need to grab the numeric value of the question clicked:
+
+  
+
+  console.log($currentValue);
+
 
 
   //dont create multiple modals
@@ -198,7 +226,8 @@ const showModal = (e) => {
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">${$currentQuestion}</h5>
+        <h4 class="modal-title show-price">$${$currentValue}</h5>
+       <h4 class="modal-title">${$currentQuestion}</h5>
         <button type="button" class="pass-button btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -213,7 +242,7 @@ const showModal = (e) => {
   document.body.append(modalWrap);
   var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
 
-  answerButtonClick(e, $answerChoices, $correctAnswer);
+  answerButtonClick(e, $answerChoices, $correctAnswer, $currentValue);
 
   $('.pass-button').on('click', (e) => { 
     console.log("You have skipped this question!!");
@@ -234,29 +263,9 @@ const startGame = () => {
 
 }
 
-// a function that checks if the answer is correct or not. 
-const checkAnswer = (e, $currentChoice, $answerChoices, $correctAnswer) => {
-
-
-   console.log($currentChoice);
-  // console.log("This is the answer choices: "+ $answerChoices);
-  console.log($correctAnswer);
-
-  if ($currentChoice == $correctAnswer) {
-    console.log("The correct answer was chosen!");
-  } else {
-    console.log("The incorrect answer was chosen!");
-  }
- 
 
 
 
-}
-
-
-const startTimer = () => {
-//Put code in here for timer to countdown in each of the modals
-}
 
 // Call functions and onclick events here
 startGame(); 
