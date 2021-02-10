@@ -129,7 +129,10 @@ h5 {
 
 .modal-footer {
   background-color: goldenrod;
+  justify-content: left;
+  text-align: left;
 }
+
 
 .btn-outline-primary:hover {
   color: white;
@@ -137,7 +140,16 @@ h5 {
   border-color: white;
 }
 
+.timer {
+  text-align: left;
+}
 
+h1 {
+  font-family: Teko;
+  font-size: 6em;
+  color: white;
+  text-align: center;
+}
 
 .cost:hover {
   transform: scale(1.1);

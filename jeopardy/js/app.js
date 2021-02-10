@@ -28,7 +28,7 @@ const gameCategories = {
   },
   {costQuestionAnswer: [{cost: 800, question: "This creator of Steven Universe is also known for their work on Cartoon Network's 'Adventure Time'", answers: ["Nancy Cartwright", "Rebecca Sugar", "DeeDee Magno Hall", "Ian Jones-Quarterly"], correctAnswer: "Rebecca Sugar"}],
   },
-  {costQuestionAnswer: [{cost: 1000, question: "Garnet is known as a fusion between", answers: ["Ruby and Peridot", "Sapphire and Jade", "Amethyst and Jasper", "Ruby and Sapphire"], correctAnswer: "test"}],
+  {costQuestionAnswer: [{cost: 1000, question: "Garnet is known as a fusion between", answers: ["Ruby and Peridot", "Sapphire and Jade", "Amethyst and Jasper", "Ruby and Sapphire"], correctAnswer: "Ruby and Sapphire"}],
   }], //end of Category 2 
 
   category3: [{categoryName: '00s Music'
@@ -59,9 +59,9 @@ const gameCategories = {
 
   category5: [{categoryName: '90s Television'
   }, {
-  costQuestionAnswer: [{cost: 200, question: "This animated show featured characters including 'Bart', 'Lisa', and 'Maggie'",answers: ["South Park", "The Simpsons", "The Critic", "Animaniacs"], correctAnswer: "test"}],
+  costQuestionAnswer: [{cost: 200, question: "Recently rebooted, this animated series follows Yakko, Wakko, and their sister Dot.'",answers: ["South Park", "The Simpsons", "The Critic", "Animaniacs"], correctAnswer: "Animaniacs"}],
   },
-  { costQuestionAnswer: [{cost: 400, question: "Moesha starred this famous R&B Singer", answers: ["Monica", "Brandy", "Lauryn Hill", "Janet Jackson"], correctAnswer: "Brandy"}],
+  { costQuestionAnswer: [{cost: 400, question: "Moesha starring role is this famous R&B Singer", answers: ["Monica", "Brandy", "Lauryn Hill", "Janet Jackson"], correctAnswer: "Brandy"}],
   },
   { costQuestionAnswer: [{cost: 600, question: "Claire Danes and Jared Leto starred in this short-lived teenage drama on ABC", answers: ["Queer as Folk", "Step by Step", "Family Matters", "My So-Called Life"], correctAnswer: "My So-Called Life"}],
   },
@@ -161,6 +161,7 @@ const answerButtonClick = (e, $answerChoices, $correctAnswer, $currentValue) => 
   $('.answer-button').on('click', (e) => { 
     const $currentChoice = $(e.currentTarget).text().trim(); //Current Answer Choice. Trim to eliminate spaces in the beginning and end of the string   
     checkAnswer(e, $currentChoice, $answerChoices, $correctAnswer, $currentValue); // Run Check Answer Function and pass info of clicked choice 
+    
     return $currentChoice; //Return the current choice... if needed?
   });
 }
@@ -175,9 +176,26 @@ const checkAnswer = (e, $currentChoice, $answerChoices, $correctAnswer, $current
 
  if ($currentChoice == $correctAnswer) {
    console.log("The correct answer was chosen! You gained " + $currentValue);
+   let currentTargetButtton = $(e.currentTarget).attr('class'); //btn-outline-primary
+  $(e.currentTarget).addClass('btn-success').removeClass('btn-outline-primary');
+   //console.log(currentTargetButtton);
    updateScore($currentValue, true);
+
+   let $showAnswer = $('.show-answer');
+
+   let $correct= $('<h4>CORRECT!</h4>');
+ //  let $showCorrect = ($(e.currentTarget).parents().eq(4).children().find("h4")[1]);
+  // let $showCorrect = ($(e.currentTarget).parents().eq(4).children().children()[1].remove());
+  // let addCorrect = ($(e.currentTarget).parents().eq(4).children().children()[0].after('<div>TEST</div>'));
+  //console.log(addCorrect);
+  $('.modal-backdrop').remove();
+  showCorrectModal(e);
+
+
+
  } else {
    console.log("The incorrect answer was chosen! You lost " + $currentValue);
+   $(e.currentTarget).addClass('btn-danger').removeClass('btn-outline-primary');
    updateScore($currentValue, false);
  }
 }
@@ -194,7 +212,6 @@ const updateScore = ($currentValue, ifCorrect) => {
   }
   const $calculatedScore = $('.calculatedScore');
    $calculatedScore.text(score);
-
 }
 
 
@@ -210,50 +227,96 @@ const showModal = (e) => {
   let $answerButtons = addQuestions(e);
 
   //need to grab the numeric value of the question clicked:
-
-  
-
-  console.log($currentValue);
-
-
-
-  //dont create multiple modals
+   //dont create multiple modals
   if (modalWrap !== null) {
-    modalWrap.remove();
+    modalWrap.remove(); 
   }
   modalWrap = document.createElement('div');
-  modalWrap.innerHTML = `<div class="modal fade" tabindex="-1">
+
+  modalWrap.innerHTML = `<div class="modal fade" id="mainModal" data-backdrop="static" data-keyboard="false" href="#" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title show-price">$${$currentValue}</h5>
-       <h4 class="modal-title">${$currentQuestion}</h5>
+        <h4 class="modal-title show-price">$${ $currentValue }</h4>
+       <h4 class="modal-title show-question">${ $currentQuestion }</h4>
         <button type="button" class="pass-button btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
       ${ $answerButtons }
       </div>
       <div class="modal-footer">
+      <h4 class= "timer">Timer: <span class="countdown"></span></h4>
         <button type="button" class="pass-button btn btn-danger" data-dismiss="modal">Pass</button>
       </div>
     </div>
   </div>
 </div>`;
-  document.body.append(modalWrap);
-  var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
 
+//For onClick events inside Modal
+$('body').append(modalWrap);
+  var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
   answerButtonClick(e, $answerChoices, $correctAnswer, $currentValue);
 
   $('.pass-button').on('click', (e) => { 
     console.log("You have skipped this question!!");
   });
 
-
   modal.show();
+
+  $("#mainModal").click(function(ev){
+    if(ev.target != this) return;
+    $('#mainModal').modal('hide');
+    $('.modal-backdrop').remove();
+    console.log("this is fired");
+  });
+ 
 
 
 
 }
+
+const showCorrectModal = (e) => {
+
+  //dont create multiple modals
+  if (modalWrap !== null) {
+    modalWrap.remove();
+    $('.modal-backdrop').remove();
+  }
+  modalWrap = document.createElement('div');
+  modalWrap.innerHTML = `<div class="modal fade" id="correct staticBackdrop" data-backdrop="static" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h1> CORRECT! </h1>
+      </div>
+      <div class="modal-footer">
+ 
+        <button type="button" class="pass-button btn btn-success" data-dismiss="modal">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+  $('body').append(modalWrap);
+  var correctModal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
+  $('.modal-backdrop').modal({backdrop:'static', keyboard:false});
+  
+  $('.pass-button').on('click', (e) => { 
+    $('#correct').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+  });
+
+  $("#correct").click(function(ev){
+    if(ev.target != this) return;
+    $('#correct').modal('hide');
+    $('.modal-backdrop').remove();
+    $('.modal-backdrop').remove();
+  });
+
+  correctModal.show();
+}
+
+
 
 
 const startGame = () => {
@@ -264,9 +327,6 @@ const startGame = () => {
 }
 
 
-
-
-
 // Call functions and onclick events here
 startGame(); 
 
@@ -275,9 +335,15 @@ let $cost = $('.cost');
 $cost.on('click', (e) => {
   //console.log($(e.currentTarget).parent());
   showModal(e);
-  let $answerButton = $('answer-button');
 
-  console.log($answerButton);
+  //prevents user from reclicking
+  $(e.currentTarget).removeClass("cost").empty();
+
+
+ 
+
+
+  //console.log($answerButton);
   //console.log($(e.currentTarget).children().text()); //the text of the number 
   //console.log($(e.currentTarget).parent().parent());
 });
