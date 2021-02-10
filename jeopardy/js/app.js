@@ -168,34 +168,23 @@ const answerButtonClick = (e, $answerChoices, $correctAnswer, $currentValue) => 
 
 // a function that checks if the answer is correct or not. 
 const checkAnswer = (e, $currentChoice, $answerChoices, $correctAnswer, $currentValue) => {
-//   console.log($currentChoice);
-//  // console.log("This is the answer choices: "+ $answerChoices);
-//  console.log($correctAnswer);
-//console.log ($(e.currentTarget).parent());
-//console.log($currentValue);
-
  if ($currentChoice == $correctAnswer) {
    console.log("The correct answer was chosen! You gained " + $currentValue);
+ 
    let currentTargetButtton = $(e.currentTarget).attr('class'); //btn-outline-primary
   $(e.currentTarget).addClass('btn-success').removeClass('btn-outline-primary');
-   //console.log(currentTargetButtton);
    updateScore($currentValue, true);
 
-   let $showAnswer = $('.show-answer');
-
-   let $correct= $('<h4>CORRECT!</h4>');
- //  let $showCorrect = ($(e.currentTarget).parents().eq(4).children().find("h4")[1]);
-  // let $showCorrect = ($(e.currentTarget).parents().eq(4).children().children()[1].remove());
   // let addCorrect = ($(e.currentTarget).parents().eq(4).children().children()[0].after('<div>TEST</div>'));
   //console.log(addCorrect);
   $('.modal-backdrop').remove();
-  showCorrectModal(e);
-
-
-
+  showCorrectModal(e, $currentValue);
+  
  } else {
    console.log("The incorrect answer was chosen! You lost " + $currentValue);
    $(e.currentTarget).addClass('btn-danger').removeClass('btn-outline-primary');
+
+   showIncorrectModal(e, $currentValue);
    updateScore($currentValue, false);
  }
 }
@@ -232,7 +221,6 @@ const showModal = (e) => {
     modalWrap.remove(); 
   }
   modalWrap = document.createElement('div');
-
   modalWrap.innerHTML = `<div class="modal fade" id="mainModal" data-backdrop="static" data-keyboard="false" href="#" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -259,6 +247,7 @@ $('body').append(modalWrap);
 
   $('.pass-button').on('click', (e) => { 
     console.log("You have skipped this question!!");
+    updateScore($currentValue, false);
   });
 
   modal.show();
@@ -268,6 +257,7 @@ $('body').append(modalWrap);
     $('#mainModal').modal('hide');
     $('.modal-backdrop').remove();
     console.log("this is fired");
+    updateScore($currentValue, false);
   });
  
 
@@ -275,7 +265,7 @@ $('body').append(modalWrap);
 
 }
 
-const showCorrectModal = (e) => {
+const showCorrectModal = (e, $currentValue) => {
 
   //dont create multiple modals
   if (modalWrap !== null) {
@@ -287,7 +277,7 @@ const showCorrectModal = (e) => {
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-      <h1> CORRECT! </h1>
+      <h1 class="response-modal"> CORRECT! <br>You've gained <span class="text-success">$${$currentValue}</span></h1>
       </div>
       <div class="modal-footer">
  
@@ -312,8 +302,47 @@ const showCorrectModal = (e) => {
     $('.modal-backdrop').remove();
     $('.modal-backdrop').remove();
   });
-
   correctModal.show();
+}
+
+const showIncorrectModal = (e, $currentValue) => {
+
+  //dont create multiple modals
+  if (modalWrap !== null) {
+    modalWrap.remove();
+    $('.modal-backdrop').remove();
+  }
+  modalWrap = document.createElement('div');
+  modalWrap.innerHTML = `<div class="modal fade" id="incorrect staticBackdrop" data-backdrop="static" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h1 class="response-modal"> INCORRECT! <br>You've lost <span class="text-danger">$${$currentValue}... </h1>
+      </div>
+      <div class="modal-footer">
+ 
+        <button type="button" class="pass-button btn btn-danger" data-dismiss="modal">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+  $('body').append(modalWrap);
+  var incorrectModal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
+  $('.modal-backdrop').modal({backdrop:'static', keyboard:false});
+  
+  $('.pass-button').on('click', (e) => { 
+    $('#correct').modal('hide');
+    $('body').removeClass('modal-open');
+    $('.modal-backdrop').remove();
+  });
+
+  $("#incorrect").click(function(ev){
+    if(ev.target != this) return;
+    $('#incorrect').modal('hide');
+    $('.modal-backdrop').remove();
+    $('.modal-backdrop').remove();
+  });
+  incorrectModal.show();
 }
 
 
@@ -333,17 +362,11 @@ startGame();
 //On Clicks
 let $cost = $('.cost');
 $cost.on('click', (e) => {
-  //console.log($(e.currentTarget).parent());
   showModal(e);
 
-  //prevents user from reclicking
+  //prevents user from reclicking category price and removes CSS
   $(e.currentTarget).removeClass("cost").empty();
-
-
  
-
-
-  //console.log($answerButton);
   //console.log($(e.currentTarget).children().text()); //the text of the number 
   //console.log($(e.currentTarget).parent().parent());
 });

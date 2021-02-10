@@ -11,6 +11,13 @@ body {
   font-size: 5em;
 }
 
+.title h1{
+  text-align: center;
+  font-family: Teko;
+  font-size: 7em;
+  color:  #060CE9; 
+}
+
 .header {
   background-color: aliceblue;
   color: #060CE9; 
@@ -144,9 +151,9 @@ h5 {
   text-align: left;
 }
 
-h1 {
+.response-modal{
   font-family: Teko;
-  font-size: 6em;
+  font-size: 5em;
   color: white;
   text-align: center;
 }
