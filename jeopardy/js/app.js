@@ -204,66 +204,6 @@ const updateScore = ($currentValue, ifCorrect) => {
 }
 
 
-// Modal Function that holds question, answer, and timer data. 
-const showModal = (e) => {
-
-  let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); 
-  let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
-  let $currentQuestion = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].question);
-  let $currentValue = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].cost); 
-  let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
-  let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
-  let $answerButtons = addQuestions(e);
-
-  //need to grab the numeric value of the question clicked:
-   //dont create multiple modals
-  if (modalWrap !== null) {
-    modalWrap.remove(); 
-  }
-  modalWrap = document.createElement('div');
-  modalWrap.innerHTML = `<div class="modal fade" id="mainModal" data-backdrop="static" data-keyboard="false" href="#" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title show-price">$${ $currentValue }</h4>
-       <h4 class="modal-title show-question">${ $currentQuestion }</h4>
-        <button type="button" class="pass-button btn-close" data-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      ${ $answerButtons }
-      </div>
-      <div class="modal-footer">
-      <h4 class= "timer">Timer: <span class="countdown"></span></h4>
-        <button type="button" class="pass-button btn btn-danger" data-dismiss="modal">Pass</button>
-      </div>
-    </div>
-  </div>
-</div>`;
-
-//For onClick events inside Modal
-$('body').append(modalWrap);
-  var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
-  answerButtonClick(e, $answerChoices, $correctAnswer, $currentValue);
-
-  $('.pass-button').on('click', (e) => { 
-    console.log("You have skipped this question!!");
-    updateScore($currentValue, false);
-  });
-
-  modal.show();
-
-  $("#mainModal").click(function(ev){
-    if(ev.target != this) return;
-    $('#mainModal').modal('hide');
-    $('.modal-backdrop').remove();
-    console.log("this is fired");
-    updateScore($currentValue, false);
-  });
- 
-
-
-
-}
 
 const showCorrectModal = (e, $currentValue) => {
 
@@ -346,6 +286,67 @@ const showIncorrectModal = (e, $currentValue) => {
 }
 
 
+// Modal Function that holds question, answer, and timer data. 
+const showModal = (e) => {
+
+  let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); 
+  let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
+  let $currentQuestion = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].question);
+  let $currentValue = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].cost); 
+  let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
+  let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
+  let $answerButtons = addQuestions(e);
+
+  //need to grab the numeric value of the question clicked:
+   //dont create multiple modals
+  if (modalWrap !== null) {
+    modalWrap.remove(); 
+  }
+  modalWrap = document.createElement('div');
+  modalWrap.innerHTML = `<div class="modal fade" id="mainModal" data-backdrop="static" data-keyboard="false" href="#" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title show-price">$${ $currentValue }</h4>
+       <h4 class="modal-title show-question">${ $currentQuestion }</h4>
+        <button type="button" class="pass-button btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      ${ $answerButtons }
+      </div>
+      <div class="modal-footer">
+      <h4 class= "timer">Timer: <span class="countdown"></span></h4>
+        <button type="button" class="pass-button btn btn-danger" data-dismiss="modal">Pass</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+
+//For onClick events inside Modal
+$('body').append(modalWrap);
+  var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
+  answerButtonClick(e, $answerChoices, $correctAnswer, $currentValue);
+
+  $('.pass-button').on('click', (e) => { 
+    console.log("You have skipped this question!!");
+    showIncorrectModal(e, $currentValue);
+    updateScore($currentValue, false);
+  });
+
+  modal.show();
+
+  $("#mainModal").click(function(ev){
+    if(ev.target != this) return;
+    $('#mainModal').modal('hide');
+    $('.modal-backdrop').remove();
+    showIncorrectModal(e, $currentValue);
+    updateScore($currentValue, false);
+  });
+ 
+
+
+
+}
 
 
 const startGame = () => {
