@@ -277,6 +277,8 @@ const gameCategories = {
   ], //end of Category 6 
 }; 
 
+
+
 // Populate the jeopardy game board with questions from the object array "game categories"
 const createGameBoard = () => {
   //loop over all categories 
