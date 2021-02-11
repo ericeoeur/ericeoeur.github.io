@@ -1,6 +1,13 @@
 let modalWrap = null;
 let score = 0;
 
+////////////////////////////////// REFERENCES ////////////////////////////////////
+// Bootstrap 5: https://getbootstrap.com/docs/5.0/getting-started/introduction/ // 
+// Modal Production in Boostrap 5: https://www.youtube.com/watch?v=lczv0v7DnYI  //
+//                                                                              //
+//////////////////////////////////////////////////////////////////////////////////
+
+
 ///////////////// ARRAY AND FUNCTIONS THAT BUILD THE GAME'S BOARD AND VISUALS ///////////////////
 
 // Jeopardy Game Questions and Answers in an array of objects. 
@@ -26,7 +33,7 @@ const gameCategories = {
     {
       costQuestionAnswer: [{
         cost: 600,
-        question: "He is known for movies such as 'Drunken Master' and 'Rush Hour'",
+        question: "Famous for movies such as 'Drunken Master' and 'Rush Hour'",
         answers: ["Bruce Lee", "Diego Luna", "Ken Wantanabe", "Jackie Chan"],
         correctAnswer: "Jackie Chan"
       }],
@@ -194,7 +201,7 @@ const gameCategories = {
     {
       costQuestionAnswer: [{
         cost: 400,
-        question: "Moesha starring role is this famous R&B Singer",
+        question: "Moesha starred this famous R&B Singer",
         answers: ["Monica", "Brandy", "Lauryn Hill", "Janet Jackson"],
         correctAnswer: "Brandy"
       }],
@@ -400,6 +407,7 @@ const answerButtonClick = (e, $answerChoices, $correctAnswer, $currentValue) => 
 
     // Run Check Answer Function and pass info of clicked choice 
     checkAnswer(e, $currentChoice, $answerChoices, $correctAnswer, $currentValue);
+ 
   });
 }
 
@@ -465,11 +473,9 @@ const showCorrectModal = (e, $currentValue) => {
     $('.modal-backdrop').remove();
   });
 
-  $("#correct").click(function (ev) {
-    if (ev.target != this) return;
+  $("#correct").click(function (e) {
+    if (e.target != this) return;
     $('#correct').modal('hide');
-    $('.modal-backdrop').remove();
-    $('.modal-backdrop').remove();
   });
   correctModal.show();
 }

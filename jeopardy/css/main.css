@@ -9,18 +9,21 @@ body {
   text-align: center;
   font-family: Teko;
   font-size: 5em;
-}
 
-.title h1{
-  text-align: center;
-  font-family: Teko;
-  font-size: 7em;
-  color:  #060CE9; 
 }
 
 .header {
-  background-color: aliceblue;
-  color: #060CE9; 
+  background-color: #060CE9;
+  color: #060CE9 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header img {
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 22%;
 }
 
 .score {
@@ -28,10 +31,12 @@ body {
   font-size: 2em;
   background-color: #060CE9;
   color: white;
-  text-align: left;
+  text-align: center;
   height: 60px;
+  overflow: hidden;
 }
 
+/* Columns including price for each */
 .col-sm-2{
   display: flexbox;
   background-color: #060CE9;
@@ -40,9 +45,12 @@ body {
   margin: 0 auto;
 }
 
+/* Price Height aand Font */
 .col-sm-2 h4{
 height: 100px;
+line-height: 42px;
 padding-top: 10px;
+padding-bottom: 10px;
 }
 
 .col-sm-12 {
@@ -70,9 +78,10 @@ padding-top: 10px;
 .category-name {
   font-family: Teko;
   color: white; 
-  font-size: 300%;
+  font-size: 3em;
   line-height: 80%;
   position:relative;
+  overflow: hidden;
 }
 
 h4 {
@@ -111,6 +120,7 @@ h5 {
 
 .modal-header {
   background-color: #060CE9;
+  text-align: center;
 }
 
 .modal-body {
