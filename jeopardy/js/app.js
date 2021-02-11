@@ -5,7 +5,7 @@ let timer;
 ////////////////////////////////// REFERENCES ////////////////////////////////////
 // Bootstrap 5: https://getbootstrap.com/docs/5.0/getting-started/introduction/ // 
 // Modal Production in Boostrap 5: https://www.youtube.com/watch?v=lczv0v7DnYI  //
-//                                                                              //
+// Resetting a window: https://www.w3schools.com/jsref/met_win_clearinterval.asp//
 //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -283,13 +283,12 @@ const gameCategories = {
 const countDown = () => {
   $('.counter').each(function (){ 
   let count = parseInt($('.counter').html());
-  console.log(count);
   if(count !==0) {
     count--; 
     $('.counter').html(count); 
   } else if (count === 0){
-    //window.location.reload(); this will reset the page
-    console.log("Count is 0!");
+    clearInterval(timer);
+    endGame();
   }
 });
 }
@@ -540,8 +539,56 @@ const showIncorrectModal = (e, $currentValue) => {
 const startGame = () => {
   //Create the Game Board 
   createGameBoard();
-  setInterval(countDown, 1000);
+  timer = setInterval(countDown, 1000);
 }
+
+const endGame = () =>{
+  let gameOverWinText= null; 
+  //dont create multiple modals
+  if (modalWrap !== null) {
+    modalWrap.remove();
+    $('.modal-backdrop').remove();
+  }
+
+  if (score > 0 ){
+    gameOverWinText = `You've won a total earnings of <span class='text-success'>$${score}!</span>`
+  } else {
+    gameOverWinText = `You've lost! You owe <span class='text-danger'>$${score}!</span>`
+  }
+
+
+
+  modalWrap = document.createElement('div');
+  modalWrap.innerHTML = `<div class="modal fade" id="incorrect staticBackdrop" data-backdrop="static" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+      <h1 class="response-modal"> ${gameOverWinText}</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="restart-button btn btn-danger" data-dismiss="modal">Play again?</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+  $('body').append(modalWrap);
+  var gameOverModal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
+  
+  
+  $('.modal-backdrop').modal({
+    backdrop: 'static',
+    keyboard: false
+  });
+
+  $('.restart-button').on('click', (e) => {
+    window.location.reload();  
+  });
+
+
+  gameOverModal.show();
+
+}
+
 startGame();
 
 ///////////////// EVENT HANDLER - CLICKING ON A CATEGORY AND REMOVING IT FROM THE DOM ///////////////////
