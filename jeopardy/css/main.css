@@ -26,6 +26,10 @@ body {
   width: 22%;
 }
 
+.time {
+  font-size: 45px;
+}
+
 .score {
   font-family: Teko;
   font-size: 2em;

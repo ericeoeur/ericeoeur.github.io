@@ -1,5 +1,6 @@
 let modalWrap = null;
 let score = 0;
+let timer; 
 
 ////////////////////////////////// REFERENCES ////////////////////////////////////
 // Bootstrap 5: https://getbootstrap.com/docs/5.0/getting-started/introduction/ // 
@@ -279,6 +280,22 @@ const gameCategories = {
 
 
 
+const countDown = () => {
+  $('.counter').each(function (){ 
+  let count = parseInt($('.counter').html());
+  console.log(count);
+  if(count !==0) {
+    count--; 
+    $('.counter').html(count); 
+  } else if (count === 0){
+    //window.location.reload(); this will reset the page
+    console.log("Count is 0!");
+  }
+});
+}
+
+
+
 // Populate the jeopardy game board with questions from the object array "game categories"
 const createGameBoard = () => {
   //loop over all categories 
@@ -523,7 +540,7 @@ const showIncorrectModal = (e, $currentValue) => {
 const startGame = () => {
   //Create the Game Board 
   createGameBoard();
-
+  setInterval(countDown, 1000);
 }
 startGame();
 
