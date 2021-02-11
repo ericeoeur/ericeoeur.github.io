@@ -1,88 +1,274 @@
-//Call your global variables
 let modalWrap = null;
-let score = 0; 
-let timer = null; 
+let score = 0;
+
+///////////////// ARRAY AND FUNCTIONS THAT BUILD THE GAME'S BOARD AND VISUALS ///////////////////
 
 // Jeopardy Game Questions and Answers in an array of objects. 
 const gameCategories = {
-  category1: [{categoryName: 'Famous POCs'
+  category1: [{
+      categoryName: 'Famous POCs'
     }, {
-      costQuestionAnswer: [{cost: 200, question: "This minister and Civil Rights Activist was born on January 15, 1929.", answers: ["Dalai Lama", "Martin Luther King Jr.", "Frances Scott Key", "Malcolm X"], correctAnswer: "Martin Luther King Jr."}],
+      costQuestionAnswer: [{
+        cost: 200,
+        question: "This minister and Civil Rights Activist was born on January 15, 1929.",
+        answers: ["Dalai Lama", "Martin Luther King Jr.", "Frances Scott Key", "Malcolm X"],
+        correctAnswer: "Martin Luther King Jr."
+      }],
     },
-    { costQuestionAnswer: [{cost: 400, question: "This singer is known for hits such as 'Single Ladies' and 'Irreplaceable'", answers: ["Beyoncé", "Aaliyah", "Jhene Aiko", "Sade"], correctAnswer: "Beyoncé"}],
+    {
+      costQuestionAnswer: [{
+        cost: 400,
+        question: "This singer is known for hits such as 'Single Ladies' and 'Irreplaceable'",
+        answers: ["Beyoncé", "Aaliyah", "Jhene Aiko", "Sade"],
+        correctAnswer: "Beyoncé"
+      }],
     },
-    { costQuestionAnswer: [{cost: 600, question: "He is known for movies such as 'Drunken Master' and 'Rush Hour'", answers: ["Bruce Lee", "Diego Luna", "Ken Wantanabe", "Jackie Chan"], correctAnswer: "Jackie Chan"}],
+    {
+      costQuestionAnswer: [{
+        cost: 600,
+        question: "He is known for movies such as 'Drunken Master' and 'Rush Hour'",
+        answers: ["Bruce Lee", "Diego Luna", "Ken Wantanabe", "Jackie Chan"],
+        correctAnswer: "Jackie Chan"
+      }],
     },
-    {costQuestionAnswer: [{cost: 800, question: "'Kiss from a Rose' was his popular hit in 1994.'", answers: ["Coolio", "La Bouche", "Seal", "Brian McKnight"], correctAnswer: "Seal"}],
+    {
+      costQuestionAnswer: [{
+        cost: 800,
+        question: "'Kiss from a Rose' was his popular hit in 1994.'",
+        answers: ["Coolio", "La Bouche", "Seal", "Brian McKnight"],
+        correctAnswer: "Seal"
+      }],
     },
-    {costQuestionAnswer: [{cost: 1000, question: "Author of 'The Next American Revolution' this Detroit-based Chinese-American social activist passed away in 2015." , answers: ["Grace Lee Boggs", "Yuri Kochiyama", "Erika Lee", "Wei-Han Huang"], correctAnswer: "Grace Lee Boggs"}],
-  }], //end of Category 1 
+    {
+      costQuestionAnswer: [{
+        cost: 1000,
+        question: "Author of 'The Next American Revolution' this Detroit-based Chinese-American social activist passed away in 2015.",
+        answers: ["Grace Lee Boggs", "Yuri Kochiyama", "Erika Lee", "Wei-Han Huang"],
+        correctAnswer: "Grace Lee Boggs"
+      }],
+    }
+  ], //end of Category 1 
 
-  category2: [{categoryName: 'Steven Universe'
-  }, {
-    costQuestionAnswer: [{cost: 200, question: "Used to protect his loved ones, Steven's weapon is a pink this ",answers: ["Shield", "Sword", "Mace", "Trident"], correctAnswer: "Shield"}],
-  },
-  { costQuestionAnswer: [{cost: 400, question: "The name of the city where the Crystal Gems reside", answers: ["Port City", "Ocean Town", "Emeryville", "Beach City"], correctAnswer: "Beach City"}],
-  },
-  { costQuestionAnswer: [{cost: 600, question: "When Pearl and Amethyst fuse, they form this:", answers: ["Sugilite", "Zoicite", "Opal", "Obsidian"], correctAnswer: "Opal"}],
-  },
-  {costQuestionAnswer: [{cost: 800, question: "This creator of Steven Universe is also known for their work on Cartoon Network's 'Adventure Time'", answers: ["Nancy Cartwright", "Rebecca Sugar", "DeeDee Magno Hall", "Ian Jones-Quarterly"], correctAnswer: "Rebecca Sugar"}],
-  },
-  {costQuestionAnswer: [{cost: 1000, question: "Garnet is known as a fusion between", answers: ["Ruby and Peridot", "Sapphire and Jade", "Amethyst and Jasper", "Ruby and Sapphire"], correctAnswer: "Ruby and Sapphire"}],
-  }], //end of Category 2 
+  category2: [{
+      categoryName: 'Steven Universe'
+    }, {
+      costQuestionAnswer: [{
+        cost: 200,
+        question: "Used to protect his loved ones, Steven's weapon is a pink this ",
+        answers: ["Shield", "Sword", "Mace", "Trident"],
+        correctAnswer: "Shield"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 400,
+        question: "The name of the city where the Crystal Gems reside",
+        answers: ["Port City", "Ocean Town", "Emeryville", "Beach City"],
+        correctAnswer: "Beach City"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 600,
+        question: "When Pearl and Amethyst fuse, they form this:",
+        answers: ["Sugilite", "Zoicite", "Opal", "Obsidian"],
+        correctAnswer: "Opal"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 800,
+        question: "This creator of Steven Universe is also known for their work on Cartoon Network's 'Adventure Time'",
+        answers: ["Nancy Cartwright", "Rebecca Sugar", "DeeDee Magno Hall", "Ian Jones-Quarterly"],
+        correctAnswer: "Rebecca Sugar"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 1000,
+        question: "Garnet is known as a fusion between",
+        answers: ["Ruby and Peridot", "Sapphire and Jade", "Amethyst and Jasper", "Ruby and Sapphire"],
+        correctAnswer: "Ruby and Sapphire"
+      }],
+    }
+  ], //end of Category 2 
 
-  category3: [{categoryName: '00s Music'
-}, {
-  costQuestionAnswer: [{cost: 200, question: "Often spelling her name in music, this 'London Bridge' singer is also a member of the Black Eye Peas",answers: ["Fergie", "Derpy", "JLO", "Conor Oberst"], correctAnswer: "Fergie"}],
-},
-{ costQuestionAnswer: [{cost: 400, question: "Known for the album 'Transatlanticism' this indie band's lead singer also created the band 'The Postal Service'", answers: ["Jared Leto", "Anthony White", "Ben Gibbard", "Dustin Krenshue"], correctAnswer: "Ben Gibbard"}],
-},
-{ costQuestionAnswer: [{cost: 600, question: "The film Shrek featured this artist's hit song 'Cigarettes and Chocolate Milk'", answers: ["Lily Allen", "The Shins", "Feist", "Rufus Wainwright"], correctAnswer: "Rufus Wainwright"}],
-},
-{costQuestionAnswer: [{cost: 800, question: "This Russian-born American songwriter is famous for their songs 'Fidelity' and 'Samson'", answers: ["Andrew Bird", "Coco Rosie", "Regina Spektor", "Sufjan Stevens"], correctAnswer: "Regina Spektor"}],
-},
-{costQuestionAnswer: [{cost: 1000, question: "This artist began naming their albums after all 50 US states but only made two albums featuring 'Illinois' and 'Michigan'", answers: ["Mark Ronson", "Sufjan Stevens", "Elliot Smith", "Minus the Bear"], correctAnswer: "Sufjan Stevens"}],
-  }], //end of Category 3 
+  category3: [{
+      categoryName: '00s Music'
+    }, {
+      costQuestionAnswer: [{
+        cost: 200,
+        question: "Often spelling her name in music, this 'London Bridge' singer is also a member of the Black Eye Peas",
+        answers: ["Fergie", "Derpy", "JLO", "Conor Oberst"],
+        correctAnswer: "Fergie"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 400,
+        question: "Known for the album 'Transatlanticism' this indie band's lead singer also created the band 'The Postal Service'",
+        answers: ["Jared Leto", "Anthony White", "Ben Gibbard", "Dustin Krenshue"],
+        correctAnswer: "Ben Gibbard"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 600,
+        question: "The film Shrek featured this artist's hit song 'Cigarettes and Chocolate Milk'",
+        answers: ["Lily Allen", "The Shins", "Feist", "Rufus Wainwright"],
+        correctAnswer: "Rufus Wainwright"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 800,
+        question: "This Russian-born American songwriter is famous for their songs 'Fidelity' and 'Samson'",
+        answers: ["Andrew Bird", "Coco Rosie", "Regina Spektor", "Sufjan Stevens"],
+        correctAnswer: "Regina Spektor"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 1000,
+        question: "This artist began naming their albums after all 50 US states but only made two albums featuring 'Illinois' and 'Michigan'",
+        answers: ["Mark Ronson", "Sufjan Stevens", "Elliot Smith", "Minus the Bear"],
+        correctAnswer: "Sufjan Stevens"
+      }],
+    }
+  ], //end of Category 3 
 
-  category4: [{categoryName: 'Capitals'
-  }, {
-  costQuestionAnswer: [{cost: 200, question: "China", answers: ["Shanghai", "Beijing", "Guangzhou", "Hong Kong"], correctAnswer: "Beijing"}],
-  },
-  { costQuestionAnswer: [{cost: 400, question: "Mexico", answers: ["Mexico City", "Aguascalientes", "Oaxaca", "Guadalajara"], correctAnswer: "Mexico City"}],
-  },
-  { costQuestionAnswer: [{cost: 600, question: "Hungary", answers: ["Miskolc", "Szeged", "Pécs", "Budapest"], correctAnswer: "Budapest"}],
-  },
-  {costQuestionAnswer: [{cost: 800, question: "Cambodia", answers: ["Siem Reap", "Battambang", "Phnom Penh", "Sihanoukville"], correctAnswer: "Phnom Penh"}],
-  },
-  {costQuestionAnswer: [{cost: 1000, question: "Slovenia", answers: ["Ljubljana", "Bled", "Maribor", "Koper"], correctAnswer: "Ljubljana"}],
-  }], //end of Category 2 
+  category4: [{
+      categoryName: 'Capitals'
+    }, {
+      costQuestionAnswer: [{
+        cost: 200,
+        question: "China",
+        answers: ["Shanghai", "Beijing", "Guangzhou", "Hong Kong"],
+        correctAnswer: "Beijing"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 400,
+        question: "Mexico",
+        answers: ["Mexico City", "Aguascalientes", "Oaxaca", "Guadalajara"],
+        correctAnswer: "Mexico City"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 600,
+        question: "Hungary",
+        answers: ["Miskolc", "Szeged", "Pécs", "Budapest"],
+        correctAnswer: "Budapest"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 800,
+        question: "Cambodia",
+        answers: ["Siem Reap", "Battambang", "Phnom Penh", "Sihanoukville"],
+        correctAnswer: "Phnom Penh"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 1000,
+        question: "Slovenia",
+        answers: ["Ljubljana", "Bled", "Maribor", "Koper"],
+        correctAnswer: "Ljubljana"
+      }],
+    }
+  ], //end of Category 2 
 
-  category5: [{categoryName: '90s Television'
-  }, {
-  costQuestionAnswer: [{cost: 200, question: "Recently rebooted, this animated series follows Yakko, Wakko, and their sister Dot.'",answers: ["South Park", "The Simpsons", "The Critic", "Animaniacs"], correctAnswer: "Animaniacs"}],
-  },
-  { costQuestionAnswer: [{cost: 400, question: "Moesha starring role is this famous R&B Singer", answers: ["Monica", "Brandy", "Lauryn Hill", "Janet Jackson"], correctAnswer: "Brandy"}],
-  },
-  { costQuestionAnswer: [{cost: 600, question: "Claire Danes and Jared Leto starred in this short-lived teenage drama on ABC", answers: ["Queer as Folk", "Step by Step", "Family Matters", "My So-Called Life"], correctAnswer: "My So-Called Life"}],
-  },
-  {costQuestionAnswer: [{cost: 800, question: "This show centered on six people consisting of four women and two men living in Prospect Heights, Brooklyn.", answers: ["Martin", "Living Single", "Sister Sister", "Family Matters"], correctAnswer: "Living Single"}],
-  },
-  {costQuestionAnswer: [{cost: 1000, question: "Helen Hunt and Paul Riser starred in this sitcom about a newly wed couple in New York", answers: ["Mad About You", "Caroline in the City", "Spin City", "Coach"], correctAnswer: "Mad About You"}],
-  }], //end of Category 5 
+  category5: [{
+      categoryName: '90s Television'
+    }, {
+      costQuestionAnswer: [{
+        cost: 200,
+        question: "Recently rebooted, this animated series follows Yakko, Wakko, and their sister Dot.'",
+        answers: ["South Park", "The Simpsons", "The Critic", "Animaniacs"],
+        correctAnswer: "Animaniacs"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 400,
+        question: "Moesha starring role is this famous R&B Singer",
+        answers: ["Monica", "Brandy", "Lauryn Hill", "Janet Jackson"],
+        correctAnswer: "Brandy"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 600,
+        question: "Claire Danes and Jared Leto starred in this short-lived teenage drama on ABC",
+        answers: ["Queer as Folk", "Step by Step", "Family Matters", "My So-Called Life"],
+        correctAnswer: "My So-Called Life"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 800,
+        question: "This show centered on six people consisting of four women and two men living in Prospect Heights, Brooklyn.",
+        answers: ["Martin", "Living Single", "Sister Sister", "Family Matters"],
+        correctAnswer: "Living Single"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 1000,
+        question: "Helen Hunt and Paul Riser starred in this sitcom about a newly wed couple in New York",
+        answers: ["Mad About You", "Caroline in the City", "Spin City", "Coach"],
+        correctAnswer: "Mad About You"
+      }],
+    }
+  ], //end of Category 5 
 
-  category6: [{categoryName: 'Final Fantasy'
-  }, {
-  costQuestionAnswer: [{cost: 200, question: "Cloud, Tifa, Aeris, Barret, Sephiroth", answers: ["Final Fantasy 3", "Final Fantasy 8", "Final Fantasy 9", "Final Fantasy 7"], correctAnswer: "Final Fantasy 7"}],
-  },
-  { costQuestionAnswer: [{cost: 400, question: "Zidane, Garnet, Eiko, Stiner", answers: ["Final Fantasy 9", "Final Fantasy 2", "Final Fantasy 13", "Final Fantasy 3"], correctAnswer: "Final Fantasy 9"}],
-  },
-  { costQuestionAnswer: [{cost: 600, question: "Lighting, Sazh, Oerba, Hope", answers: ["Final Fantasy 13", "Final Fantasy 4", "Final Fantasy 8", "Final Fantasy"], correctAnswer: "Final Fantasy 13"}],
-  },
-  {costQuestionAnswer: [{cost: 800, question: "Squall, Rinoa, Selphie, Quistis", answers: ["Final Fantasy 2", "Final Fantasy 8", "Final Fantasy 15", "Final Fantasy 5"], correctAnswer: "Final Fantasy 8"}],
-  },
-  {costQuestionAnswer: [{cost: 1000, question: "Rydia, Cecil, Edward, Golbez", answers: ["Final Fantasy 16", "Final Fantasy 13", "Final Fantasy 4", "Final Fantasy"], correctAnswer: "Final Fantasy 4"}],
-  }], //end of Category 6 
-  }; //end of gamecategories array
+  category6: [{
+      categoryName: 'Final Fantasy'
+    }, {
+      costQuestionAnswer: [{
+        cost: 200,
+        question: "Cloud, Tifa, Aeris, Barret, Sephiroth",
+        answers: ["Final Fantasy 3", "Final Fantasy 8", "Final Fantasy 9", "Final Fantasy 7"],
+        correctAnswer: "Final Fantasy 7"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 400,
+        question: "Zidane, Garnet, Eiko, Stiner",
+        answers: ["Final Fantasy 9", "Final Fantasy 2", "Final Fantasy 13", "Final Fantasy 3"],
+        correctAnswer: "Final Fantasy 9"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 600,
+        question: "Lighting, Sazh, Oerba, Hope",
+        answers: ["Final Fantasy 13", "Final Fantasy 4", "Final Fantasy 8", "Final Fantasy"],
+        correctAnswer: "Final Fantasy 13"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 800,
+        question: "Squall, Rinoa, Selphie, Quistis",
+        answers: ["Final Fantasy 2", "Final Fantasy 8", "Final Fantasy 15", "Final Fantasy 5"],
+        correctAnswer: "Final Fantasy 8"
+      }],
+    },
+    {
+      costQuestionAnswer: [{
+        cost: 1000,
+        question: "Rydia, Cecil, Edward, Golbez",
+        answers: ["Final Fantasy 16", "Final Fantasy 13", "Final Fantasy 4", "Final Fantasy"],
+        correctAnswer: "Final Fantasy 4"
+      }],
+    }
+  ], //end of Category 6 
+}; 
 
 // Populate the jeopardy game board with questions from the object array "game categories"
 const createGameBoard = () => {
@@ -126,85 +312,125 @@ const createGameBoard = () => {
     </div>      
   </div>      
   </div>`);
-    const gameBoard = $('.board');
-    gameBoard.append($boardColumns);
-  } //end of for in loop
+    $('.board').append($boardColumns);
+  } 
 }
 
 //Dynamically add questions to modal 
 const addQuestions = (e) => {
-  let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); 
+  let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]);
   let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
   let $currentQuestion = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].question);
   let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
   let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
 
-  const $answerButtons = ("<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[0] + "'> <div class='divider'/>" + $answerChoices[0] + "</button></div></div></div>" + 
+  const $answerButtons = ("<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[0] + "'> <div class='divider'/>" + $answerChoices[0] + "</button></div></div></div>" +
 
-  "<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[1] + "'> <div class='divider'/>" + $answerChoices[1] + "</button></div></div></div>" +
+    "<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[1] + "'> <div class='divider'/>" + $answerChoices[1] + "</button></div></div></div>" +
 
-  "<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[2] + "'> <div class='divider'/>" + $answerChoices[2] + "</button></div></div></div>"+
+    "<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[2] + "'> <div class='divider'/>" + $answerChoices[2] + "</button></div></div></div>" +
 
-  "<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[3] + "'> <div class='divider'/>" + $answerChoices[3] + "</button></div></div></div>"
+    "<div class='row button-row'><div class='center'><div class='col-md-12'><button class='answer-button btn-outline-primary btn-lg col-md-12 text-center' id='button' data-name='" + $answerChoices[3] + "'> <div class='divider'/>" + $answerChoices[3] + "</button></div></div></div>"
   );
-
   return $answerButtons;
 }
 
-//Function that creates a countdown for the modal 
-const startTimer = () => {
-  //Put code in here for timer to countdown in each of the modals
+// Modal Function that holds question, answer, and timer data. 
+const showModal = (e) => {
+  let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]);
+  let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
+  let $currentQuestion = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].question);
+  let $currentValue = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].cost);
+  let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
+  let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
+  let $answerButtons = addQuestions(e);
+
+  //Prevents Double Modals
+  if (modalWrap !== null) {
+    modalWrap.remove();
   }
+  modalWrap = document.createElement('div');
+  modalWrap.innerHTML = `<div class="modal fade" id="mainModal" data-backdrop="static" data-keyboard="false" href="#" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title show-price">$${ $currentValue }</h4>
+       <h4 class="modal-title show-question">${ $currentQuestion }</h4>
+        <button type="button" class="pass-button btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      ${ $answerButtons }
+      </div>
+      <div class="modal-footer">
+      <h4 class= "timer"><span class="countdown"></span></h4>
+        <button type="button" class="pass-button btn btn-danger" data-dismiss="modal">Pass</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+
+  //For onClick events inside Modal
+  $('body').append(modalWrap);
+  var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
+  answerButtonClick(e, $answerChoices, $correctAnswer, $currentValue);
+
+  $('.pass-button').on('click', (e) => {
+    console.log("You have skipped this question!!");
+    showIncorrectModal(e, $currentValue);
+    updateScore($currentValue, false);
+  });
+
+  $("#mainModal").click(function (e) {
+    if (e.target != this) return;
+    $('#mainModal').modal('hide');
+    $('.modal-backdrop').remove();
+    showIncorrectModal(e, $currentValue);
+    updateScore($currentValue, false);
+  });
+
+  modal.show();
+}
+
+///////////////// GAMEPLAY INCLUDING ANSWER CHECK, UPDATE SCORE, AND MODAL POPUPS AFTER QUESTION ///////////////////
 
 // This function's job processes what happens when you click on an answer. 
 const answerButtonClick = (e, $answerChoices, $correctAnswer, $currentValue) => {
-  $('.answer-button').on('click', (e) => { 
-    const $currentChoice = $(e.currentTarget).text().trim(); //Current Answer Choice. Trim to eliminate spaces in the beginning and end of the string   
-    checkAnswer(e, $currentChoice, $answerChoices, $correctAnswer, $currentValue); // Run Check Answer Function and pass info of clicked choice 
-    
-    return $currentChoice; //Return the current choice... if needed?
+  $('.answer-button').on('click', (e) => {
+    const $currentChoice = $(e.currentTarget).text().trim();
+
+    // Run Check Answer Function and pass info of clicked choice 
+    checkAnswer(e, $currentChoice, $answerChoices, $correctAnswer, $currentValue);
   });
 }
 
-// a function that checks if the answer is correct or not. 
+// A function that checks if the answer is correct or not. 
 const checkAnswer = (e, $currentChoice, $answerChoices, $correctAnswer, $currentValue) => {
- if ($currentChoice == $correctAnswer) {
-   console.log("The correct answer was chosen! You gained " + $currentValue);
- 
-   let currentTargetButtton = $(e.currentTarget).attr('class'); //btn-outline-primary
-  $(e.currentTarget).addClass('btn-success').removeClass('btn-outline-primary');
-   updateScore($currentValue, true);
+  let currentTargetButtton = $(e.currentTarget).attr('class'); //btn-outline-primary
 
-  // let addCorrect = ($(e.currentTarget).parents().eq(4).children().children()[0].after('<div>TEST</div>'));
-  //console.log(addCorrect);
-  $('.modal-backdrop').remove();
-  showCorrectModal(e, $currentValue);
-  
- } else {
-   console.log("The incorrect answer was chosen! You lost " + $currentValue);
-   $(e.currentTarget).addClass('btn-danger').removeClass('btn-outline-primary');
+  if ($currentChoice == $correctAnswer) {
+    $(e.currentTarget).addClass('btn-success').removeClass('btn-outline-primary');
+    showCorrectModal(e, $currentValue);
+    updateScore($currentValue, true);
 
-   showIncorrectModal(e, $currentValue);
-   updateScore($currentValue, false);
- }
+  } else {
+    $(e.currentTarget).addClass('btn-danger').removeClass('btn-outline-primary');
+    showIncorrectModal(e, $currentValue);
+    updateScore($currentValue, false);
+  }
 }
 
+// A function to update the score, whether they got it wrong or right. 
 const updateScore = ($currentValue, ifCorrect) => {
   if (ifCorrect) {
-    console.log(score);
     score += $currentValue;
-    console.log(score);
   } else {
-    console.log(score);
     score -= $currentValue;
-    console.log(score);
   }
   const $calculatedScore = $('.calculatedScore');
-   $calculatedScore.text(score);
+  $calculatedScore.text(score);
 }
 
-
-
+// Modal that pops up if you answer correctly
 const showCorrectModal = (e, $currentValue) => {
 
   //dont create multiple modals
@@ -228,16 +454,19 @@ const showCorrectModal = (e, $currentValue) => {
 </div>`;
   $('body').append(modalWrap);
   var correctModal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
-  $('.modal-backdrop').modal({backdrop:'static', keyboard:false});
-  
-  $('.pass-button').on('click', (e) => { 
+  $('.modal-backdrop').modal({
+    backdrop: 'static',
+    keyboard: false
+  });
+
+  $('.pass-button').on('click', (e) => {
     $('#correct').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
   });
 
-  $("#correct").click(function(ev){
-    if(ev.target != this) return;
+  $("#correct").click(function (ev) {
+    if (ev.target != this) return;
     $('#correct').modal('hide');
     $('.modal-backdrop').remove();
     $('.modal-backdrop').remove();
@@ -245,6 +474,7 @@ const showCorrectModal = (e, $currentValue) => {
   correctModal.show();
 }
 
+// modal that pops up if you answer incorrectly
 const showIncorrectModal = (e, $currentValue) => {
 
   //dont create multiple modals
@@ -260,7 +490,6 @@ const showIncorrectModal = (e, $currentValue) => {
       <h1 class="response-modal"> INCORRECT! <br>You've lost <span class="text-danger">$${$currentValue}... </h1>
       </div>
       <div class="modal-footer">
- 
         <button type="button" class="pass-button btn btn-danger" data-dismiss="modal">Continue</button>
       </div>
     </div>
@@ -268,113 +497,33 @@ const showIncorrectModal = (e, $currentValue) => {
 </div>`;
   $('body').append(modalWrap);
   var incorrectModal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
-  $('.modal-backdrop').modal({backdrop:'static', keyboard:false});
-  
-  $('.pass-button').on('click', (e) => { 
+  $('.modal-backdrop').modal({
+    backdrop: 'static',
+    keyboard: false
+  });
+
+  $('.pass-button').on('click', (e) => {
     $('#correct').modal('hide');
     $('body').removeClass('modal-open');
     $('.modal-backdrop').remove();
   });
 
-  $("#incorrect").click(function(ev){
-    if(ev.target != this) return;
-    $('#incorrect').modal('hide');
-    $('.modal-backdrop').remove();
-    $('.modal-backdrop').remove();
-  });
   incorrectModal.show();
 }
 
-
-// Modal Function that holds question, answer, and timer data. 
-const showModal = (e) => {
-
-  let $currentColumn = ($(e.currentTarget).children().attr('class').split(' ')[1]); 
-  let $currentQuestionNumber = ($(e.currentTarget).children().attr('id'));
-  let $currentQuestion = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].question);
-  let $currentValue = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].cost); 
-  let $answerChoices = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].answers);
-  let $correctAnswer = (gameCategories[$currentColumn][$currentQuestionNumber].costQuestionAnswer[0].correctAnswer);
-  let $answerButtons = addQuestions(e);
-
-  //need to grab the numeric value of the question clicked:
-   //dont create multiple modals
-  if (modalWrap !== null) {
-    modalWrap.remove(); 
-  }
-  modalWrap = document.createElement('div');
-  modalWrap.innerHTML = `<div class="modal fade" id="mainModal" data-backdrop="static" data-keyboard="false" href="#" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title show-price">$${ $currentValue }</h4>
-       <h4 class="modal-title show-question">${ $currentQuestion }</h4>
-        <button type="button" class="pass-button btn-close" data-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      ${ $answerButtons }
-      </div>
-      <div class="modal-footer">
-      <h4 class= "timer">Timer: <span class="countdown"></span></h4>
-        <button type="button" class="pass-button btn btn-danger" data-dismiss="modal">Pass</button>
-      </div>
-    </div>
-  </div>
-</div>`;
-
-//For onClick events inside Modal
-$('body').append(modalWrap);
-  var modal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
-  answerButtonClick(e, $answerChoices, $correctAnswer, $currentValue);
-
-  $('.pass-button').on('click', (e) => { 
-    console.log("You have skipped this question!!");
-    showIncorrectModal(e, $currentValue);
-    updateScore($currentValue, false);
-  });
-
-  modal.show();
-
-  $("#mainModal").click(function(ev){
-    if(ev.target != this) return;
-    $('#mainModal').modal('hide');
-    $('.modal-backdrop').remove();
-    showIncorrectModal(e, $currentValue);
-    updateScore($currentValue, false);
-  });
- 
-
-
-
-}
-
-
+///////////////// START GAME ///////////////////
 const startGame = () => {
-
   //Create the Game Board 
   createGameBoard();
 
 }
+startGame();
 
-
-// Call functions and onclick events here
-startGame(); 
-
-//On Clicks
+///////////////// EVENT HANDLER - CLICKING ON A CATEGORY AND REMOVING IT FROM THE DOM ///////////////////
 let $cost = $('.cost');
 $cost.on('click', (e) => {
   showModal(e);
 
   //prevents user from reclicking category price and removes CSS
   $(e.currentTarget).removeClass("cost").empty();
- 
-  //console.log($(e.currentTarget).children().text()); //the text of the number 
-  //console.log($(e.currentTarget).parent().parent());
 });
-
-
-
-
-
-
-
