@@ -6,6 +6,7 @@ let timer;
 // Bootstrap 5: https://getbootstrap.com/docs/5.0/getting-started/introduction/ // 
 // Modal Production in Boostrap 5: https://www.youtube.com/watch?v=lczv0v7DnYI  //
 // Resetting a window: https://www.w3schools.com/jsref/met_win_clearinterval.asp//
+// hiding divs: https://www.w3schools.com/jquery/jquery_hide_show.asp           //
 //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -537,11 +538,30 @@ const showIncorrectModal = (e, $currentValue) => {
 
 ///////////////// START GAME ///////////////////
 const startGame = () => {
-  //Create the Game Board 
-  createGameBoard();
-  timer = setInterval(countDown, 1000);
-}
 
+  let $startGame = $('.start-game-button');
+  $('.game-info').hide();
+ 
+  $startGame.on('click', (e)=>{
+  $('.opening').hide();
+  //Create the Game Board 
+  $('.game-info').show();
+  createGameBoard();
+
+  //start the timer 
+  timer = setInterval(countDown, 1000);
+
+  let $cost = $('.cost');
+  $cost.on('click', (e) => {
+  showModal(e);
+
+  //prevents user from reclicking category price and removes CSS
+  $(e.currentTarget).removeClass("cost").empty();
+});
+  })
+  
+}
+//////////////// END GAME MODAL POP UP ////////////////////////
 const endGame = () =>{
   let gameOverWinText= null; 
   //dont create multiple modals
@@ -594,6 +614,7 @@ startGame();
 ///////////////// EVENT HANDLER - CLICKING ON A CATEGORY AND REMOVING IT FROM THE DOM ///////////////////
 let $cost = $('.cost');
 $cost.on('click', (e) => {
+  console.log("test");
   showModal(e);
 
   //prevents user from reclicking category price and removes CSS

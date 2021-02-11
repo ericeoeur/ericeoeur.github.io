@@ -5,6 +5,35 @@ body {
   font-family: Teko;
 }
 
+.opening {
+  font-family: Teko;
+  text-align: center;
+}
+
+.opening h1{
+  font-size: 6em;
+}
+
+.jeopardy {
+  color: #060CE9; 
+}
+
+.btn-default {
+  background-color: #060CE9;
+  color: #060CE9;
+}
+
+.credits {
+  font-style: italic;
+}
+
+.start-game-button h4 {
+  font-size: 3em;
+  background-color: #060CE9;
+  color: white;
+  border-radius: 2em;
+}
+
 .title{
   text-align: center;
   font-family: Teko;
