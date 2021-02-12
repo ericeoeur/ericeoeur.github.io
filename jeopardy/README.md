@@ -27,7 +27,7 @@ Once the timer is up, the score will be displayed to the user. If the user has a
 
 ## Wireframe
 
-![Wireframe](https://github.com/iamsydsmith/tic-tac-toe/blob/master/img/Tic_Tac_Toe_-_wireframe.png)
+![Wireframe](https://github.com/ericeoeur/ericeoeur.github.io/blob/main/jeopardy/images/jeopardy-wireframing.jpg)
 
 
 ## Future Development
