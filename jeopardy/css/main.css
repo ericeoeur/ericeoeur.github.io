@@ -38,7 +38,6 @@ body {
   text-align: center;
   font-family: Teko;
   font-size: 5em;
-
 }
 
 .header {
@@ -84,7 +83,6 @@ height: 110px;
 line-height: 41px;
 padding-top: 10px;
 padding-bottom: 10px;
-
 }
 
 .col-sm-12 {
@@ -138,7 +136,6 @@ h5 {
   font-size: 3em;
   border: 3px solid goldenrod;
   padding: 10px 10px 3px 0px;
-  
 }
 
 .show-price H4 {
@@ -201,7 +198,7 @@ h5 {
   color: white;
   text-align: center;
 }
-
+/* Learned from CSS-TRICKS: https://css-tricks.com/snippets/css/scale-on-hover-with-webkit-transition/ */
 .cost:hover {
   transform: scale(1.1);
   }
@@ -209,7 +206,6 @@ h5 {
   .price:hover {
     -webkit-text-stroke: 2px gold;
   }
-
 
 @media (max-width: 568px) {
     .price {
@@ -230,12 +226,10 @@ font-size:4em;
     font-size: 3em;
     overflow: hidden;
   }
-
 }
 @media (max-width: 1000px) {
   .category-name {
     font-size: 2em;
     overflow: hidden;
   }
-
 }
