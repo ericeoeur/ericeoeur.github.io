@@ -206,20 +206,27 @@ h5 {
   .price:hover {
     -webkit-text-stroke: 2px gold;
   }
-
 @media (max-width: 568px) {
-    .price {
-font-size:4em;
-}
 
-.col-sm-2 {
-  font-size: 2em;
-  padding-top: 30px;
-}
+  .opening h1{
+    font-size: 4em;
+  }
+  .start-game-button h4 {
+     border-radius: .5em;
+  }
 
-.header img {
-  width: 50%;
-}
+  .price {
+    font-size: 4em;
+  }
+
+  .col-sm-2 {
+    font-size: 2em;
+    padding-top: 30px;
+  }
+
+  .header img {
+    width: 50%;
+  }
 }
 @media (max-width: 800px) {
   .price {

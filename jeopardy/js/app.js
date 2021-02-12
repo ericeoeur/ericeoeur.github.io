@@ -6,7 +6,8 @@ let timer;
 // Bootstrap 5: https://getbootstrap.com/docs/5.0/getting-started/introduction/ // 
 // Modal Production in Boostrap 5: https://www.youtube.com/watch?v=lczv0v7DnYI  //
 // Resetting a window: https://www.w3schools.com/jsref/met_win_clearinterval.asp//
-// hiding divs: https://www.w3schools.com/jquery/jquery_hide_show.asp           //
+// hiding divs: https://www.w3schools.com/jquery/jquery_hide_show.asp     
+// CSS Tricks: Learned from CSS-TRICKS: https://css-tricks.com/snippets/css/scale-on-hover-with-webkit-transition/                                           //
 //////////////////////////////////////////////////////////////////////////////////
 
 
@@ -35,7 +36,7 @@ const gameCategories = {
     {
       costQuestionAnswer: [{
         cost: 600,
-        question: "Famous for movies such as 'Drunken Master' and 'Rush Hour'",
+        question: "Famous for movies such as 'Drunken Master' and 'Rumble in the Bronx'",
         answers: ["Bruce Lee", "Diego Luna", "Ken Wantanabe", "Jackie Chan"],
         correctAnswer: "Jackie Chan"
       }],
@@ -95,9 +96,9 @@ const gameCategories = {
     {
       costQuestionAnswer: [{
         cost: 1000,
-        question: "Garnet is known as a fusion between",
-        answers: ["Ruby and Peridot", "Sapphire and Jade", "Amethyst and Jasper", "Ruby and Sapphire"],
-        correctAnswer: "Ruby and Sapphire"
+        question: "Garnet's voice actress is this singer known for her hit song 'American Boy'",
+        answers: ["Kate Nash", "Lily Allen", "Solange", "Estelle"],
+        correctAnswer: "Estelle"
       }],
     }
   ], //end of Category 2 
@@ -219,7 +220,7 @@ const gameCategories = {
     {
       costQuestionAnswer: [{
         cost: 800,
-        question: "This show centered on six people consisting of four women and two men living in Prospect Heights, Brooklyn.",
+        question: "This show centered on four women and two men living in Prospect Heights, Brooklyn.",
         answers: ["Martin", "Living Single", "Sister Sister", "Family Matters"],
         correctAnswer: "Living Single"
       }],
@@ -247,7 +248,7 @@ const gameCategories = {
     {
       costQuestionAnswer: [{
         cost: 400,
-        question: "Zidane, Garnet, Eiko, Stiner",
+        question: "Zidane, Garnet, Eiko, Vivi",
         answers: ["Final Fantasy 9", "Final Fantasy 2", "Final Fantasy 13", "Final Fantasy 3"],
         correctAnswer: "Final Fantasy 9"
       }],
@@ -255,9 +256,9 @@ const gameCategories = {
     {
       costQuestionAnswer: [{
         cost: 600,
-        question: "Lighting, Sazh, Oerba, Hope",
-        answers: ["Final Fantasy 13", "Final Fantasy 4", "Final Fantasy 8", "Final Fantasy"],
-        correctAnswer: "Final Fantasy 13"
+        question: "Celes, Locke, Terra, Mog",
+        answers: ["Final Fantasy 6", "Final Fantasy 8", "Final Fantasy 10", "Final Fantasy 12"],
+        correctAnswer: "Final Fantasy 6"
       }],
     },
     {
@@ -336,7 +337,7 @@ const createGameBoard = () => {
   </div>      
   </div>`);
     $('.board').append($boardColumns);
-  } 
+  }
 }
 
 //Dynamically add questions to modal 
@@ -533,7 +534,7 @@ const showIncorrectModal = (e, $currentValue) => {
   incorrectModal.show();
 }
 
-///////////////// START GAME -- INCLUDES EVENT HANDLERS ///////////////////
+/////////// START GAME -- INCLUDES EVENT HANDLERS //////////////
 const startGame = () => {
   //Hide the Player 1, Score, and Timer DIV before the game starts
   $('.game-info').hide();
