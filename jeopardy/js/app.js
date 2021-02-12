@@ -279,22 +279,19 @@ const gameCategories = {
   ], //end of Category 6 
 }; 
 
-
-
+// Countdown Function for Game
 const countDown = () => {
-  $('.counter').each(function (){ 
-  let count = parseInt($('.counter').html());
-  if(count !==0) {
-    count--; 
-    $('.counter').html(count); 
-  } else if (count === 0){
-    clearInterval(timer);
-    endGame();
-  }
-});
+  $('.counter').each(function () {
+    let count = parseInt($('.counter').html());
+    if (count !== 0) {
+      count--;
+      $('.counter').html(count);
+    } else if (count === 0) {
+      clearInterval(timer);
+      endGame();
+    }
+  });
 }
-
-
 
 // Populate the jeopardy game board with questions from the object array "game categories"
 const createGameBoard = () => {
@@ -536,47 +533,46 @@ const showIncorrectModal = (e, $currentValue) => {
   incorrectModal.show();
 }
 
-///////////////// START GAME ///////////////////
+///////////////// START GAME -- INCLUDES EVENT HANDLERS ///////////////////
 const startGame = () => {
+  //Hide the Player 1, Score, and Timer DIV before the game starts
+  $('.game-info').hide();
 
   let $startGame = $('.start-game-button');
-  $('.game-info').hide();
- 
-  $startGame.on('click', (e)=>{
-  $('.opening').hide();
-  //Create the Game Board 
-  $('.game-info').show();
-  createGameBoard();
+  $startGame.on('click', (e) => {
+    $('.opening').hide();
+    //Create the Game Board 
+    $('.game-info').show();
+    createGameBoard();
 
-  //start the timer 
-  timer = setInterval(countDown, 1000);
+    //start the timer 
+    timer = setInterval(countDown, 1000);
 
-  let $cost = $('.cost');
-  $cost.on('click', (e) => {
-  showModal(e);
+    // Run the event handler that allows clicks to start opening questions/answers
+    let $cost = $('.cost');
+    $cost.on('click', (e) => {
+      showModal(e);
 
-  //prevents user from reclicking category price and removes CSS
-  $(e.currentTarget).removeClass("cost").empty();
-});
+      //prevents user from reclicking category price and removes CSS 
+      $(e.currentTarget).removeClass("cost").empty();
+    });
   })
-  
 }
 //////////////// END GAME MODAL POP UP ////////////////////////
-const endGame = () =>{
-  let gameOverWinText= null; 
+const endGame = () => {
+  let gameOverWinText = null;
+
   //dont create multiple modals
   if (modalWrap !== null) {
     modalWrap.remove();
     $('.modal-backdrop').remove();
   }
 
-  if (score > 0 ){
+  if (score > 0) {
     gameOverWinText = `You've won a total earnings of <span class='text-success'>$${score}!</span>`
   } else {
-    gameOverWinText = `You've lost! You owe <span class='text-danger'>$${score}!</span>`
+    gameOverWinText = `You've lost! You owe <span class='text-danger'>$${score}...</span>`
   }
-
-
 
   modalWrap = document.createElement('div');
   modalWrap.innerHTML = `<div class="modal fade" id="incorrect staticBackdrop" data-backdrop="static" tabindex="-1">
@@ -593,30 +589,17 @@ const endGame = () =>{
 </div>`;
   $('body').append(modalWrap);
   var gameOverModal = new bootstrap.Modal(modalWrap.querySelector('.modal'));
-  
-  
+
   $('.modal-backdrop').modal({
     backdrop: 'static',
     keyboard: false
   });
 
+  //Allow restarting the game. 
   $('.restart-button').on('click', (e) => {
-    window.location.reload();  
+    window.location.reload();
   });
-
-
   gameOverModal.show();
-
 }
 
 startGame();
-
-///////////////// EVENT HANDLER - CLICKING ON A CATEGORY AND REMOVING IT FROM THE DOM ///////////////////
-let $cost = $('.cost');
-$cost.on('click', (e) => {
-  console.log("test");
-  showModal(e);
-
-  //prevents user from reclicking category price and removes CSS
-  $(e.currentTarget).removeClass("cost").empty();
-});

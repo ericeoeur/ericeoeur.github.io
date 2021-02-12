@@ -225,23 +225,17 @@ font-size:4em;
   width: 50%;
 }
 }
-
 @media (max-width: 800px) {
-    .price {
-font-size: 3em;
-overflow: hidden;
-}
+  .price {
+    font-size: 3em;
+    overflow: hidden;
+  }
 
+}
 @media (max-width: 1000px) {
   .category-name {
-font-size: 2em;
-overflow: hidden;
-}
+    font-size: 2em;
+    overflow: hidden;
+  }
 
 }
-
-
-}
-
-
-
