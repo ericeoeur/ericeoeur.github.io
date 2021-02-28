@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const oneRepMaxSchema = Schema({
-  _id: Schema.Types.ObjectId, 
+ //_id: Schema.Types.ObjectId, 
   liftName: String, 
   weight: Number,
   user: {
@@ -12,6 +12,6 @@ const oneRepMaxSchema = Schema({
   } 
 }); 
 
-const oneRepMax = mongoose.model('OneRepMax', oneRepMaxSchema);
+const OneRepMax = mongoose.model('OneRepMax', oneRepMaxSchema);
 
-module.exports = oneRepMax; 
+module.exports = OneRepMax; 

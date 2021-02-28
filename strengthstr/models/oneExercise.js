@@ -9,6 +9,6 @@ const oneExerciseSchema = Schema({
   completed: Boolean, 
 }); 
 
-const oneExercise = mongoose.model('OneRepMax', oneExerciseSchema);
+const OneExercise = mongoose.model('OneExercise', oneExerciseSchema);
 
 module.exports = oneExercise; 

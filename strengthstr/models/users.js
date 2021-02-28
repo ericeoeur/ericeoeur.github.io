@@ -6,10 +6,10 @@ const userSchema = Schema({
   password: String,
   age: Number,
   height: Number, 
-  weight: Number
-  // oneRepMaxes: [
-  //   {type: mongoose.Schema.Types.ObjectId, ref:'oneRepMax'}
-  // ]
+  weight: Number,
+  oneRepMaxes: [
+    {type: mongoose.Schema.Types.ObjectId, ref:'OneRepMax'}
+  ]
   // , 
   // workoutExercises: [
   //   {type: mongoose.Schema.Types.ObjectId, ref:'workoutExercises'}

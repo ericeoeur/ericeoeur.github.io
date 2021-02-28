@@ -10,12 +10,51 @@
     <div class="container">
       <h1>New User</h1>
       <form action="/users" method="POST">
+        
+        <!-- User Name  -->
         <label for="name">User Name:</label>
         <input type="text" name="username" required/>
-        <label for="color">Password:</label>
+        
+        <!-- Password -->
+        <label for="password">Password:</label>
         <input type="password" name="password" />
-        <br>
+        
+         <!-- Age -->
+         <label for="age">Age:</label>
+         <input type="number" name="age" />
+        
+        <!-- Height -->
+        <label for="height">Height:</label>
+        <input type="number" name="height" />
+
+        <!-- Weight -->
+        <label for="weight">Weight:</label>
+        <input type="number" name="weight" /> <br/>
+
+        <h2>One Rep Maxes</h2>
+
+         <!-- One Rep Maxes  - Squat -->
+         <label for="squat">Squat:</label>
+         <input type="number" name="oneRepMaxSquat" />
+
+          <!-- One Rep Maxes  - Bench -->
+          <label for="bench">Bench:</label>
+          <input type="number" name="oneRepMaxBench" />
+
+           <!-- One Rep Maxes  - Press -->
+         <label for="press">Press:</label>
+         <input type="number" name="oneRepMaxPress" />
+
+          <!-- One Rep Maxes  - Deadlift -->
+          <label for="deadlift">Deadlift:</label>
+          <input type="number" name="oneRepMaxDeadlift" />
+        
+        
+        <br/>
         <input type="submit" value="Submit">
+
+
+
       <form>
     </div>
   </body>

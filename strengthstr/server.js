@@ -72,7 +72,7 @@ db.on('disconnected', () => console.log('mongo disconnected'))
 
 // == MODELS == // 
 const User = require('./models/users.js');
-// const OneRepMax = require('./models/oneRepMax.js');
+const OneRepMax = require('./models/oneRepMax.js');
 //const bodyParser = require('body-parser');
 //const oneExercise = require('./models/oneExercise.js');
 //const workout = require('./models/workoutExercises.js'); 
