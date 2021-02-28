@@ -32,6 +32,14 @@ app.use(express.urlencoded({
 }));
 app.use(express.static('public'));
 app.use(methodOverride('_method'));
+const isAuthenticated = (req, res, next) => {
+  if (req.session.currentUser) {
+    return next()
+  } else {
+    res.redirect('/sessions/new')
+  }
+}
+
 
 
 app.use(
@@ -44,7 +52,6 @@ app.use(
 
 app.use('/sessions', sessionsController)
 app.use('/users', userController)
-
 
 
 
@@ -77,34 +84,32 @@ const OneRepMax = require('./models/oneRepMax.js');
 //const oneExercise = require('./models/oneExercise.js');
 //const workout = require('./models/workoutExercises.js'); 
 
-// app.post('/addUser', (req, res) => {
-//   console.log("Adding new User");
-//   var userObj = {
-//     "_id": new mongoose.Types.ObjectId(), 
-//     "username": req.body.name, 
-//     "password": req.body.password,
 
-//   }
-//   console.log(userObj);
-
-//   var newUser = new User(userObj);
-
-//   newUser.save((err, user) => {
-//     if (err) {
-//       console.log(err);
-//       res.status(400).send("There is an error while adding a new user"); 
-//     }else { 
-//       res.status(200).json(user);
-//   }
-// })
-// });
 
 
 // == ROUTES == // 
-app.get('/', (req, res) => {
-  console.log(req.session)
+app.get('/', isAuthenticated, (req, res) => {
+  if(req.session) {
+  OneRepMax.find({'user': req.session.currentUser._id}, (error, OneRepMaxes) => {
+  // User.findOne({
+  //   username: 'blue'
+  // }).populate('oneRepMaxes').
+  // exec(function (err, user) {
+  //   console.log("~~~~~")
+  //   console.log(user.oneRepMaxes)
+  // });
+  // res.send(OneRepMaxes);
+  console.log("THIS IS CURRENT USER");
+  console.log(req.session);
+  
   res.render('index.ejs', 
-  {currentUser: req.session.currentUser})
+  {currentUser: req.session.currentUser,
+  OneRepMaxes: OneRepMaxes})
+  });
+
+} else {
+  res.render('/users/new');
+}
 })
 
 app.get('/create-session', (req,res)=> {
@@ -131,7 +136,7 @@ app.get('/update-session', (req, res) => {
 
   console.log("~~~~UPDATE SESSION~~~~~~")
   console.log(req.session);
-  res.redirect('/fruits');
+  res.redirect('/');
 })
 
 app.get('/destroy-session', (req, res) => {
@@ -142,7 +147,7 @@ app.get('/destroy-session', (req, res) => {
       console.log("WE DESTROYED THE SESSION")
     }
   });
-  res.redirect('/fruits');
+  res.redirect('/');
 })
 
 const hashedString = bcrypt.hashSync('yourStringHere', bcrypt.genSaltSync(10))

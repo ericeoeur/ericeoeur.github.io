@@ -12,13 +12,20 @@
   </nav>
 
   <h1>StrengthStr</h1>
-
+  <% if (currentUser) { %>
 
   <h2>Hello <%= currentUser.username %>!</h2>
   <h2>Age: <%= currentUser.age %></h2>
   <h2>Weight <%= currentUser.weight %></h2>
   <h2>Height <%= currentUser.height %></h2>
- 
+  <h2>id <%= currentUser._id %></h2>
+  <h2>One Rep Maxes </h2>
   
+  <% for (let i=0; i<OneRepMaxes.length; i++) { %></h2>
+  <h3><%= OneRepMaxes[i].liftName %></h3>
+  <h4><%= OneRepMaxes[i].weight %></h4>
+  <% } %>
+
+<% } %> 
 </body>
 </html>

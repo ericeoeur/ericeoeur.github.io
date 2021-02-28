@@ -60,14 +60,26 @@ users.post('/', (req, res) => {
 
   let deadliftOneRepMax = OneRepMax({
     //_id: newUser._id, 
-    liftName: 'Press', 
+    liftName: 'Deadlift', 
     weight: req.body.oneRepMaxDeadlift,
     user: newUser
   }); 
 
+  Promise.all([
+    squatOneRepMax.save(), 
+    benchOneRepMax.save(), 
+    pressOneRepMax.save(), 
+    deadliftOneRepMax.save()
+  ]).then(function(savedOneRepMaxes) {
+    newUser.oneRepMaxes = savedOneRepMaxes;
+    newUser.save(); 
+    res.redirect('/');
+  }).catch(function(err) {
+    console.log("ERROR SAVING ONE REP MAXES"); 
+    console.log(err); 
+  });
 
-
-  // squatOneRepMax.save((err,squatOneRepMax) => {
+    // squatOneRepMax.save((err,squatOneRepMax) => {
   //   if (err) {
   //     console.log(err);
   //     res.status(400).send("There is an error while adding a new user"); 
@@ -78,31 +90,18 @@ users.post('/', (req, res) => {
   //     //res.status(200).json(squatOneRepMax);
   //     console.log("~~~~~");
   //     //Console the stuff within the one rep max
-  //     User.findOne({username: 'bottle'}).populate('oneRepMaxes').
-  //     exec(function (err, user) {
-  //       console.log(user.oneRepMaxes[0].liftName)
-  //     }); 
+      // User.findOne({_id: currentUser._id }).populate('oneRepMaxes').
+      // exec(function (err, user) {
+      //   console.log(user.oneRepMaxes[0].liftName)
+      // }); 
   //   }
   // })
-
-  Promise.all([
-    squatOneRepMax.save(), 
-    benchOneRepMax.save(), 
-    pressOneRepMax.save(), 
-    deadliftOneRepMax.save()
-  ]).then(function(savedOneRepMaxes) {
-    newUser.oneRepMaxes = savedOneRepMaxes;
-    newUser.save(); 
-  }).catch(function(err) {
-    console.log("ERRORR SAVING ONE REP MAXES"); 
-    console.log(err); 
-  });
-
-
-
-
-
 })
 
 
 module.exports = users
+
+//  User.findOne({_id: currentUser._id }).populate('oneRepMaxes').
+//       exec(function (err, user) {
+//         console.log(user.oneRepMaxes[0].liftName)
+//       }); 
