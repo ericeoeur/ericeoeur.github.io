@@ -10,7 +10,7 @@ users.get('/new', (req, res) => {
 })
 })
 
-//Sign UP 
+//Sign Up to create a new user 
 users.post('/', (req, res) => {
   //overwrite the user password with the hashed password, then pass that in to our database
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
@@ -37,7 +37,6 @@ users.post('/', (req, res) => {
   })
 
   let squatOneRepMax = OneRepMax({
-    //_id: newUser._id, 
     liftName: 'Squat', 
     weight: req.body.oneRepMaxSquat,
     user: newUser
@@ -45,21 +44,18 @@ users.post('/', (req, res) => {
   //console.log(squatOneRepMax);
 
   let benchOneRepMax = OneRepMax({
-    //_id: newUser._id, 
     liftName: 'Bench', 
     weight: req.body.oneRepMaxBench,
     user: newUser
   }); 
 
   let pressOneRepMax = OneRepMax({
-    //_id: newUser._id, 
     liftName: 'Press', 
     weight: req.body.oneRepMaxPress,
     user: newUser
   }); 
 
   let deadliftOneRepMax = OneRepMax({
-    //_id: newUser._id, 
     liftName: 'Deadlift', 
     weight: req.body.oneRepMaxDeadlift,
     user: newUser

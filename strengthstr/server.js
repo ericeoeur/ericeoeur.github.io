@@ -19,6 +19,8 @@ const DBNAME = process.env.DBNAME;
 //controller Logic
 const sessionsController = require('./controllers/sessions_controller.js')
 const userController = require('./controllers/users_controller.js')
+const oneExerciseController = require('./controllers/oneExercise_controller.js')
+
 
 // == MIDDLEWARE == //
 app.use(express.json());
@@ -46,6 +48,7 @@ app.use(
 // == CONTROLLERS == // 
 app.use('/sessions', sessionsController)
 app.use('/users', userController)
+app.use('/oneexercise', oneExerciseController)
 
 // == DATABASE == //
 mongoose.connect(`mongodb://localhost:27017/${DBNAME}`, {
@@ -67,7 +70,7 @@ db.on('disconnected', () => console.log('mongo disconnected'))
 const User = require('./models/users.js');
 const OneRepMax = require('./models/oneRepMax.js');
 //const bodyParser = require('body-parser');
-//const oneExercise = require('./models/oneExercise.js');
+const OneExercise = require('./models/oneExercise.js');
 //const workout = require('./models/workoutExercises.js'); 
 
 // == ROUTES == // 

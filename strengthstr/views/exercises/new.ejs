@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include ('../partials/head.ejs') %>
+  </head>
+  <body>
+     <!-- NAVBAR -->
+  <%- include ('../partials/navbar.ejs') %>
+
+
+  <div class="container">
+    <div class="columns is-centered is-vcentered">
+      <img src="http://assets.stickpng.com/thumbs/5a5ba4519538462e5a82d4c9.png" alt="austin skyline logo" style="max-height: 150px" class="mt-4">
+    </div>
+    <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold	has-text-link"> Add Lift (oneExercise)</h1>
+
+
+      <form action="/oneexercise" method="POST">
+       <!-- liftName  -->
+    <div class="field">
+      <label class="label">Lift Name</label>
+      <div class="control">
+        <input class="input is-large" type="text" name="liftName" required/> <br />
+      </div>
+    </div>
+      
+      <!-- weight -->
+    <div class="field">
+        <label class="label">Weight</label>
+        <input class="input is-large" type="number" name="weight" >
+    </div>
+
+      <!-- sets -->
+    <div class="field">
+        <label class="label">Sets</label>
+        <input class="input is-large" type="number" name="sets" >
+    </div>
+    
+    <!-- reps -->
+    <div class="field">
+        <label class="label">Reps</label>
+        <input class="input is-large" type="number" name="reps" >
+    </div>
+
+    <!-- Completed -->
+    <div>
+      <label for="completed">
+        <input type="checkbox" id="completed" name="completed" />
+        <span>Completed Lift</span>
+      </label>
+    </div>
+
+
+    <!-- Submit  -->
+    <input class="button is-rounded is-info is-large is-fullwidth mt-6 mb-6" type="submit" name="Submit Lift" />
+
+      </form>
+
+
+
+
+    </div>
+
+
+<!-- 
+
+    <div class="container">
+      <h1> New exercise page Page</h1>
+      <form action="/fruits" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required />
+        <label for="color">Color:</label>
+        <input type="text" name="color" />
+        <br/>
+        <div>
+          <label for="readyToEat">
+            <input type="checkbox" id="readyToEat" name="readyToEat" />
+            <span>Is Ready to Eat</span>
+          </label>
+        </div>
+        <br>
+        <input type="submit" value="Submit">
+      <form>
+    </div> -->
+
+
+
+  </body>
+</html>

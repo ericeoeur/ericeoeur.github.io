@@ -11,4 +11,4 @@ const oneExerciseSchema = Schema({
 
 const OneExercise = mongoose.model('OneExercise', oneExerciseSchema);
 
-module.exports = oneExercise; 
+module.exports = OneExercise; 

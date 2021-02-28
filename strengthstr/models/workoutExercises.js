@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const workoutExercisesSchema = Schema({
-  exercises: [{type: mongoose.Schema.Types.ObjectId, ref: 'oneExercise'}]
+  exercises: [{type: mongoose.Schema.Types.ObjectId, ref: 'OneExercise'}],
   user: {
     required: true, 
     type: mongoose.Schema.Types.ObjectId,
@@ -12,6 +12,6 @@ const workoutExercisesSchema = Schema({
   timestamps: true
 }); 
 
-const workoutExercises = mongoose.model('workoutExercises', workoutExercisesSchema);
+const WorkoutExercises = mongoose.model('WorkoutExercises', workoutExercisesSchema);
 
-module.exports = workoutExercises; 
+module.exports = WorkoutExercises; 
