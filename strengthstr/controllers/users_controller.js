@@ -100,8 +100,3 @@ users.post('/', (req, res) => {
 
 
 module.exports = users
-
-//  User.findOne({_id: currentUser._id }).populate('oneRepMaxes').
-//       exec(function (err, user) {
-//         console.log(user.oneRepMaxes[0].liftName)
-//       }); 

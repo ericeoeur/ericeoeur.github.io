@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <%- include ('./partials/head.ejs') %>
+  <title>StrengthStr</title>
 </head>
+
 <body>
-  <nav>
-    <%- include ('./partials/nav.ejs') %>
-  </nav>
+ 
+    <%- include ('./partials/navbar.ejs') %>
+ 
 
   <h1>StrengthStr</h1>
   <% if (currentUser) { %>
@@ -20,12 +20,13 @@
   <h2>Height <%= currentUser.height %></h2>
   <h2>id <%= currentUser._id %></h2>
   <h2>One Rep Maxes </h2>
-  
+
   <% for (let i=0; i<OneRepMaxes.length; i++) { %></h2>
   <h3><%= OneRepMaxes[i].liftName %></h3>
   <h4><%= OneRepMaxes[i].weight %></h4>
   <% } %>
 
-<% } %> 
+  <% } %>
 </body>
+
 </html>

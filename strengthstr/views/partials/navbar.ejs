@@ -1,0 +1,41 @@
+<nav class="navbar has-shadow is-light">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="http://assets.stickpng.com/thumbs/5a5ba4519538462e5a82d4c9.png" alt="barbell" style="max-height: 100px" class="py-2 px-2">
+    </a>
+    <h1 class="is-size-4 pt-3 mt-5 is-uppercase has-text-weight-bold has-text-link"> StrengthStr</h1>
+  
+    <a class="navbar-burger mt-4 is-size-3" id="burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+
+  </div>
+  <div class="navbar-menu" id="nav-links">
+    <div class="navbar-end">
+      <!-- <a href="/store/new" class="navbar-item is-size-4">Add Product</a> -->
+      <% if (currentUser) { %>
+    
+       <a href="/" class="navbar-item is-size-4">Hello, <%= currentUser.username %></a>
+       <a href="/" class="navbar-item is-size-4">Main</a>
+       <a href="mailto:ericeoeur@gmail.com" class="navbar-item is-size-4">Contact</a>
+          <form action="/sessions?_method=DELETE" method="POST">
+            <input  type="submit" value="Log Out" class="button is-danger is-outlined" />
+          </form>
+
+        <% } else { %>
+          
+              <!-- Fix this when you get back and add sign out link -->
+      <a href="/" class="navbar-item is-size-4">Main</a>
+      <a href="/sessions/new" class="navbar-item is-size-4">Log In</a>
+      <a href="/users/new" class="navbar-item is-size-4">Sign Up</a>
+      <a href="mailto:ericeoeur@gmail.com" class="navbar-item is-size-4">Contact</a>
+
+
+          <% } %>
+
+    
+    </div>
+  </div>
+</nav>
