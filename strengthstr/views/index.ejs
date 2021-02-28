@@ -7,30 +7,69 @@
 </head>
 
 <body>
-
   <!-- NAVBAR -->
   <%- include ('./partials/navbar.ejs') %>
 
-  <h1>StrengthStr</h1>
-  <% if (currentUser) { %>
+  <div class="container">
 
-  <h2>Hello <%= currentUser.username %>!</h2>
-  <h2>Age: <%= currentUser.age %></h2>
-  <h2>Weight <%= currentUser.weight %></h2>
-  <h2>Height <%= currentUser.height %></h2>
-  <h2>id <%= currentUser._id %></h2>
-  <h2>One Rep Maxes </h2>
+    <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-5">
+      <%= currentUser.username %>'s StrengthStr Dashboard</h1>
 
-  <% for (let i=0; i<OneRepMaxes.length; i++) { %></h2>
-  <h3><%= OneRepMaxes[i].liftName %></h3>
-  <h4><%= OneRepMaxes[i].weight %></h4>
-  <% } %>
-  <% } %>
+    <div class="container mb-6">
 
+
+      <div class="container inner">
+        <div class="columns">
+          <% if (currentUser) { %>
+          <div class="column">
+            <h2 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold">Age </h2>
+            <h4 class="is-size-6 is-uppercase has-text-centered"><%= currentUser.age %></h4>
+          </div>
+
+          <div class="column">
+            <h2 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold">Weight</h2>
+
+            <h4 class="is-size-6 is-uppercase has-text-centered"><%= currentUser.weight %></h4>
+
+          </div>
+
+          <div class="column">
+            <h2 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold">Height </h2>
+            <h4 class="is-size-6 is-uppercase has-text-centered"><%= currentUser.height %></h4>
+          </div>
+
+          <div class="column">
+            <h2 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold">_id </h2>
+            <h4 class="is-size-6 is-uppercase has-text-centered"><%= currentUser._id %></h4>
+          </div>
+        </div>
+
+
+        <div class="container">
+          <h2 class="is-size-4 is-uppercase has-text-centered has-text-weight-bold has-text-link m-5">One Rep Maxes
+          </h2>
+          <div class="columns">
+
+
+            <% for (let i=0; i<OneRepMaxes.length; i++) { %></h2>
+            <div class="column">
+              <h3 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold"><%= OneRepMaxes[i].liftName %>
+              </h3>
+              <h4 class="is-size-6 is-uppercase has-text-centered"><%= OneRepMaxes[i].weight %></h4>
+            </div>
+            <% } %>
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Middle Container -->
+    </div>
+    <!-- End of main container div -->
+  </div>
   <!-- FOOTER -->
   <%- include ('./partials/footer.ejs') %>
   <!-- FOOTER -->
-
 </body>
 
 </html>
