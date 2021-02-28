@@ -8,16 +8,55 @@
     
       <%- include ('../partials/navbar.ejs') %>
    
-    <div class="container">
-      <h1>Log In</h1>
-      <form action="/sessions" method="POST">
+      <div class="container">
+        <div class="columns is-centered is-vcentered">
+          <img src="http://assets.stickpng.com/thumbs/5a5ba4519538462e5a82d4c9.png" alt="austin skyline logo" style="max-height: 275px" class="mt-4">
+        </div>
+        <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold	has-text-link"> Login</h1>
+        <h2 class="subtitle has-text-centered"> Let's lift!</h1>
+
+          <form action="/sessions" method="POST">
+           <!-- username  -->
+        <div class="field">
+          <label class="label">User Name</label>
+          <div class="control">
+            <input class="input is-large" type="text" name="username" required/> <br />
+          </div>
+        </div>
+          
+          <!-- password -->
+        <div class="field">
+            <label class="label">Password</label>
+            <input class="input is-large" type="password" name="password" >
+       
+        </div>
+  
+        <!-- Submit  -->
+        <input class="button is-rounded is-info is-large is-fullwidth mt-6 mb-6" type="submit" name="Submit User" />
+
+          </form>
+
+
+
+
+        </div>
+
+
+
+<!-- to be edited and deleted -->
+      <!-- <form action="/sessions" method="POST">
         <label for="name">User Name:</label>
         <input type="text" name="username" required/>
+
         <label for="color">Password:</label>
         <input type="password" name="password" />
         <br>
         <input type="submit" value="Submit">
-      <form>
+      <form> -->
     </div>
+      <!-- FOOTER -->
+  <%- include ('../partials/footer.ejs') %>
+  <!-- FOOTER -->
+
   </body>
 </html>

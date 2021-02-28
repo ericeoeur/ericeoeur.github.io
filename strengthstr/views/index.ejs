@@ -7,9 +7,9 @@
 </head>
 
 <body>
- 
-    <%- include ('./partials/navbar.ejs') %>
- 
+
+  <!-- NAVBAR -->
+  <%- include ('./partials/navbar.ejs') %>
 
   <h1>StrengthStr</h1>
   <% if (currentUser) { %>
@@ -25,8 +25,12 @@
   <h3><%= OneRepMaxes[i].liftName %></h3>
   <h4><%= OneRepMaxes[i].weight %></h4>
   <% } %>
-
   <% } %>
+
+  <!-- FOOTER -->
+  <%- include ('./partials/footer.ejs') %>
+  <!-- FOOTER -->
+
 </body>
 
 </html>

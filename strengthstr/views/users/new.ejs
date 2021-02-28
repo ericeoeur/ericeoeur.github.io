@@ -1,62 +1,151 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <%- include ('../partials/head.ejs') %>
 
-  </head>
-  <body>
-  
-      <%- include ('../partials/navbar.ejs') %>
-  
-    <div class="container">
-      <h1>New User</h1>
-      <form action="/users" method="POST">
-        
-        <!-- User Name  -->
-        <label for="name">User Name:</label>
-        <input type="text" name="username" required/>
-        
-        <!-- Password -->
-        <label for="password">Password:</label>
-        <input type="password" name="password" />
-        
-         <!-- Age -->
-         <label for="age">Age:</label>
-         <input type="number" name="age" />
-        
-        <!-- Height -->
-        <label for="height">Height:</label>
-        <input type="number" name="height" />
+<head>
+  <%- include ('../partials/head.ejs') %>
 
-        <!-- Weight -->
-        <label for="weight">Weight:</label>
-        <input type="number" name="weight" /> <br/>
+</head>
 
-        <h2>One Rep Maxes</h2>
+<body>
 
-         <!-- One Rep Maxes  - Squat -->
-         <label for="squat">Squat:</label>
-         <input type="number" name="oneRepMaxSquat" />
-
-          <!-- One Rep Maxes  - Bench -->
-          <label for="bench">Bench:</label>
-          <input type="number" name="oneRepMaxBench" />
-
-           <!-- One Rep Maxes  - Press -->
-         <label for="press">Press:</label>
-         <input type="number" name="oneRepMaxPress" />
-
-          <!-- One Rep Maxes  - Deadlift -->
-          <label for="deadlift">Deadlift:</label>
-          <input type="number" name="oneRepMaxDeadlift" />
-        
-        
-        <br/>
-        <input type="submit" value="Submit">
+  <!-- Navbar -->
+  <%- include ('../partials/navbar.ejs') %>
 
 
-
-      <form>
+  <!-- Header Title  -->
+  <div class="container">
+    <div class="columns is-centered is-vcentered">
+      <img src="http://assets.stickpng.com/thumbs/5a5ba4519538462e5a82d4c9.png" alt="austin skyline logo"
+        style="max-height: 275px" class="mt-4">
     </div>
-  </body>
+    <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold	has-text-link"> Sign Up for StrengthStr
+    </h1>
+    <h2 class="subtitle has-text-centered">Build strength at your level</h1>
+
+
+      <div class="container">
+
+        <form action="/users" method="POST">
+
+          <!-- User Name  -->
+                <div class="field">
+            <label class="label">User Name</label>
+            <div class="control">
+              <input class="input is-large" type="text" name="username" required /> <br />
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="field">
+            <label class="label">Password</label>
+            <input class="input is-large" type="password" name="password">
+
+            <!-- Age, Height and Weight -->
+
+            <div class="container">
+              <div class="columns">
+
+                <!-- Age -->
+                <div class="column">
+     
+                  <div class="field">
+                    <label class="label">Age</label>
+                    <div class="control">
+                      <input class="input is-large" type="number" name="age" />
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <!-- Height -->
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Height (Inches)</label>
+                    <div class="control">
+                      <input class="input is-large" type="number" name="height" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Weight -->
+                <div class="column">
+                  <div class="field">
+                    <label class="label">Weight (Lbs)</label>
+                    <div class="control">
+                      <input class="input is-large" type="number" name="weight" />
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+<!-- ONE REP MAXES -->
+          <div class="container">
+            <h2 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold	has-text-link p-5">One Rep Maxes</h2>
+            <div class="columns">
+              <!-- One Rep Maxes  - Squat -->
+              <div class="column">
+                <div class="field">
+                  <label class="label">Squat</label>
+                  <div class="control">
+                    <input class="input is-large" type="number" name="oneRepMaxSquat" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- One Rep Maxes  - Bench -->
+              <div class="column">
+                <div class="field">
+                  <label class="label">Bench</label>
+                  <div class="control">
+                    <input class="input is-large" type="number" name="oneRepMaxBench" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- One Rep Maxes  - Press -->
+              <div class="column">
+                <div class="field">
+                  <label class="label">Overhead Press</label>
+                  <div class="control">
+                    <input class="input is-large" type="number" name="oneRepMaxPress" />
+                  </div>
+                </div>
+              </div>
+
+              <!-- One Rep Maxes  - Deadlift -->
+              <div class="column">
+                <div class="field">
+                  <label class="label">Deadlift</label>
+                  <div class="control">
+                    <input class="input is-large" type="number" name="oneRepMaxDeadlift" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<!-- Submit Button -->
+            <div class="column">
+              <input class="button is-rounded is-info is-large is-fullwidth mt-6 mb-6" type="submit"
+                name="Submit New User" />
+            </form>
+            </div>
+            </div>
+          </div>
+          
+          </div>
+     
+      
+
+  <!-- FOOTER -->
+  <%- include ('../partials/footer.ejs') %>
+  <!-- FOOTER -->
+
+
+</body>
+
 </html>
