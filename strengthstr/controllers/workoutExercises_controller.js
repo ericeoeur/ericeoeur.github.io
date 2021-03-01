@@ -27,19 +27,33 @@ Workout.get('/seed', (req, res) =>{
 })
 
 // SHOW
+// Workout.get('/:id', (req, res) => {
+//   WorkoutExercises.findById(req.params.id, (error, foundWorkout) => {
+
+//     console.log("~~~~~");
+//     console.log(foundWorkout);
+
+
+//     res.render('../views/exercises/show.ejs', {
+//       currentUser: req.session.currentUser, 
+//       Workout: foundWorkout,
+//     })
+//   })
+// })
+
 Workout.get('/:id', (req, res) => {
-  WorkoutExercises.findById(req.params.id, (error, foundWorkout) => {
-
-    console.log("~~~~~");
-    console.log(foundWorkout);
-
-
+  WorkoutExercises.findById(req.params.id).populate('exercises').
+  exec(function (err, foundWorkout) {
+    if (err) return handleError(err);
     res.render('../views/exercises/show.ejs', {
       currentUser: req.session.currentUser, 
       Workout: foundWorkout,
     })
   })
-})
+
+});
+
+//braket colorizer 2 
 
 
 // //CREATE
