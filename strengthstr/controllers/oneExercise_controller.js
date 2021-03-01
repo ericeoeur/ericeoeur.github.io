@@ -83,7 +83,7 @@ lift.post('/', (req,res) => {
   } else {
     req.body.completed = false
   }
-  
+
   console.log("~~~ New Lift Post ~~~~");
   console.log(req.body);
 
@@ -104,7 +104,7 @@ lift.post('/', (req,res) => {
     }
   })
   
-  
+  //now you need to try to PUSH this data of newLift into the workoutExercises' exercise array. 
 
 
 

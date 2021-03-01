@@ -9,11 +9,10 @@ const userSchema = Schema({
   weight: Number,
   oneRepMaxes: [
     {type: mongoose.Schema.Types.ObjectId, ref:'OneRepMax'}
+  ], 
+  workoutExercises: [
+    {type: mongoose.Schema.Types.ObjectId, ref:'workoutExercises'}
   ]
-  // , 
-  // workoutExercises: [
-  //   {type: mongoose.Schema.Types.ObjectId, ref:'workoutExercises'}
-  // ]
 });
 
 const User = mongoose.model('User', userSchema)

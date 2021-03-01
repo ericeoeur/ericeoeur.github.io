@@ -20,6 +20,7 @@ const DBNAME = process.env.DBNAME;
 const sessionsController = require('./controllers/sessions_controller.js')
 const userController = require('./controllers/users_controller.js')
 const oneExerciseController = require('./controllers/oneExercise_controller.js')
+const workoutExercisesController = require('./controllers/workoutExercises_controller.js');
 
 
 // == MIDDLEWARE == //
@@ -49,6 +50,7 @@ app.use(
 app.use('/sessions', sessionsController)
 app.use('/users', userController)
 app.use('/oneexercise', oneExerciseController)
+app.use('/workout', workoutExercisesController)
 
 // == DATABASE == //
 mongoose.connect(`mongodb://localhost:27017/${DBNAME}`, {
@@ -71,9 +73,10 @@ const User = require('./models/users.js');
 const OneRepMax = require('./models/oneRepMax.js');
 //const bodyParser = require('body-parser');
 const OneExercise = require('./models/oneExercise.js');
-//const workout = require('./models/workoutExercises.js'); 
+const WorkoutExercises = require('./models/workoutExercises.js'); 
+const Workout = require('./controllers/workoutExercises_controller.js');
 
-// == ROUTES == // 
+//== ROUTES == // 
 app.get('/', isAuthenticated, (req, res) => {
   if (req.session) {
     OneRepMax.find({
@@ -88,6 +91,23 @@ app.get('/', isAuthenticated, (req, res) => {
     res.render('/users/new');
   }
 })
+
+app.get('/workoutExercises', isAuthenticated, (req, res) => {
+  if (req.session) {
+    WorkoutExercises.find({
+      'user': req.session.currentUser._id
+    }, (error, Workouts) => {
+      res.render('./exercises/workoutExercises.ejs', {
+        currentUser: req.session.currentUser,
+        Workouts: Workouts
+      })
+    });
+  } else {
+    res.render('/users/new');
+  }
+})
+
+
 
 app.get('/create-session', (req, res) => {
   console.log("~~~~CREATE SESSION~~~~~~")

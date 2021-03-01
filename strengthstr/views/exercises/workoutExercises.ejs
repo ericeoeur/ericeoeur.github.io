@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ('../partials/head.ejs') %>
+  <title>StrengthStr</title>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <%- include ('../partials/navbar.ejs') %>
+
+  <div class="container">
+
+    <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-5">
+      <%= currentUser.username %>'s Workouts</h1>
+      <% for(let i =0 ; i<Workouts.length; i++){ %>
+        <h1 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold has-text-danger mt-4 mb-5">Workout <%=i%> - <%= Workouts[i]._id %>  </h2>
+
+        <% } %> 
+
+    <div class="container mb-6">
+
+
+
+
+      <!-- Middle Container -->
+    </div>
+    <!-- End of main container div -->
+  </div>
+  <!-- FOOTER -->
+  <%- include ('../partials/footer.ejs') %>
+  <!-- FOOTER -->
+</body>
+
+</html>
