@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ('../partials/head.ejs') %>
+  <title>StrengthStr</title>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <%- include ('../partials/navbar.ejs') %>
+
+  <div class="container">
+
+    <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-5">
+      <%= currentUser.username %>'s Workouts</h1>
+      <!-- This shows the workout in console. -->
+
+  
+      <% for (let i=0; i<Workout.exercises.length; i++) { %> 
+        <h1>Lift [<%=i%>] ID:  <%= Workout.exercises[i]%></h1>
+        <% } %> 
+
+      <!-- Push the made workouts the array -->
+
+
+    <div class="container mb-6">
+
+      <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold	has-text-link"> Add Lift (oneExercise)</h1>
+
+
+      <form action="/oneexercise" method="POST">
+       <!-- liftName  -->
+    <div class="field">
+      <label class="label">Lift Name</label>
+      <div class="control">
+        <input class="input is-large" type="text" name="liftName" required/> <br />
+      </div>
+    </div>
+      
+      <!-- weight -->
+    <div class="field">
+        <label class="label">Weight</label>
+        <input class="input is-large" type="number" name="weight" >
+    </div>
+
+      <!-- sets -->
+    <div class="field">
+        <label class="label">Sets</label>
+        <input class="input is-large" type="number" name="sets" >
+    </div>
+    
+    <!-- reps -->
+    <div class="field">
+        <label class="label">Reps</label>
+        <input class="input is-large" type="number" name="reps" >
+    </div>
+
+    <!-- Completed -->
+    <div>
+      <label for="completed">
+        <input type="checkbox" id="completed" name="completed" />
+        <span>Completed Lift</span>
+      </label>
+    </div>
+
+    <div>
+      <label for="WorkoutID">
+        <input type="text" id="workoutID" name="workoutID" value="<%=Workout._id%>" />
+        <span>workout id</span>
+      </label>
+    </div>
+
+
+    <!-- Submit  -->
+    <input class="button is-rounded is-info is-large is-fullwidth mt-6 mb-6" type="submit" name="Submit Lift" />
+
+      </form>
+
+
+
+
+
+      <!-- Middle Container -->
+    </div>
+    <!-- End of main container div -->
+  </div>
+  <!-- FOOTER -->
+  <%- include ('../partials/footer.ejs') %>
+  <!-- FOOTER -->
+</body>
+
+</html>

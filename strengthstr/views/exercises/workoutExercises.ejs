@@ -15,7 +15,8 @@
     <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-5">
       <%= currentUser.username %>'s Workouts</h1>
       <% for(let i =0 ; i<Workouts.length; i++){ %>
-        <h1 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold has-text-danger mt-4 mb-5">Workout <%=i%> - <%= Workouts[i]._id %>  </h2>
+        <h1 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold has-text-danger mt-4 mb-5">Workout <%=i%> - 
+          <a href="/workout/<%=Workouts[i]._id%>"><%= Workouts[i]._id %></a>  </h2>
 
         <% } %> 
 

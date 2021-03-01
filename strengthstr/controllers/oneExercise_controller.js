@@ -84,9 +84,9 @@ lift.post('/', (req,res) => {
     req.body.completed = false
   }
 
-  console.log("~~~ New Lift Post ~~~~");
+  console.log("~~~ New Lift Post ~~~~!!!!!!");
   console.log(req.body);
-
+  console.log(req.body.workoutID);
 
   let newLift = new OneExercise({
     liftName: req.body.liftName, 
@@ -96,13 +96,22 @@ lift.post('/', (req,res) => {
     completed: req.body.completed
   })
 
+  
+
+  WorkoutExercises.findById(req.body.workoutID, (error, foundWorkout) => {
+
   newLift.save((err, newLift) => {
     if (err) {
       res.status(400).send("There is an error while adding a new lift"); 
     } else {
       console.log("you have successfully added a new lift!"); 
+      foundWorkout.exercises.push(newLift);
+      foundWorkout.save(); 
+      res.redirect('/workout/'+req.body.workoutID);
     }
   })
+
+})
   
   //now you need to try to PUSH this data of newLift into the workoutExercises' exercise array. 
 
