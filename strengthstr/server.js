@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 
-//import and configure dotenv
+//import and configure dotenv   
 require('dotenv').config();
 
 // == CONFIGURATIONS == // 
@@ -102,7 +102,7 @@ app.get('/workoutExercises', isAuthenticated, (req, res) => {
     //     Workouts: Workouts
     //   })
     // }); 
-    
+
 
     WorkoutExercises.find({'user': req.session.currentUser._id}).populate('exercises').
     exec(function (err, foundWorkout) {

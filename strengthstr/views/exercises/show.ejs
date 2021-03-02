@@ -23,9 +23,11 @@
 
           <div class="column is-two-fifths is-centered m-5 ">
             <% for (let key in Workout.exercises){ %>
-              <article class="message is-info is-half">
+              <a href="/oneexercise/<%=Workout._id%>/<%= Workout.exercises[key]._id %>/edit"> 
+              <article class="message is-info is-half m-4 is-focused">
                 <div class="message-header">
-                 <a href="/oneexercise/<%=Workout._id%>/<%= Workout.exercises[key]._id %>/edit"> <%=Workout.exercises[key].liftName%> </a>
+                  <%=Workout.exercises[key].liftName%>
+                 
                  
 
                  
@@ -34,14 +36,12 @@
                     <button class="delete is-small" type="submit" value="DELETE"></button>
                   </form>
                   
-
-
-
                 </div>
                 <div class="message-body">
               <p class = "has-text-centered is-size-5"><%=Workout.exercises[key].liftName%>: <%=Workout.exercises[key].sets%> x <%=Workout.exercises[key].reps%> @ <%=Workout.exercises[key].weight%> </p>
                   </div>
               </article>
+            </a>
               <% }  %>    
           </div>
 
@@ -52,40 +52,83 @@
 
       <form action="/oneexercise" method="POST">
        <!-- liftName  -->
-    <div class="field">
+    <!-- <div class="field">
       <label class="label">Lift Name</label>
       <div class="control">
         <input class="input is-large" type="text" name="liftName" required/> <br />
       </div>
+    </div> -->
+
+    <div class="control has-icons-left">
+    <div class="field">
+       <label class="label">Lift Name</label>
+    <div class="select is-large is-fullwidth mb-3 ">
+     
+      <select name="liftName" class="is-focused">
+        <option>Squat</option>
+        <option>Bench</option>
+        <option>Press</option>
+        <option>Deadlift</option>
+        <option>Power Cleans</option>
+      </select>
+      <!-- <input type="submit" name="liftName" required/> -->
+      <div class="icon is-small is-left">
+        <i class="fas fa-dumbbell"></i>
     </div>
+    </div>
+  </div>
+  </div>
+
+    <!-- <div class="select">
+      <select>
+        <option>Select dropdown</option>
+        <option>With options</option>
+      </select>
+    </div> -->
       
       <!-- weight -->
+      
     <div class="field">
-        <label class="label">Weight</label>
+      <label class="label">Weight</label>
+      <p class="control has-icons-left">
         <input class="input is-large" type="number" name="weight" >
+        <span class="icon is-small is-left">
+          <i class="fas fa-weight-hanging"></i>
+        </span>
+        </p>
     </div>
 
       <!-- sets -->
     <div class="field">
         <label class="label">Sets</label>
+        <p class="control has-icons-left">
         <input class="input is-large" type="number" name="sets" >
+        <span class="icon is-small is-left">
+          <i class="fas fa-undo"></i>
+        </span>
+        </p>
     </div>
     
     <!-- reps -->
     <div class="field">
-        <label class="label">Reps</label>
+      <label class="label">Reps</label>
+      <p class="control has-icons-left">
         <input class="input is-large" type="number" name="reps" >
+        <span class="icon is-small is-left">
+          <i class="fas fa-layer-group"></i>
+        </span>
+        </p>
     </div>
 
     <!-- Completed -->
-    <div>
+    <!-- <div class = "showCompletion">
       <label for="completed">
         <input type="checkbox" id="completed" name="completed" />
         <span>Completed Lift</span>
       </label>
-    </div>
+    </div> -->
 
-    <div>
+    <div class="showWorkoutID">
       <label for="WorkoutID">
         <input type="text" id="workoutID" name="workoutID" value="<%=Workout._id%>" />
         <span>workout id</span>
@@ -100,7 +143,7 @@
 
           
         </div>
-
+</div>
 
         <!-- end of container div -->
       </div>

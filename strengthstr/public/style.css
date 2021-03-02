@@ -1,3 +1,9 @@
 body{
   background-image: url("/img/tiny_grid.png");
 }
+
+/* Hide the WORKOUTid from the ADD LIFT form in the show.ejs page */
+.showWorkoutID {
+  display: none
+}
+
