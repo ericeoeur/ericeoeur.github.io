@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include ('../partials/head.ejs') %>
+  </head>
+  <body>
+     <!-- NAVBAR -->
+  <%- include ('../partials/navbar.ejs') %>
+
+
+  <div class="container">
+    <div class="columns is-centered is-vcentered">
+      <img src="/img/barbell.png" alt="austin skyline logo" style="max-height: 150px" class="mt-4">
+    </div>
+    <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold	has-text-link"> Edit Lift (oneExercise)</h1>
+             
+
+        <form action="/oneexercise/<%=workoutID%>/<%=lift._id%>?_method=PUT" method="POST">
+
+
+       <!-- liftName  -->
+    <div class="field">
+      <label class="label">Lift Name</label>
+      <div class="control">
+        <input class="input is-large" type="text" name="liftName" value="<%=lift.liftName%>" required/> <br />
+      </div>
+    </div>
+      
+      <!-- weight -->
+    <div class="field">
+        <label class="label">Weight</label>
+        <input class="input is-large" type="number" name="weight" value="<%=lift.weight%>" >
+    </div>
+
+      <!-- sets -->
+    <div class="field">
+        <label class="label">Sets</label>
+        <input class="input is-large" type="number" name="sets" value="<%=lift.sets%>">
+    </div>
+    
+    <!-- reps -->
+    <div class="field">
+        <label class="label">Reps</label>
+        <input class="input is-large" type="number" name="reps" value="<%=lift.reps%>">
+    </div>
+
+    <!-- Completed -->
+    <div>
+      <label for="completed">
+        <input type="checkbox" id="completed" name="completed" 
+        <% if(lift.completed === true){ %>
+          checked
+        <% } %>/>
+        <span>Completed Lift</span>
+      </label>
+    </div>
+
+
+    <!-- Submit  -->
+    <input class="button is-rounded is-info is-large is-fullwidth mt-6 mb-6" type="submit" name="Submit Edited Lift" />
+
+      </form>
+
+
+
+
+    </div>
+
+
+<!-- 
+
+    <div class="container">
+      <h1> New exercise page Page</h1>
+      <form action="/fruits" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required />
+        <label for="color">Color:</label>
+        <input type="text" name="color" />
+        <br/>
+        <div>
+          <label for="readyToEat">
+            <input type="checkbox" id="readyToEat" name="readyToEat" />
+            <span>Is Ready to Eat</span>
+          </label>
+        </div>
+        <br>
+        <input type="submit" value="Submit">
+      <form>
+    </div> -->
+
+
+
+  </body>
+</html>

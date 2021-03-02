@@ -101,7 +101,8 @@ app.get('/workoutExercises', isAuthenticated, (req, res) => {
     //     currentUser: req.session.currentUser,
     //     Workouts: Workouts
     //   })
-    // });
+    // }); 
+    
 
     WorkoutExercises.find({'user': req.session.currentUser._id}).populate('exercises').
     exec(function (err, foundWorkout) {
@@ -109,7 +110,7 @@ app.get('/workoutExercises', isAuthenticated, (req, res) => {
       res.render('./exercises/workoutExercises.ejs', {
         currentUser: req.session.currentUser, 
         Workouts: foundWorkout,
-      })
+      }) 
     })
 
 

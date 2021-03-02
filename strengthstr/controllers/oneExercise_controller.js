@@ -2,7 +2,8 @@ const express = require('express');
 const OneExercise = require('../models/oneExercise.js'); 
 const User = require('../models/users.js')
 const OneRepMax = require('../models/oneRepMax');
-const WorkoutExercises = require('../models/workoutExercises.js')
+const WorkoutExercises = require('../models/workoutExercises.js');
+const { update } = require('../models/users.js');
 const lift = express.Router(); 
 
 //AUTHENTICATION CHECK
@@ -65,9 +66,54 @@ lift.get('/new', isAuthenticated, (req, res) => {
 
 
 //EDIT
+lift.get('/:workoutId/:id/edit', (req, res) => {
+  OneExercise.findById(req.params.id, (error, showLift) => {
+    console.log(req.params);
+    res.render('../views/exercises/editOneExercise.ejs', {
+      currentUser: req.session.currentUser,
+      lift: showLift,
+      workoutID: req.params.workoutId
+    })
+  });
+});
+
+// === UPDATE === //
+lift.put('/:workoutId/:id', (req, res) => {
+  if (req.body.completed === 'on') {
+    req.body.completed = true
+  } else {
+    req.body.completed = false
+  }
+  console.log(req.body); 
+  OneExercise.findByIdAndUpdate(req.params.id, req.body, (error, updatedLift) => {
+    console.log("this was fired")
+    console.log(req.params.id); 
+    console.log(req.body); 
+    console.log("~~~~")
+    console.log(updatedLift)
+    
+    
+    res.redirect('/workout/'+req.params.workoutId); 
+  });
+  });
+
 
 
 //DELETE
+lift.delete('/:workoutId/:id', (req, res) => {
+  OneExercise.findByIdAndRemove(req.params.id, (error, deletedExercise) => {
+    console.log(req.params);
+    res.redirect('/workout/'+req.params.workoutId)
+  })
+
+})
+
+
+// Workout.delete('/:id', (req, res) => {
+//   WorkoutExercises.findByIdAndRemove(req.params.id, (error, deletedWorkout) => {
+//     res.redirect('/workoutExercises'); 
+//   })
+// })
 
 
 //SHOW

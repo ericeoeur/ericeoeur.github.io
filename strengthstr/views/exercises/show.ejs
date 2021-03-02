@@ -16,21 +16,38 @@
       <%= currentUser.username %>'s Workout</h1>
       <!-- This shows the workout in console. -->
 
-  
-    
+      <div class="container">
+        <div class="columns is-centered is-vcentered">
 
-        <% for (let key in Workout.exercises){ %>
-          <p class = "has-text-centered is-size-5"><%=Workout.exercises[key].liftName%>: <%=Workout.exercises[key].sets%> x <%=Workout.exercises[key].reps%> @ <%=Workout.exercises[key].weight%> </p>
-          <% }  %> 
+          
+
+          <div class="column is-two-fifths is-centered m-5 ">
+            <% for (let key in Workout.exercises){ %>
+              <article class="message is-info is-half">
+                <div class="message-header">
+                 <a href="/oneexercise/<%=Workout._id%>/<%= Workout.exercises[key]._id %>/edit"> <%=Workout.exercises[key].liftName%> </a>
+                 
+
+                 
+
+                  <form action="/oneexercise/<%=Workout._id%>/<%= Workout.exercises[key]._id %>?_method=DELETE" method="POST">
+                    <button class="delete is-small" type="submit" value="DELETE"></button>
+                  </form>
+                  
 
 
 
-      <!-- Push the made workouts the array -->
+                </div>
+                <div class="message-body">
+              <p class = "has-text-centered is-size-5"><%=Workout.exercises[key].liftName%>: <%=Workout.exercises[key].sets%> x <%=Workout.exercises[key].reps%> @ <%=Workout.exercises[key].weight%> </p>
+                  </div>
+              </article>
+              <% }  %>    
+          </div>
 
-
-    <div class="container mb-6">
-
-      <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold	has-text-link"> Add Lift (oneExercise)</h1>
+          <div class="column is-two-fifths m-3">
+            <!-- add form here?  -->
+            <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold	has-text-link"> Add Lift</h1>
 
 
       <form action="/oneexercise" method="POST">
@@ -75,12 +92,31 @@
       </label>
     </div>
 
-
     <!-- Submit  -->
     <input class="button is-rounded is-info is-large is-fullwidth mt-6 mb-6" type="submit" name="Submit Lift" />
-
       </form>
+          </div>
 
+
+          
+        </div>
+
+
+        <!-- end of container div -->
+      </div>
+
+  
+
+    
+
+
+
+      <!-- Push the made workouts the array -->
+
+
+    <div class="container mb-6">
+
+      
 
 
 
