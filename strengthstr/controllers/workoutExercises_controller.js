@@ -21,7 +21,7 @@ Workout.get('/seed', (req, res) =>{
     ],
     (error, data) => {
       console.log("An workoutExercise was created");
-      res.redirect('/');
+      res.redirect('/workoutExercises');
     }
   )
 })
@@ -38,6 +38,14 @@ Workout.get('/:id', (req, res) => {
   })
 
 });
+
+//DELETE 
+Workout.delete('/:id', (req, res) => {
+  WorkoutExercises.findByIdAndRemove(req.params.id, (error, deletedWorkout) => {
+    res.redirect('/workoutExercises'); 
+  })
+})
+
 
 //braket colorizer 2 
 

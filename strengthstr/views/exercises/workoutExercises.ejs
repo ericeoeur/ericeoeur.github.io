@@ -14,11 +14,37 @@
 
     <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-5">
       <%= currentUser.username %>'s Workouts</h1>
-      <% for(let i =0 ; i<Workouts.length; i++){ %>
-        <h1 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold has-text-danger mt-4 mb-5">Workout <%=i%> - 
-          <a href="/workout/<%=Workouts[i]._id%>"><%= Workouts[i]._id %></a>  </h2>
 
+     <a href="workout/seed"><button class="button is-rounded is-info is-large is-fullwidth mt-4 mb-6">Add Workout</button></a>
+
+      <div class="columns is-multiline is-centered">
+
+
+      <% for(let i =0 ; i<Workouts.length; i++){ %>
+        <div class="column is-3 has-background-white-ter m-2">
+          
+          
+          <form action="/workout/<%=Workouts[i]._id%>?_method=DELETE" method="POST">
+            <button class="delete is-small" type="submit" value="DELETE"></button>
+          </form>
+          
+
+        <h1 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold has-text-danger mt-4 mb-1">
+          <a href="/workout/<%=Workouts[i]._id%>">Workout - <%= i %></a>  </h2>
+          <p class = "has-text-centered is-size-7 mb-4"><%=(Workouts[i]._id).getTimestamp()%></p>
+          
+          
+
+          <% for (let key in Workouts[i].exercises){ %>
+          <p class = "has-text-centered is-size-5"><%=Workouts[i].exercises[key].liftName%>: <%=Workouts[i].exercises[key].sets%> x <%=Workouts[i].exercises[key].reps%> @ <%=Workouts[i].exercises[key].weight%> </p>
+          <% }  %> 
+          
+          
+
+        </div>
         <% } %> 
+
+        </div>
 
     <div class="container mb-6">
 

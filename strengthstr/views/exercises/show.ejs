@@ -13,15 +13,17 @@
   <div class="container">
 
     <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-5">
-      <%= currentUser.username %>'s Workouts</h1>
+      <%= currentUser.username %>'s Workout</h1>
       <!-- This shows the workout in console. -->
 
   
-      <% for (let i=0; i<Workout.exercises.length; i++) { %> 
-        <h1>Lift [<%=i%>] ID:  <%= Workout.exercises[i]%></h1>
-        <h1>Lift [<%=i%>] ID:  <%= Workout.exercises[i].liftName%></h1>
+    
 
-        <% } %> 
+        <% for (let key in Workout.exercises){ %>
+          <p class = "has-text-centered is-size-5"><%=Workout.exercises[key].liftName%>: <%=Workout.exercises[key].sets%> x <%=Workout.exercises[key].reps%> @ <%=Workout.exercises[key].weight%> </p>
+          <% }  %> 
+
+
 
       <!-- Push the made workouts the array -->
 

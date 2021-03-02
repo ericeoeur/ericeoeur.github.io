@@ -94,14 +94,26 @@ app.get('/', isAuthenticated, (req, res) => {
 
 app.get('/workoutExercises', isAuthenticated, (req, res) => {
   if (req.session) {
-    WorkoutExercises.find({
-      'user': req.session.currentUser._id
-    }, (error, Workouts) => {
+    // WorkoutExercises.find({
+    //   'user': req.session.currentUser._id
+    // }, (error, Workouts) => {
+    //   res.render('./exercises/workoutExercises.ejs', {
+    //     currentUser: req.session.currentUser,
+    //     Workouts: Workouts
+    //   })
+    // });
+
+    WorkoutExercises.find({'user': req.session.currentUser._id}).populate('exercises').
+    exec(function (err, foundWorkout) {
+      if (err) return handleError(err);
       res.render('./exercises/workoutExercises.ejs', {
-        currentUser: req.session.currentUser,
-        Workouts: Workouts
+        currentUser: req.session.currentUser, 
+        Workouts: foundWorkout,
       })
-    });
+    })
+
+
+
   } else {
     res.render('/users/new');
   }
