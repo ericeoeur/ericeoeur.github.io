@@ -93,7 +93,7 @@ lift.put('/:workoutId/:id', (req, res) => {
     console.log(updatedLift)
     
     
-    res.redirect('/workout/'+req.params.workoutId); 
+    res.redirect('/oneexercise/'+req.params.workoutId+'/'+req.params.id+'/edit'); 
   });
   });
 

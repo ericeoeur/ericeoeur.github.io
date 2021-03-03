@@ -15,42 +15,44 @@
     <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-5">
       <%= currentUser.username %>'s Workouts</h1>
 
-     <a href="workout/seed"><button class="button is-info is-large is-fullwidth mt-4 mb-6">Add Workout</button></a>
+      <div class="columns">
+        <div class="column is-6">
+    <a href="workout/seed"><button class="button is-info is-medium is-fullwidth is-centered m-1">Add Custom Workout</button></a>
+</div>
+<div class="column is-6">
+  <a href="workout/seed"><button class="button is-link is-medium is-fullwidth is-centered m-1  ">Generate Workout</button></a>
+</div>
+</div>
 
-      <div class="columns is-multiline is-centered ">
+    <div class="columns is-multiline is-centered ">
 
 
       <% for(let i =0 ; i<Workouts.length; i++){ %>
-        <div class="column box is-3 has-background-white-ter m-5">
-          
-          
-          <form action="/workout/<%=Workouts[i]._id%>?_method=DELETE" method="POST">
-            <button class="delete is-small" type="submit" value="DELETE"></button>
-          </form>
-          
+        <a href="/workout/<%=Workouts[i]._id%>">
+      <div class="column box is-3 has-background-white-ter m-5">
 
-        <h1 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold has-text-danger mb-1">
-          <a href="/workout/<%=Workouts[i]._id%>">Workout <%= i+1 %></a>  </h2>
-          <p class = "has-text-centered is-size-7 mb-4"><%=(Workouts[i]._id).getTimestamp()%></p>
-          
-          
+        <form action="/workout/<%=Workouts[i]._id%>?_method=DELETE" method="POST">
+          <button class="delete is-small" type="submit" value="DELETE"></button>
+        </form>
+
+        <h1 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold mb-1"> Workout <%= i+1 %></h1>
+          <p class="has-text-centered is-size-7 mb-4"><%=(Workouts[i]._id).getTimestamp()%></p>
 
           <% for (let key in Workouts[i].exercises){ %>
-            <div class="box mb-2 has-background-info-light	">
-          <p class = "has-text-centered is-size-6">
-            <%=Workouts[i].exercises[key].liftName%>: 
-            <%=Workouts[i].exercises[key].sets%> x 
-            <%=Workouts[i].exercises[key].reps%> @ 
-            <%=Workouts[i].exercises[key].weight%> </p>
+          <div class="box mb-2 has-background-info-light	">
+            <p class="has-text-centered is-size-6">
+              <%=Workouts[i].exercises[key].liftName%>:
+              <%=Workouts[i].exercises[key].sets%> x
+              <%=Workouts[i].exercises[key].reps%> @
+              <%=Workouts[i].exercises[key].weight%> </p>
           </div>
-          <% }  %> 
-           
-          
+          <% }  %>
+        </a>
+      </div>
+      
+      <% } %>
 
-        </div>
-        <% } %> 
-
-        </div>
+    </div>
 
     <div class="container mb-6">
 
