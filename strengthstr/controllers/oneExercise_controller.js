@@ -92,10 +92,38 @@ lift.put('/:workoutId/:id', (req, res) => {
     console.log("~~~~")
     console.log(updatedLift)
     
-    
     res.redirect('/oneexercise/'+req.params.workoutId+'/'+req.params.id+'/edit'); 
   });
   });
+
+  // === UPDATE - SET COMPLETED === //
+lift.put('/:workoutId/:id/true/', (req, res) => {
+    req.body.completed = true
+  console.log(req.body); 
+  OneExercise.findByIdAndUpdate(req.params.id, req.body, (error, updatedLift) => {
+    console.log("completed button was fired")
+    console.log(req.body); 
+    console.log("~~~~")
+    console.log(updatedLift)
+    res.redirect('/oneexercise/'+req.params.workoutId+'/'+req.params.id+'/edit'); 
+  });
+  });
+
+    // === UPDATE - SET FAILED === //
+lift.put('/:workoutId/:id/false/', (req, res) => {
+  req.body.completed = false
+console.log(req.body); 
+OneExercise.findByIdAndUpdate(req.params.id, req.body, (error, updatedLift) => {
+  console.log("failed button was fired")
+  console.log(req.body); 
+  console.log("~~~~")
+  console.log(updatedLift)
+  res.redirect('/oneexercise/'+req.params.workoutId+'/'+req.params.id+'/edit'); 
+});
+});
+
+
+
 
 
 
@@ -124,11 +152,13 @@ lift.delete('/:workoutId/:id', (req, res) => {
 
 //CREATE
 lift.post('/', (req,res) => {
-  if (req.body.completed === 'on') {
-    req.body.completed = true
-  } else {
-    req.body.completed = false
-  }
+  // if (req.body.completed === 'on') {
+  //   req.body.completed = true
+  // } else {
+  //   req.body.completed = false
+  // }
+
+  req.body.completed = null; 
 
   console.log("~~~ New Lift Post ~~~~!!!!!!");
   console.log(req.body);

@@ -16,7 +16,8 @@
       <div class="column box is-two-fifths is-centered has-background-white-ter ml-5 mb-5 mr-5 ">
       <!-- <img src="/img/barbell.png" alt="austin skyline logo" style="max-height: 150px" class="mt-4"> -->
     
-      <article class="message is-link is-half m-4 is-focused ">
+      <article class="message is-link is-half m-4 is-focused
+      <% if (lift.completed === null) { %> is-info" <%} else if (lift.completed === true){ %> is-success" <% } else { %>  is-danger"<% }%>>
         <div class="message-header">
           <%=lift.liftName%> Warm Ups
         </div>
@@ -37,7 +38,10 @@
       </article>
 
 
-      <article class="message is-info is-half m-4 is-focused is centered">
+      <article class="message is-info is-half m-4 is-focused is-centered 
+      
+      <% if (lift.completed === null) { %> is-info" <%} else if (lift.completed === true){ %> is-success" <% } else { %>  is-danger"<% }%>>
+
         <div class="message-header">
           <%=lift.liftName%> Working Set
         </div>
@@ -47,6 +51,32 @@
             <%=lift.weight%> </p>
         </div>
       </article>
+
+      <div class="column">
+
+       <!-- Completed Set this will toggle true or false in "completed lift"  -->
+
+  <form action="/oneexercise/<%=workoutID%>/<%=lift._id%>/true/?_method=PUT" method="POST">
+    <input class="button is-success is-medium is-fullwidth is-focused mb-3" type="submit" id="completed" value="Completed Working Set" />
+  </form>
+
+  <form action="/oneexercise/<%=workoutID%>/<%=lift._id%>/false/?_method=PUT" method="POST">
+  <input class="button is-danger is-medium is-focused is-fullwidth" id="completed" type="submit" name="Failed Working Set" value="Failed Working Set" />
+  </form>
+
+
+  
+ <!-- Completed -->
+            <!-- <div class = "showCompletion">
+      <label for="completed">
+        <input type="checkbox" id="completed" name="completed" />
+        <span>Completed Lift</span>
+      </label>
+    </div> -->
+
+</div>
+
+
     </div>
 
 
@@ -131,14 +161,14 @@
         <input type="checkbox" id="completed" name="completed" 
         <% if(lift.completed === true){ %>
           checked
-        <% } %>/>
+        <% } %> disabled/>
         <span>Completed Lift</span>
       </label>
     </div>
 
 
     <!-- Submit  -->
-    <input class="button is-rounded is-info  is-fullwidth mt-6 mb-6" type="submit" name="Submit Edited Lift" value="Edit Lift" />
+    <input class="button is-info  is-fullwidth mt-6 mb-6" type="submit" name="Submit Edited Lift" value="Edit Lift" />
       </form>
 
 
