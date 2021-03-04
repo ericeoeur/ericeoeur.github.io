@@ -3,34 +3,37 @@ const express = require('express')
 const sessions = express.Router()
 const User = require('../models/users.js')
 
+// == ROUTES == // 
+// == CREATE - Route to a new user session == // 
 sessions.get('/new', (req, res) => {
   res.render('sessions/new.ejs', { 
     currentUser: req.session.currentUser })
 })
 
-// on sessions form submit (log in)
+// == LOGIN - POST ROUTE FOR LOGGING IN WITH PASSWORD VALIDATION == // 
 sessions.post('/', (req, res) => {
  console.log('you have logged in');
-  // Step 1 Look for the username
+  // Look for the name
   User.findOne({ username: req.body.username }, (err, foundUser) => {
     if (err) {
       console.log(err)
       res.send('There was a DB problem.')
     } else if (!foundUser) {
-      res.send('<a  href="/">Sorry, no user found </a>')
+      res.send('<a href="/">Sorry, no user found </a>')
     } else {
-      // check passwords are matching
+  // Password Check 
       if (bcrypt.compareSync(req.body.password, foundUser.password)) {
-        // add the user to our session
+  // Add User to current session
         req.session.currentUser = foundUser
         res.redirect('/')
       } else {
-        res.send('<a href="/"> password does not match </a>')
+        res.send('<a href="/"> Passwords do not match. </a>')
       }
     }
   })
 })
 
+// == LOG OUT -- DESTROY SESSION == // 
 sessions.delete('/', (req, res) => {
   req.session.destroy(() => {
     res.redirect('/')

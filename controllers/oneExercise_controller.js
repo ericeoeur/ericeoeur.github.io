@@ -1,12 +1,14 @@
-const express = require('express'); 
-const OneExercise = require('../models/oneExercise.js'); 
+const express = require('express');
+const OneExercise = require('../models/oneExercise.js');
 const User = require('../models/users.js')
 const OneRepMax = require('../models/oneRepMax');
 const WorkoutExercises = require('../models/workoutExercises.js');
-const { update } = require('../models/users.js');
-const lift = express.Router(); 
+const {
+  update
+} = require('../models/users.js');
+const lift = express.Router();
 
-//AUTHENTICATION CHECK
+// == AUTHTENTICATION CHECK == // 
 const isAuthenticated = (req, res, next) => {
   if (req.session.currentUser) {
     return next()
@@ -15,12 +17,10 @@ const isAuthenticated = (req, res, next) => {
   }
 }
 
-
-// SEED ROUTE
+// == SeeD ROUTE == // 
 lift.get('/seed', (req, res) => {
   OneExercise.create(
-    [
-      {
+    [{
         liftName: 'Squat',
         weight: '135',
         sets: '3',
@@ -56,16 +56,14 @@ lift.get('/seed', (req, res) => {
   )
 })
 
-
-//NEW
+// == NEW EXERCISE == // 
 lift.get('/new', isAuthenticated, (req, res) => {
   res.render('../views/exercises/new.ejs', {
     currentUser: req.session.currentUser
   })
 })
 
-
-//EDIT
+// == EDIT EXERCISE == // 
 lift.get('/:workoutId/:id/edit', (req, res) => {
   OneExercise.findById(req.params.id, (error, showLift) => {
     console.log(req.params);
@@ -77,124 +75,68 @@ lift.get('/:workoutId/:id/edit', (req, res) => {
   });
 });
 
-// === UPDATE === //
+// == UPDATE EDITED EXERCISE == // 
 lift.put('/:workoutId/:id', (req, res) => {
   if (req.body.completed === 'on') {
     req.body.completed = true
   } else {
     req.body.completed = false
   }
-  console.log(req.body); 
-  OneExercise.findByIdAndUpdate(req.params.id, req.body, (error, updatedLift) => {
-    console.log("this was fired")
-    console.log(req.params.id); 
-    console.log(req.body); 
-    console.log("~~~~")
-    console.log(updatedLift)
-    
-    res.redirect('/oneexercise/'+req.params.workoutId+'/'+req.params.id+'/edit'); 
-  });
-  });
 
-  // === UPDATE - SET COMPLETED === //
+  OneExercise.findByIdAndUpdate(req.params.id, req.body, (error, updatedLift) => {
+    res.redirect('/oneexercise/' + req.params.workoutId + '/' + req.params.id + '/edit');
+  });
+});
+
+// === UPDATE EXERCISE - SET COMPLETED (BUTTON) === //
 lift.put('/:workoutId/:id/true/', (req, res) => {
-    req.body.completed = true
-  console.log(req.body); 
+  req.body.completed = true
   OneExercise.findByIdAndUpdate(req.params.id, req.body, (error, updatedLift) => {
-    console.log("completed button was fired")
-    console.log(req.body); 
-    console.log("~~~~")
-    console.log(updatedLift)
-    res.redirect('/oneexercise/'+req.params.workoutId+'/'+req.params.id+'/edit'); 
+    res.redirect('/oneexercise/' + req.params.workoutId + '/' + req.params.id + '/edit');
   });
-  });
+});
 
-    // === UPDATE - SET FAILED === //
+// === UPDATE EXERCISE- SET FAILED (BUTTON)=== //
 lift.put('/:workoutId/:id/false/', (req, res) => {
   req.body.completed = false
-console.log(req.body); 
-OneExercise.findByIdAndUpdate(req.params.id, req.body, (error, updatedLift) => {
-  console.log("failed button was fired")
-  console.log(req.body); 
-  console.log("~~~~")
-  console.log(updatedLift)
-  res.redirect('/oneexercise/'+req.params.workoutId+'/'+req.params.id+'/edit'); 
-});
+  OneExercise.findByIdAndUpdate(req.params.id, req.body, (error, updatedLift) => {
+    res.redirect('/oneexercise/' + req.params.workoutId + '/' + req.params.id + '/edit');
+  });
 });
 
-
-
-
-
-
-//DELETE
+// === DELETE EXERCISE === //
 lift.delete('/:workoutId/:id', (req, res) => {
   OneExercise.findByIdAndRemove(req.params.id, (error, deletedExercise) => {
-    console.log(req.params);
-    res.redirect('/workout/'+req.params.workoutId)
+    res.redirect('/workout/' + req.params.workoutId)
   })
-
 })
 
+// === CREATE NEW EXERCISE === //
+lift.post('/', (req, res) => {
+  req.body.completed = null;
 
-// Workout.delete('/:id', (req, res) => {
-//   WorkoutExercises.findByIdAndRemove(req.params.id, (error, deletedWorkout) => {
-//     res.redirect('/workoutExercises'); 
-//   })
-// })
-
-
-//SHOW
-
-
-//UPDATE
-
-
-//CREATE
-lift.post('/', (req,res) => {
-  // if (req.body.completed === 'on') {
-  //   req.body.completed = true
-  // } else {
-  //   req.body.completed = false
-  // }
-
-  req.body.completed = null; 
-
-  console.log("~~~ New Lift Post ~~~~!!!!!!");
-  console.log(req.body);
-  console.log(req.body.workoutID);
-
+//Create the new Lift/oneExercise using the OneExercise Model 
   let newLift = new OneExercise({
-    liftName: req.body.liftName, 
-    weight: req.body.weight, 
-    sets: req.body.sets, 
-    reps: req.body.reps, 
+    liftName: req.body.liftName,
+    weight: req.body.weight,
+    sets: req.body.sets,
+    reps: req.body.reps,
     completed: req.body.completed
   })
 
-  
-
+  //Push this new lift into the WorkoutExercises Schema Array for Exercises. This is where all the oneExercises are held.
   WorkoutExercises.findById(req.body.workoutID, (error, foundWorkout) => {
-
-  newLift.save((err, newLift) => {
-    if (err) {
-      res.status(400).send("There is an error while adding a new lift"); 
-    } else {
-      console.log("you have successfully added a new lift!"); 
-      foundWorkout.exercises.push(newLift);
-      foundWorkout.save(); 
-      res.redirect('/workout/'+req.body.workoutID);
-    }
+    newLift.save((err, newLift) => {
+      if (err) {
+        res.status(400).send("There is an error while adding a new lift");
+      } else {
+        console.log("Successfully added a new lift!");
+        foundWorkout.exercises.push(newLift);
+        foundWorkout.save();
+        res.redirect('/workout/' + req.body.workoutID);
+      }
+    })
   })
-
 })
-  
-  //now you need to try to PUSH this data of newLift into the workoutExercises' exercise array. 
-
-
-
-})
-
-//INDEX 
 
 module.exports = lift

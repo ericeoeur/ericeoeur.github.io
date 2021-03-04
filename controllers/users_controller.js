@@ -4,77 +4,81 @@ const users = express.Router()
 const User = require('../models/users.js')
 const OneRepMax = require('../models/oneRepMax');
 
+
+// == ROUTES == // 
+
+// == CREATE - ROUTE TO NEW USER CREATION PAGE == // 
 users.get('/new', (req, res) => {
   res.render('users/new.ejs', {
-  currentUser: req.session.currentUser  
-})
+    currentUser: req.session.currentUser
+  })
 })
 
-//Sign Up to create a new user 
+// == CREATE - USER CREATION POST ROUTE == // 
 users.post('/', (req, res) => {
-  //overwrite the user password with the hashed password, then pass that in to our database
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
-  console.log("~~~~");
-  console.log(req.body);
+   //The above statement overwrites the user password a hashed or "salted" password
 
-  // let newUser = new User(req.body);
-  let newUser = new User({
-  username: req.body.username,
-  password: req.body.password,
-  age: req.body.age,
-  height: req.body.height,
-  weight: req.body.weight,
+
+ // USER CREATION - USERS.JS MODEL
+    let newUser = new User({
+    username: req.body.username,
+    password: req.body.password,
+    age: req.body.age,
+    height: req.body.height,
+    weight: req.body.weight,
   });
 
   newUser.save((err, newUser) => {
     if (err) {
       console.log(err);
-      res.status(400).send("There is an error while adding a new user"); 
-    } else { 
+      res.status(400).send("There is an error while adding a new user");
+    } else {
       console.log("Successfully added user info!")
-      //res.status(200).json(newUser);
     }
   })
 
+// ONE REP MAXES - ONEREPMAX.JS MODEL 
   let squatOneRepMax = OneRepMax({
-    liftName: 'Squat', 
+    liftName: 'Squat',
     weight: req.body.oneRepMaxSquat,
     user: newUser
-  }); 
-  //console.log(squatOneRepMax);
-
-  let benchOneRepMax = OneRepMax({
-    liftName: 'Bench', 
-    weight: req.body.oneRepMaxBench,
-    user: newUser
-  }); 
-
-  let pressOneRepMax = OneRepMax({
-    liftName: 'Press', 
-    weight: req.body.oneRepMaxPress,
-    user: newUser
-  }); 
-
-  let deadliftOneRepMax = OneRepMax({
-    liftName: 'Deadlift', 
-    weight: req.body.oneRepMaxDeadlift,
-    user: newUser
-  }); 
-
-  Promise.all([
-    squatOneRepMax.save(), 
-    benchOneRepMax.save(), 
-    pressOneRepMax.save(), 
-    deadliftOneRepMax.save()
-  ]).then(function(savedOneRepMaxes) {
-    newUser.oneRepMaxes = savedOneRepMaxes;
-    newUser.save(); 
-    res.redirect('/');
-  }).catch(function(err) {
-    console.log("ERROR SAVING ONE REP MAXES"); 
-    console.log(err); 
   });
 
+  let benchOneRepMax = OneRepMax({
+    liftName: 'Bench',
+    weight: req.body.oneRepMaxBench,
+    user: newUser
+  });
+
+  let pressOneRepMax = OneRepMax({
+    liftName: 'Press',
+    weight: req.body.oneRepMaxPress,
+    user: newUser
+  });
+
+  let deadliftOneRepMax = OneRepMax({
+    liftName: 'Deadlift',
+    weight: req.body.oneRepMaxDeadlift,
+    user: newUser
+  });
+
+// COMBINE ONE REP MAXES ARRAY INTO USER - SAVE AND PROMISE AND RESAVE NEW USER 
+  Promise.all([
+    squatOneRepMax.save(),
+    benchOneRepMax.save(),
+    pressOneRepMax.save(),
+    deadliftOneRepMax.save()
+  ]).then(function (savedOneRepMaxes) {
+    newUser.oneRepMaxes = savedOneRepMaxes;
+    newUser.save();
+    res.redirect('/');
+  }).catch(function (err) {
+    console.log("ERROR SAVING ONE REP MAXES");
+    console.log(err);
+  });
+
+// HOW TO SAVE ONE REP MAXES TO USER WITHOUT A PROMISE 
   //   squatOneRepMax.save((err,squatOneRepMax) => {
   //   if (err) {
   //     console.log(err);
@@ -93,8 +97,6 @@ users.post('/', (req, res) => {
   //     res.redirect('/');
   //   }
   // })
-
 })
-
 
 module.exports = users
