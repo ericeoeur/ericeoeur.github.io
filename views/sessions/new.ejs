@@ -1,62 +1,80 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <%- include ('../partials/head.ejs') %>
 
-  </head>
-  <body>
-    
-      <%- include ('../partials/navbar.ejs') %>
-   
-      <div class="container">
-        <div class="columns is-centered is-vcentered">
-          <img src="/img/barbell.png" alt="austin skyline logo" style="max-height: 275px" class="mt-4">
-        </div>
-        <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold	has-text-link"> Login</h1>
-        <h2 class="subtitle has-text-centered"> Let's lift!</h1>
+<head>
+  <%- include ('../partials/head.ejs') %>
+</head>
+
+<body>
+  <%- include ('../partials/navbar.ejs') %>
+
+  <div class="container">
+    <div class="columns is-mobile is-centered is-vcentered">
+      <div class="column is-half mt-6">
+
+        <figure class="image is-3by1 ">
+          <img src="/img/barbell.png" alt="austin skyline logo"  class="logo-image">
+        </figure>
+      </div>
+    </div>
+
+    <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 is-family-monospace	"> Login</h1>
+    <h2 class="subtitle has-text-centered "> Let's lift!</h1>
+      <div class="columns is-centered">
+        <div class="column is-half is-centered m-3">
+
+
+          <!-- <div class="field">
+            <label class="label">Sets</label>
+            <p class="control has-icons-left">
+              <input class="input is-large" type="number" name="sets" 
+              <span class="icon is-small is-left">
+                <i class="fas fa-undo"></i>
+              </span>
+            </p>
+          </div> -->
+
+
 
           <form action="/sessions" method="POST">
-           <!-- username  -->
-        <div class="field">
-          <label class="label">User Name</label>
-          <div class="control">
-            <input class="input is-large" type="text" name="username" required/> <br />
-          </div>
-        </div>
-          
-          <!-- password -->
-        <div class="field">
-            <label class="label">Password</label>
-            <input class="input is-large" type="password" name="password" >
-       
-        </div>
+            <!-- username  -->
+            <div class="field">
+              <label class="label is-family-monospace is-size-5	">Username</label>
   
-        <!-- Submit  -->
-        <input class="button is-rounded is-info is-large is-fullwidth mt-6 mb-6" type="submit" name="Submit User" />
+                <p class="control has-icons-left">
+                <input class="input is-large " type="text" name="username" required /> 
+                <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              </p>
+              
+            </div>
+
+            <!-- password -->
+            <div class="field">
+              <label class="label is-family-monospace is-size-5	">Password</label>
+              <p class="control has-icons-left">
+              <input class="input is-large" type="password" name="password">
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+              </p>
+
+            </div>
+
+            <!-- Submit  -->
+            <input class="button is-info is-large is-fullwidth mt-6 mb-6 is-family-monospace	" type="submit" name="Submit User" />
 
           </form>
 
-
-
-
         </div>
-
-
-
-<!-- to be edited and deleted -->
-      <!-- <form action="/sessions" method="POST">
-        <label for="name">User Name:</label>
-        <input type="text" name="username" required/>
-
-        <label for="color">Password:</label>
-        <input type="password" name="password" />
-        <br>
-        <input type="submit" value="Submit">
-      <form> -->
-    </div>
-      <!-- FOOTER -->
+      </div>
+  </div>
+  </div>
+  <!-- FOOTER -->
   <%- include ('../partials/footer.ejs') %>
   <!-- FOOTER -->
 
-  </body>
+</body>
+
 </html>

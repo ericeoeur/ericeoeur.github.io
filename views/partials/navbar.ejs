@@ -1,10 +1,10 @@
 <nav class="navbar has-shadow is-light">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
-      <img src="/img/barbell.png" alt="barbell" style="max-height: 100px"
+      <img src="/img/ss_barbell_mono.png" alt="barbell" style="max-height: 100px"
         class="py-2 px-2">
     </a>
-    <h1 class="is-size-4 pt-3 mt-5 is-uppercase has-text-weight-bold has-text-link"> StrengthStr</h1>
+    <h1 class="is-size-3 pt-3 mt-5 is-uppercase has-text-weight-bold has-text-link is-family-monospace"> StrengthStr</h1>
 
     <a class="navbar-burger mt-4 is-size-3" id="burger">
       <span></span>
@@ -18,11 +18,11 @@
       <!-- <a href="/store/new" class="navbar-item is-size-4">Add Product</a> -->
       <% if (currentUser) { %>
 
-      <a href="/" class="navbar-item is-size-4">Hello, <%= currentUser.username %></a>
-      <a href="/" class="navbar-item is-size-4">Dashboard</a>
-      <a href="/workoutExercises" class="navbar-item is-size-4">Workouts</a>
+      <a href="/" class="navbar-item is-size-5 is-family-monospace">Hello, <%= (currentUser.username).toUpperCase(); %></a>
+      <a href="/" class="navbar-item is-size-5 is-family-monospace">Dashboard</a>
+      <a href="/workoutExercises" class="navbar-item is-size-5 is-family-monospace">Workouts</a>
       <form action="/sessions?_method=DELETE" method="POST">
-        <input type="submit" value="Log Out" class="button is-danger is-medium is-outlined ml-3 mt-5 mr-3" />
+        <input type="submit" value="Log Out" class="button is-danger is-medium is-outlined ml-3 mt-5 mb-6 mr-3 is-family-monospace has-text-weight-semibold	" />
 
       </form>
 
@@ -30,9 +30,9 @@
 
       <!-- Fix this when you get back and add sign out link -->
       <!-- <a href="/" class="navbar-item is-size-4">Main</a> -->
-      <a href="/sessions/new" class="navbar-item is-size-4">Log In</a>
-      <a href="/users/new" class="navbar-item is-size-4">Sign Up</a>
-      <a href="mailto:ericeoeur@gmail.com" class="navbar-item is-size-4">Contact</a>
+      <a href="/sessions/new" class="navbar-item is-size-5 is-family-monospace	">Log In</a>
+      <a href="/users/new" class="navbar-item is-size-5 is-family-monospace	">Sign Up</a>
+      <a href="mailto:ericeoeur@gmail.com" class="navbar-item is-size-5 is-family-monospace	">Contact</a>
 
 
       <% } %>
