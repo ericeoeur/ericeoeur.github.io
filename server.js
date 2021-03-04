@@ -64,10 +64,10 @@ mongoose.connect(MONGODB_URI, {
 })
 
 //What we want to do with the connection itself 
-// mongoose.connection.once('open', () => {
-//   console.log('Connected to MongoDB!');
-// })
-db.on('open' , ()=>{});
+mongoose.connection.once('open', () => {
+  console.log('Connected to MongoDB!');
+})
+// db.on('open' , ()=>{});
 
 
 // Connection Error/Success Define callback functions for various events
