@@ -61,38 +61,38 @@ users.post('/', (req, res) => {
     user: newUser
   }); 
 
-  // Promise.all([
-  //   squatOneRepMax.save(), 
-  //   benchOneRepMax.save(), 
-  //   pressOneRepMax.save(), 
-  //   deadliftOneRepMax.save()
-  // ]).then(function(savedOneRepMaxes) {
-  //   newUser.oneRepMaxes = savedOneRepMaxes;
-  //   newUser.save(); 
-  //   res.redirect('/');
-  // }).catch(function(err) {
-  //   console.log("ERROR SAVING ONE REP MAXES"); 
-  //   console.log(err); 
-  // });
+  Promise.all([
+    squatOneRepMax.save(), 
+    benchOneRepMax.save(), 
+    pressOneRepMax.save(), 
+    deadliftOneRepMax.save()
+  ]).then(function(savedOneRepMaxes) {
+    newUser.oneRepMaxes = savedOneRepMaxes;
+    newUser.save(); 
+    res.redirect('/');
+  }).catch(function(err) {
+    console.log("ERROR SAVING ONE REP MAXES"); 
+    console.log(err); 
+  });
 
-    squatOneRepMax.save((err,squatOneRepMax) => {
-    if (err) {
-      console.log(err);
-      res.status(400).send("There is an error while adding a new user"); 
-    } else { 
-      console.log("Successfully added squat info!")
-      newUser.oneRepMaxes.push(squatOneRepMax);
-      newUser.save(); 
-      //res.status(200).json(squatOneRepMax);
-      console.log("~~~~~");
-      //Console the stuff within the one rep max
-      // User.findOne({_id: currentUser._id }).populate('oneRepMaxes').
-      // exec(function (err, user) {
-      //   console.log(user.oneRepMaxes[0].liftName)
-      // }); 
-      res.redirect('/');
-    }
-  })
+  //   squatOneRepMax.save((err,squatOneRepMax) => {
+  //   if (err) {
+  //     console.log(err);
+  //     res.status(400).send("There is an error while adding a new user"); 
+  //   } else { 
+  //     console.log("Successfully added squat info!")
+  //     newUser.oneRepMaxes.push(squatOneRepMax);
+  //     newUser.save(); 
+  //     //res.status(200).json(squatOneRepMax);
+  //     console.log("~~~~~");
+  //     //Console the stuff within the one rep max
+  //     // User.findOne({_id: currentUser._id }).populate('oneRepMaxes').
+  //     // exec(function (err, user) {
+  //     //   console.log(user.oneRepMaxes[0].liftName)
+  //     // }); 
+  //     res.redirect('/');
+  //   }
+  // })
 
 })
 
