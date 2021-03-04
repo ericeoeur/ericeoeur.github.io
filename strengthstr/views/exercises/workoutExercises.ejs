@@ -20,7 +20,7 @@
     <a href="workout/seed"><button class="button is-info is-medium is-fullwidth is-centered m-1">Add Custom Workout</button></a>
 </div>
 <div class="column is-6">
-  <a href="workout/seed"><button class="button is-link is-medium is-fullwidth is-centered m-1  ">Generate Workout</button></a>
+  <a href="workout/generateWorkout"><button class="button is-link is-medium is-fullwidth is-centered m-1  ">Generate Workout</button></a>
 </div>
 </div>
 
@@ -39,7 +39,10 @@
           <p class="has-text-centered is-size-7 mb-4"><%=(Workouts[i]._id).getTimestamp()%></p>
 
           <% for (let key in Workouts[i].exercises){ %>
-          <div class="box mb-2 has-background-info-light	">
+          <div class="box mb-2 
+          <% if (Workouts[i].exercises[key].completed === null) { %> has-background-info-light" <%} else if (Workouts[i].exercises[key].completed === true){ %> has-background-success-light" <% } else { %>  has-background-danger-light"<% }%>>
+          
+         
             <p class="has-text-centered is-size-6">
               <%=Workouts[i].exercises[key].liftName%>:
               <%=Workouts[i].exercises[key].sets%> x

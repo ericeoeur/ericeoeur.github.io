@@ -9,8 +9,25 @@
 
 
   <div class="container">
-    <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-5">
+    <div class="columns is-centered is-vcentered ml-5 mb-5 mr-5 ">
+      <div class="column is-two-thirds is-centered is-offset-1 ">
+    <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4">
       <%=lift.liftName%></h1>
+
+      <% if (lift.completed === null) { %> 
+        <h1 class="is-size-5 has-text-centered has-text-weight-bold has-text-link mb-5">
+          Scheduled lift</h1><%} else if (lift.completed === true){ %> 
+            <h1 class="is-size-5 has-text-centered has-text-weight-bold has-text-success mb-5">
+              Set Completed!</h1><% } else { %>  
+                <h1 class="is-size-5 has-text-centered has-text-weight-bold has-text-danger mb-5">
+                Set Failed</h1><% }%>
+      </div>
+ <!-- you are here -->
+ <div class="column is-centered is-one-fifth ">
+               <a class="button is-info is-fullwidth" href="/workout/<%=workoutID%>">Back to Workout</a>
+</div>
+</div>
+
 
     <div class="columns is-centered is-vcentered">
       <div class="column box is-two-fifths is-centered has-background-white-ter ml-5 mb-5 mr-5 ">

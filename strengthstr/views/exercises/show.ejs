@@ -22,7 +22,9 @@
         <div class="column is-two-fifths is-centered m-5 ">
           <% for (let key in Workout.exercises){ %>
           <a href="/oneexercise/<%=Workout._id%>/<%= Workout.exercises[key]._id %>/edit">
-            <article class="message is-info is-half m-4 is-focused">
+            <article class="message is-half m-4 is-focused
+            <% if (Workout.exercises[key].completed === null) { %> is-info" <%} else if (Workout.exercises[key].completed === true){ %> is-success" <% } else { %>  is-danger"<% }%>>
+            
               <div class="message-header">
                 <%=Workout.exercises[key].liftName%>
 
@@ -33,7 +35,7 @@
 
               </div>
               <div class="message-body">
-                <p class="has-text-centered is-size-5"><%=Workout.exercises[key].liftName%>:
+                <p class="has-text-centered is-size-5">
                   <%=Workout.exercises[key].sets%> x <%=Workout.exercises[key].reps%> @
                   <%=Workout.exercises[key].weight%> </p>
               </div>
