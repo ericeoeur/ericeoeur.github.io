@@ -1,6 +1,9 @@
 {
   "name": "strengthstr",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.15.4"
+  },
   "description": "Strength App for SEI-119 Project 2",
   "main": "server.js",
   "scripts": {

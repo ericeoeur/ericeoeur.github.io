@@ -13,8 +13,8 @@ require('dotenv').config();
 // == CONFIGURATIONS == // 
 const app = express();
 const db = mongoose.connection;
-const PORT = process.env.PORT;
-const DBNAME = process.env.DBNAME;
+const PORT = process.env.PORT || 3000;
+const DBNAME = process.env.DBNAME || 'strengthstr' ;
 
 //controller Logic
 const sessionsController = require('./controllers/sessions_controller.js')
@@ -53,19 +53,26 @@ app.use('/oneexercise', oneExerciseController)
 app.use('/workout', workoutExercisesController)
 
 // == DATABASE == //
-mongoose.connect(`mongodb://localhost:27017/${DBNAME}`, {
+
+const MONGODB_URI = process.env.MONGODB_URI || `mongodb://localhost:27017/${DBNAME}`;
+
+
+mongoose.connect(MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
 })
 
-//What we wnat to do with the connection itself 
-mongoose.connection.once('open', () => {
-  console.log('Connected to MongoDB!');
-})
+//What we want to do with the connection itself 
+// mongoose.connection.once('open', () => {
+//   console.log('Connected to MongoDB!');
+// })
+db.on('open' , ()=>{});
+
 
 // Connection Error/Success Define callback functions for various events
 db.on('error', err => console.log(err.message + ' is mongod not running?'))
+db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
 db.on('disconnected', () => console.log('mongo disconnected'))
 
 // == MODELS == // 
