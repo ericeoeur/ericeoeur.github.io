@@ -10,27 +10,22 @@
   <!-- NAVBAR -->
   <%- include ('./partials/navbar.ejs') %>
 
-  
-    
-
-
   <% if (currentUser) { %>
   <div class="container mt-6">
-
-     <div class="columns is-mobile is-centered is-vcentered">
+    <div class="columns is-mobile is-centered is-vcentered">
       <div class="column is-half mt-2">
         <a href="/workoutExercises">
-        <figure class="image image is-3by1">
-          <img src="/img/barbell.png" alt="barbell" class="logo-image"> 
-        </figure>
-      </a>
+          <figure class="image image is-3by1">
+            <img src="/img/barbell.png" alt="barbell" class="logo-image">
+          </figure>
+        </a>
       </div>
     </div>
 
     <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-3 mb-5">
       <%= currentUser.username %>'s StrengthStr Dashboard</h1>
     <div class="columns is-multiline is-centered">
-  
+
       <div class="column is-2">
         <h2 class="is-size-4 is-uppercase has-text-centered has-text-weight-semibold">Age </h2>
         <h4 class="is-size-5 is-uppercase has-text-centered is-family-sans-serif	"><%= currentUser.age %></h4>
@@ -48,41 +43,33 @@
     </div>
   </div>
 
-  <h2 class="is-size-4 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-6 mb-5">One Rep Maxes (LBS)</h2>
-
-
+  <h2 class="is-size-4 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-6 mb-5">One Rep Maxes (LBS)
+  </h2>
   <div class="container mb-6">
     <div class="columns is-mobile is-centered is-vcentered">
-        <div class="columns is-centered is-vcentered">
-            <% for (let i=0; i<OneRepMaxes.length; i++) { %></h2>
-            <div class="column is-5">
-              <h3 class="is-size-4 is-uppercase has-text-centered has-text-weight-bold"><%= OneRepMaxes[i].liftName %>
-              </h3>
-              <h4 class="is-size-5 is-uppercase has-text-centered is-family-sans-serif	"><%= OneRepMaxes[i].weight %></h4>
-            </div>
-            <% } %>
-
-            <% } %>
-
-
-         
+      <div class="columns is-centered is-vcentered">
+        <% for (let i=0; i<OneRepMaxes.length; i++) { %></h2>
+        <div class="column is-5">
+          <h3 class="is-size-4 is-uppercase has-text-centered has-text-weight-bold"><%= OneRepMaxes[i].liftName %>
+          </h3>
+          <h4 class="is-size-5 is-uppercase has-text-centered is-family-sans-serif	"><%= OneRepMaxes[i].weight %></h4>
         </div>
-     
-
-
+        <% } %>
+        <% } %>
+      </div>
 
       <!-- Middle Container -->
     </div>
     <div class="columns is-mobile mt-6">
       <div class="column is-half is-offset-3">
         <a class="button is-info is-large mb-6 is-fullwidth" href="/workoutExercises">WORKOUTS</a>
-        </div>
-        </div>
-  
-</div>
-</div>
+      </div>
+    </div>
 
-    <!-- End of main container div -->
+  </div>
+  </div>
+
+  <!-- End of main container div -->
   </div>
   <!-- FOOTER -->
   <%- include ('./partials/footer.ejs') %>

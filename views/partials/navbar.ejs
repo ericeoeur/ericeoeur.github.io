@@ -1,8 +1,7 @@
 <nav class="navbar has-shadow is-light">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
-      <img src="/img/ss_barbell_mono.png" alt="ssbarbell" style="max-height: 110px"
-        class="py-1 px-1">
+      <img src="/img/ss_barbell_mono.png" alt="ssbarbell" style="max-height: 110px" class="py-1 px-1">
     </a>
     <h1 class="is-size-3 pt-3 mt-5 is-uppercase has-text-weight-bold has-text-link is-family-monospace"> StrengthStr</h1>
 
@@ -15,9 +14,8 @@
   </div>
   <div class="navbar-menu" id="nav-links">
     <div class="navbar-end">
-      <!-- <a href="/store/new" class="navbar-item is-size-4">Add Product</a> -->
-      <% if (currentUser) { %>
 
+      <% if (currentUser) { %>
       <a href="/" class="navbar-item is-size-5 is-family-monospace">Hello, <%= (currentUser.username).toUpperCase(); %></a>
       <a href="/" class="navbar-item is-size-5 is-family-monospace">Dashboard</a>
       <a href="/workoutExercises" class="navbar-item is-size-5 is-family-monospace">Workouts</a>
@@ -27,16 +25,10 @@
       </form>
 
       <% } else { %>
-
-      <!-- Fix this when you get back and add sign out link -->
-      <!-- <a href="/" class="navbar-item is-size-4">Main</a> -->
       <a href="/sessions/new" class="navbar-item is-size-5 is-family-monospace	">Log In</a>
       <a href="/users/new" class="navbar-item is-size-5 is-family-monospace	">Sign Up</a>
       <a href="mailto:ericeoeur@gmail.com" class="navbar-item is-size-5 is-family-monospace	">Contact</a>
-
-
       <% } %>
-
 
     </div>
   </div>

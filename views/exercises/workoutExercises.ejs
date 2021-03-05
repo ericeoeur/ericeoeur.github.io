@@ -3,7 +3,7 @@
 
 <head>
   <%- include ('../partials/head.ejs') %>
-  <title>StrengthStr</title>
+  <title>StrengthStr Workouts</title>
 </head>
 
 <body>
@@ -11,60 +11,64 @@
   <%- include ('../partials/navbar.ejs') %>
 
   <div class="container">
-
-    <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-5">
+    <h1 class="is-size-2 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4">
       <%= currentUser.username %>'s Workouts</h1>
+      <p class="has-text-centered mb-5 is-uppercase	">(Sets) x (Reps) @ (Weight)</p>
 
-      <div class="columns">
-        <div class="column is-6">
-    <a href="workout/seed"><button class="button is-info is-medium is-fullwidth is-centered m-1">Add Custom Workout</button></a>
-</div>
-<div class="column is-6">
-  <a href="workout/generateWorkout"><button class="button is-link is-medium is-fullwidth is-centered m-1  ">Generate Workout</button></a>
-</div>
-</div>
+    <div class="columns ml-2 mr-2">
+      <div class="column is-4 is-offset-2">
+        <a href="workout/seed"><button class="button is-info is-medium is-fullwidth is-centered m-1 is-family-monospace	">Add Custom
+            Workout</button></a>
+      </div>
+      <div class="column is-4">
+        <a href="workout/generateWorkout"><button
+            class="button is-info is-medium is-fullwidth is-centered m-1  is-family-monospace	">Generate Workout</button></a>
+      </div>
+    </div>
 
-    <div class="columns is-multiline is-centered ">
-
-
+    <div class="columns is-multiline is-centered  ml-1 mr-1">
       <% for(let i =0 ; i<Workouts.length; i++){ %>
-        <a href="/workout/<%=Workouts[i]._id%>">
-      <div class="column box is-3 has-background-white-ter m-5">
+      <a href="/workout/<%=Workouts[i]._id%>">
+        <div class="column box is-3 has-background-white-ter m-5">
 
-        <form action="/workout/<%=Workouts[i]._id%>?_method=DELETE" method="POST">
-          <button class="delete is-small" type="submit" value="DELETE"></button>
-        </form>
+          <form action="/workout/<%=Workouts[i]._id%>?_method=DELETE" method="POST">
+            <button class="delete is-small" type="submit" value="DELETE"></button>
+          </form>
 
-        <h1 class="is-size-5 is-uppercase has-text-centered has-text-weight-bold mb-1"> Workout <%= i+1 %></h1>
+          <h1 class="is-size-4 is-uppercase has-text-centered has-text-weight-bold mb-1 is-family-sans-serif	"> Workout <%= i+1 %></h1>
           <p class="has-text-centered is-size-7 mb-4"><%=(Workouts[i]._id).getTimestamp()%></p>
 
           <% for (let key in Workouts[i].exercises){ %>
-          <div class="box mb-2 
-          <% if (Workouts[i].exercises[key].completed === null) { %> has-background-info-light" <%} else if (Workouts[i].exercises[key].completed === true){ %> has-background-success-light" <% } else { %>  has-background-danger-light"<% }%>>
-          
-         
-            <p class="has-text-centered is-size-6">
-              <%=Workouts[i].exercises[key].liftName%>:
+          <div class="box mb-2 p-2
+          <% if (Workouts[i].exercises[key].completed === null) { %> has-background-info-light"
+            <%} else if (Workouts[i].exercises[key].completed === true){ %> has-background-success-light" <% } else { %>
+            has-background-danger-light"<% }%>>
+
+           
+            <p class="is-size-6 has-text-centered is-family-sans-serif is-uppercase	has-text-weight-bold">
+              <%=Workouts[i].exercises[key].liftName%>
+            </p>
+            <p class="has-text-centered is-size-5 has-text-weight-medium">
               <%=Workouts[i].exercises[key].sets%> x
               <%=Workouts[i].exercises[key].reps%> @
               <%=Workouts[i].exercises[key].weight%> </p>
           </div>
           <% }  %>
-        </a>
-      </div>
-      
-      <% } %>
-
+      </a>
     </div>
 
-    <div class="container mb-6">
+    <% } %>
+
+  </div>
+
+  <div class="container mb-6">
 
 
 
 
-      <!-- Middle Container -->
-    </div>
-    <!-- End of main container div -->
+    <!-- Middle Container -->
+  </div>
+  <!-- End of main container div -->
   </div>
   <!-- FOOTER -->
   <%- include ('../partials/footer.ejs') %>
