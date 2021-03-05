@@ -6,6 +6,15 @@ const WorkoutExercises = require('../models/workoutExercises.js');
 const Workout = express.Router();
 let weightIncrement = 0;
 
+// == AUTHTENTICATION CHECK == // 
+const isAuthenticated = (req, res, next) => {
+  if (req.session.currentUser) {
+    return next()
+  } else {
+    res.redirect('/sessions/new')
+  }
+}
+
 // ADD CUSTOM WORKOUT 
 Workout.get('/seed', (req, res) => {
   console.log(req.session.currentUser._id); // you can see user data in here!
@@ -22,14 +31,16 @@ Workout.get('/seed', (req, res) => {
 })
 
 // GENERATE WORKOUT
-Workout.get('/generateWorkout', (req, res) => {
+Workout.get('/generateWorkout',  (req, res) => {
   console.log(req.session.currentUser); // you can see user data in here!
 
+  //Generate the workout with an empty exercise array
   let generatedWorkout = new WorkoutExercises({
     exercises: [],
     user: req.session.currentUser
   });
 
+    //Grab oneRepMaxes from user data and fill out all generated lifts using custom workout formula
   User.findById(req.session.currentUser._id).populate('oneRepMaxes').
   exec(function (err, userData) {
     if (err) return handleError(err);
@@ -72,6 +83,7 @@ Workout.get('/generateWorkout', (req, res) => {
       completed: null
     });
 
+//PROMISE - set promise to save all generated lifts and then add it to the user's workout exercises
     Promise.all([
       generatedSquat.save(),
       generatedBench.save(),
@@ -86,13 +98,14 @@ Workout.get('/generateWorkout', (req, res) => {
       console.log(err);
     });
 
+    //Increment the weight by five pounds each time
     weightIncrement += 5;
 
   })
 })
 
 // SHOW
-Workout.get('/:id', (req, res) => {
+Workout.get('/:id', isAuthenticated, (req, res) => {
   WorkoutExercises.findById(req.params.id).populate('exercises').
   exec(function (err, foundWorkout) {
     if (err) return handleError(err);
@@ -110,12 +123,5 @@ Workout.delete('/:id', (req, res) => {
     res.redirect('/workoutExercises');
   })
 })
-
-//create a workout
-//initaitally it will come with an empty exercises array
-//after you create the workout it will automatically reroute you to the SHOW page of that particular's workout
-//that show page will have a "ADD LIFT" button will use the oneExercise model, create a lift from that, and then push it to the empty exercises array
-
-
 
 module.exports = Workout;

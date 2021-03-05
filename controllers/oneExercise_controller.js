@@ -64,7 +64,7 @@ lift.get('/new', isAuthenticated, (req, res) => {
 })
 
 // == EDIT EXERCISE == // 
-lift.get('/:workoutId/:id/edit', (req, res) => {
+lift.get('/:workoutId/:id/edit', isAuthenticated, (req, res) => {
   OneExercise.findById(req.params.id, (error, showLift) => {
     console.log(req.params);
     res.render('../views/exercises/editOneExercise.ejs', {
@@ -77,11 +77,11 @@ lift.get('/:workoutId/:id/edit', (req, res) => {
 
 // == UPDATE EDITED EXERCISE == // 
 lift.put('/:workoutId/:id', (req, res) => {
-  if (req.body.completed === 'on') {
-    req.body.completed = true
-  } else {
-    req.body.completed = false
-  }
+  // if (req.body.completed === 'on') {
+  //   req.body.completed = true
+  // } else {
+  //   req.body.completed = false
+  // }
 
   OneExercise.findByIdAndUpdate(req.params.id, req.body, (error, updatedLift) => {
     res.redirect('/oneexercise/' + req.params.workoutId + '/' + req.params.id + '/edit');

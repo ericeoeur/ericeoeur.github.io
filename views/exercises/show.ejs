@@ -11,21 +11,21 @@
   <%- include ('../partials/navbar.ejs') %>
 
   <div class="container">
-
-    <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-5">
+    <!-- TITLE -->
+    <h1 class="is-size-2 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 mb-3">
       <%= currentUser.username %>'s Workout</h1>
-    <!-- This shows the workout in console. -->
 
     <div class="container">
       <div class="columns is-centered is-vcentered">
 
+        <!-- LIST OF LIFTS -->
         <div class="column is-two-fifths is-centered m-5 ">
           <% for (let key in Workout.exercises){ %>
           <a href="/oneexercise/<%=Workout._id%>/<%= Workout.exercises[key]._id %>/edit">
-            <article class="message is-half m-4 is-focused
+            <article class="message is-half m-4 mb-5 is-focused
             <% if (Workout.exercises[key].completed === null) { %> is-info" <%} else if (Workout.exercises[key].completed === true){ %> is-success" <% } else { %>  is-danger"<% }%>>
             
-              <div class="message-header">
+              <div class="message-header is-family-sans-serif is-uppercase is-size-5		">
                 <%=Workout.exercises[key].liftName%>
 
                 <form action="/oneexercise/<%=Workout._id%>/<%= Workout.exercises[key]._id %>?_method=DELETE"
@@ -35,7 +35,7 @@
 
               </div>
               <div class="message-body">
-                <p class="has-text-centered is-size-5">
+                <p class="has-text-centered is-size-4">
                   <%=Workout.exercises[key].sets%> x <%=Workout.exercises[key].reps%> @
                   <%=Workout.exercises[key].weight%> </p>
               </div>
@@ -46,15 +46,15 @@
 
  <!-- ADD LIFT FORM -->
         <div class="column is-two-fifths m-3">
-          <h1 class="is-size-4 is-uppercase has-text-centered has-text-weight-bold	has-text-link"> Add Lift</h1>
+          <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mb-1"> Add Lift</h1>
 
           <form action="/oneexercise" method="POST">
                   <div class="control has-icons-left">
               <div class="field">
-                <label class="label">Lift Name</label>
+                <label class="label is-size-5">Lift Name</label>
                 <div class="select is-large is-fullwidth mb-3 ">
 
-                  <select name="liftName" class="is-focused">
+                  <select name="liftName" class="is-focused ">
                     <option>Squat</option>
                     <option>Bench</option>
                     <option>Press</option>
@@ -70,7 +70,7 @@
 
             <!-- weight -->
             <div class="field">
-              <label class="label">Weight</label>
+              <label class="label is-size-5">Weight</label>
               <p class="control has-icons-left">
                 <input class="input is-large" type="number" name="weight">
                 <span class="icon is-small is-left">
@@ -81,7 +81,7 @@
 
             <!-- sets -->
             <div class="field">
-              <label class="label">Sets</label>
+              <label class="label is-size-5 ">Sets</label>
               <p class="control has-icons-left">
                 <input class="input is-large" type="number" name="sets">
                 <span class="icon is-small is-left">
@@ -92,7 +92,7 @@
 
             <!-- reps -->
             <div class="field">
-              <label class="label">Reps</label>
+              <label class="label is-size-5">Reps</label>
               <p class="control has-icons-left">
                 <input class="input is-large" type="number" name="reps">
                 <span class="icon is-small is-left">
@@ -117,13 +117,12 @@
             </div>
 
             <!-- Submit  -->
-            <input class="button is-rounded is-info is-large is-fullwidth mt-6 mb-6" type="submit" name="Submit Lift" />
+            <input class="button is-info is-large is-fullwidth mt-6 mb-6 is-family-monospace	" type="submit" name="Submit Lift" />
           </form>
         </div>
       </div>
     </div>
 
-    <!-- end of container div -->
   </div>
 
   <!-- End of main container div -->

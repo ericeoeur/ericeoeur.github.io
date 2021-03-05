@@ -1,222 +1,153 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <%- include ('../partials/head.ejs') %>
-  </head>
-  <body>
-     <!-- NAVBAR -->
+
+<head>
+  <%- include ('../partials/head.ejs') %>
+</head>
+
+<body>
+  <!-- NAVBAR -->
   <%- include ('../partials/navbar.ejs') %>
 
-
+  <!-- HEADER -->
   <div class="container">
     <div class="columns is-centered is-vcentered ml-5 mb-5 mr-5 ">
       <div class="column is-two-thirds is-centered is-offset-1 ">
-    <h1 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4">
-      <%=lift.liftName%></h1>
+        <h1 class="is-size-2 is-uppercase has-text-centered has-text-weight-bold has-text-link mt-4 is-family-sans-serif">
+          <%=lift.liftName%></h1>
 
-      <% if (lift.completed === null) { %> 
-        <h1 class="is-size-5 has-text-centered has-text-weight-bold has-text-link mb-5">
-          Scheduled lift</h1><%} else if (lift.completed === true){ %> 
-            <h1 class="is-size-5 has-text-centered has-text-weight-bold has-text-success mb-5">
-              Set Completed!</h1><% } else { %>  
-                <h1 class="is-size-5 has-text-centered has-text-weight-bold has-text-danger mb-5">
-                Set Failed</h1><% }%>
+
+  <!-- LOGIC FOR SET COMPLETION and COLORS -->
+        <% if (lift.completed === null) { %>
+        <h1 class="is-size-4 has-text-centered has-text-weight-bold has-text-link mb-5	">
+          Scheduled lift</h1><%} else if (lift.completed === true){ %>
+        <h1 class="is-size-4 has-text-centered has-text-weight-bold has-text-success mb-5 	">
+          Set Completed!</h1><% } else { %>
+        <h1 class="is-size-4 has-text-centered has-text-weight-bold has-text-danger mb-5 ">
+          Set Failed</h1><% }%>
       </div>
- <!-- you are here -->
- <div class="column is-centered is-one-fifth ">
-               <a class="button is-info is-fullwidth" href="/workout/<%=workoutID%>">Back to Workout</a>
-</div>
-</div>
+      <div class="column is-centered is-one-fifth ">
+        <a class="button is-info is-fullwidth is-uppercase	" href="/workout/<%=workoutID%>">Back to Workout</a>
+      </div>
+    </div>
 
 
     <div class="columns is-centered is-vcentered">
       <div class="column box is-two-fifths is-centered has-background-white-ter ml-5 mb-5 mr-5 ">
-      <!-- <img src="/img/barbell.png" alt="austin skyline logo" style="max-height: 150px" class="mt-4"> -->
-    
-      <article class="message is-link is-half m-4 is-focused
-      <% if (lift.completed === null) { %> is-info" <%} else if (lift.completed === true){ %> is-success" <% } else { %>  is-danger"<% }%>>
-        <div class="message-header">
-          <%=lift.liftName%> Warm Ups
+
+        <!-- WARM UPS and WARM UP FORMULA -->
+        <article class="message is-link is-half m-4 is-focused
+      <% if (lift.completed === null) { %> is-info" <%} else if (lift.completed === true){ %> is-success"
+          <% } else { %> is-danger"<% }%>>
+          <div class="message-header is-family-sans-serif is-uppercase is-size-5	">
+            <%=lift.liftName%> Warm Ups
+          </div>
+          <div class="message-body">
+            <p class="has-text-centered is-size-4">
+              2 x 5 @
+              45</p>
+            <p class="has-text-centered is-size-4">
+              1 x 5 @
+              <%=Math.ceil(((lift.weight)-((lift.weight)*.5))/5)*5%> </p>
+            <p class="has-text-centered is-size-4">
+              1 x 3 @
+              <%=Math.ceil(((lift.weight)-((lift.weight)*.25))/5)*5%></p>
+            <p class="has-text-centered is-size-4">
+              1 x 1 @
+              <%=Math.ceil(((lift.weight)-((lift.weight)*.075))/5)*5%> </p>
+          </div>
+        </article>
+
+
+        <article class="message is-info is-half m-4 is-focused is-centered 
+      <% if (lift.completed === null) { %> is-info" <%} else if (lift.completed === true){ %> is-success"
+          <% } else { %> is-danger"<% }%>>
+
+
+      <!-- WORKING SET -->
+          <div class="message-header is-family-sans-serif is-uppercase is-size-5	">
+            <%=lift.liftName%> Working Set
+          </div>
+          <div class="message-body">
+            <p class="has-text-centered is-size-4">
+              <%=lift.sets%> x <%=lift.reps%> @
+              <%=lift.weight%> </p>
+          </div>
+        </article>
+
+        <div class="column">
+
+      <!-- BUTTONS THAT TOGGLED COMPLETED SET (TRUE) AND FAILED SET (FALSE) CHANGES WORKOUT COLOR IN APP  -->
+          <form action="/oneexercise/<%=workoutID%>/<%=lift._id%>/true/?_method=PUT" method="POST">
+            <input class="button is-success is-medium is-fullwidth is-focused mb-3" type="submit" id="completed"
+              value="Completed Working Set" />
+          </form>
+
+          <form action="/oneexercise/<%=workoutID%>/<%=lift._id%>/false/?_method=PUT" method="POST">
+            <input class="button is-danger is-medium is-focused is-fullwidth" id="completed" type="submit"
+              name="Failed Working Set" value="Failed Working Set" />
+          </form>
         </div>
-        <div class="message-body">
-          <p class="has-text-centered is-size-5">
-            2 x 5 @
-            45</p>
-          <p class="has-text-centered is-size-5">
-            1 x 5 @
-            <%=Math.ceil(((lift.weight)-((lift.weight)*.5))/5)*5%> </p>
-          <p class="has-text-centered is-size-5">
-            1 x 3 @
-            <%=Math.ceil(((lift.weight)-((lift.weight)*.25))/5)*5%></p>
-          <p class="has-text-centered is-size-5">
-            1 x 1 @
-            <%=Math.ceil(((lift.weight)-((lift.weight)*.075))/5)*5%> </p>
-        </div>
-      </article>
+      </div>
 
 
-      <article class="message is-info is-half m-4 is-focused is-centered 
-      
-      <% if (lift.completed === null) { %> is-info" <%} else if (lift.completed === true){ %> is-success" <% } else { %>  is-danger"<% }%>>
+      <!-- EDIT WORKOUT FORM -->
 
-        <div class="message-header">
-          <%=lift.liftName%> Working Set
-        </div>
-        <div class="message-body">
-          <p class="has-text-centered is-size-5">
-            <%=lift.sets%> x <%=lift.reps%> @
-            <%=lift.weight%> </p>
-        </div>
-      </article>
-
-      <div class="column">
-
-       <!-- Completed Set this will toggle true or false in "completed lift"  -->
-
-  <form action="/oneexercise/<%=workoutID%>/<%=lift._id%>/true/?_method=PUT" method="POST">
-    <input class="button is-success is-medium is-fullwidth is-focused mb-3" type="submit" id="completed" value="Completed Working Set" />
-  </form>
-
-  <form action="/oneexercise/<%=workoutID%>/<%=lift._id%>/false/?_method=PUT" method="POST">
-  <input class="button is-danger is-medium is-focused is-fullwidth" id="completed" type="submit" name="Failed Working Set" value="Failed Working Set" />
-  </form>
-
-
-  
- <!-- Completed -->
-            <!-- <div class = "showCompletion">
-      <label for="completed">
-        <input type="checkbox" id="completed" name="completed" />
-        <span>Completed Lift</span>
-      </label>
-    </div> -->
-
-</div>
-
-
-    </div>
-
-
-
-
-
-    <!-- Add form below -->
-
-    <div class="column is-two-fifths m-3">
-    <!-- <h1 class="is-size-6 is-uppercase has-text-centered has-text-weight-bold has-text-link mb-5"> Edit <%=lift.liftName%></h1> -->
-           
-
+      <div class="column is-two-fifths m-3">
         <form action="/oneexercise/<%=workoutID%>/<%=lift._id%>?_method=PUT" method="POST">
 
+          <!-- weight -->
+          <div class="field">
+            <label class="label">Weight</label>
+            <p class="control has-icons-left">
+              <input class="input is-large" type="number" name="weight" value="<%=lift.weight%>">
+              <span class="icon is-small is-left">
+                <i class="fas fa-weight-hanging"></i>
+              </span>
+            </p>
+          </div>
 
-       <!-- liftName  -->
-    <!-- <div class="field">
-      <label class="label">Lift Name</label>
-      <div class="control">
-        <input class="input is-large" type="text" name="liftName" value="<%=lift.liftName%>" disabled/> <br />
+           <!-- sets -->
+          <div class="field">
+            <label class="label">Sets</label>
+            <p class="control has-icons-left">
+              <input class="input is-large" type="number" name="sets" value="<%=lift.sets%>">
+              <span class="icon is-small is-left">
+                <i class="fas fa-undo"></i>
+              </span>
+            </p>
+          </div>
+
+          <!-- reps -->
+          <div class="field">
+            <label class="label">Reps</label>
+            <p class="control has-icons-left">
+              <input class="input is-large" type="number" name="reps" value="<%=lift.reps%>">
+              <span class="icon is-small is-left">
+                <i class="fas fa-layer-group"></i>
+              </span>
+            </p>
+          </div>
+
+          <!-- Completed -->
+          <div>
+            <label for="completed">
+              <input type="checkbox" id="completed" name="completed" <% if(lift.completed === true){ %> checked <% } %>
+                disabled />
+              <span>Completed Lift</span>
+            </label>
+          </div>
+
+
+          <!-- Submit  -->
+          <input class="button is-info is-uppercase is-family-monospace is-fullwidth mt-6 mb-6" type="submit" name="Submit Edited Lift"
+            value="Edit Lift" />
+        </form>
+
+
+        <!-- end of form div -->
       </div>
-    </div> -->
-      
-
-
- <!-- weight -->
- <div class="field">
-  <label class="label">Weight</label>
-  <p class="control has-icons-left">
-    <input class="input is-large" type="number" name="weight" value="<%=lift.weight%>">
-    <span class="icon is-small is-left">
-      <i class="fas fa-weight-hanging"></i>
-    </span>
-  </p>
-</div>
-
-      <!-- weight -->
-    <!-- <div class="field">
-        <label class="label">Weight</label>
-        <input class="input is-large" type="number" name="weight" value="<%=lift.weight%>" >
-    </div> -->
-
-
-   <!-- sets -->
-   <div class="field">
-    <label class="label">Sets</label>
-    <p class="control has-icons-left">
-      <input class="input is-large" type="number" name="sets" value="<%=lift.sets%>">
-      <span class="icon is-small is-left">
-        <i class="fas fa-undo"></i>
-      </span>
-    </p>
-  </div>
-
-      <!-- sets -->
-    <!-- <div class="field">
-        <label class="label">Sets</label>
-        <input class="input is-large" type="number" name="sets" value="<%=lift.sets%>">
-    </div> -->
-
-  <!-- reps -->
-  <div class="field">
-    <label class="label">Reps</label>
-    <p class="control has-icons-left">
-      <input class="input is-large" type="number" name="reps" value="<%=lift.reps%>">
-      <span class="icon is-small is-left">
-        <i class="fas fa-layer-group"></i>
-      </span>
-    </p>
-  </div>
-
-    
-    <!-- reps
-    <div class="field">
-        <label class="label">Reps</label>
-        <input class="input is-large" type="number" name="reps" value="<%=lift.reps%>">
-    </div> -->
-
-    <!-- Completed -->
-    <div>
-      <label for="completed">
-        <input type="checkbox" id="completed" name="completed" 
-        <% if(lift.completed === true){ %>
-          checked
-        <% } %> disabled/>
-        <span>Completed Lift</span>
-      </label>
     </div>
+</body>
 
-
-    <!-- Submit  -->
-    <input class="button is-info  is-fullwidth mt-6 mb-6" type="submit" name="Submit Edited Lift" value="Edit Lift" />
-      </form>
-
-
-      <!-- end of form div -->
-</div>
-
-    </div>
-
-
-<!-- 
-
-    <div class="container">
-      <h1> New exercise page Page</h1>
-      <form action="/fruits" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" name="name" required />
-        <label for="color">Color:</label>
-        <input type="text" name="color" />
-        <br/>
-        <div>
-          <label for="readyToEat">
-            <input type="checkbox" id="readyToEat" name="readyToEat" />
-            <span>Is Ready to Eat</span>
-          </label>
-        </div>
-        <br>
-        <input type="submit" value="Submit">
-      <form>
-    </div> -->
-
-
-
-  </body>
 </html>
