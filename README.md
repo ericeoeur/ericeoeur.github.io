@@ -15,7 +15,7 @@ By clicking on either the image of the barbell or the "WORKOUTS" button, the use
 Upon clicking this link, the user will generate an empty workout ready to be filled with user-created lifts. The user can click on the generated workout to begin adding custom lifts to the selected workout. 
 
 **Generate Workout**
-This button will auto-generate a squat, bench, deadlift, and press workout based off the user's one rep maxes. The methodology behind these numbers is inspired by the Starting Strength lifting formula as well as the Jeff Nippard Powerbuilding series. In line with the concept of progressive overload, every time the user generates a workout, each lift will increment 5lbs from the last generated workout. 
+This button will auto-generate a squat, bench, deadlift, and press workout based off the user's one rep maxes. The methodology behind these numbers is inspired by the Starting Strength lifting formula as well as the Jeff Nippard Powerbuilding series. In line with the concept of progressive overload, every time the user generates a workout, each lift will increment from the last generated workout. 
 
 When users click on either their custom workout or generated workout, they have the ability to add lifts, edit lifts, and delete lifts as needed. 
 
@@ -40,6 +40,7 @@ When a user presses/clicks on a particular lift, a suggested warm-up schema will
 
 ## Future Development
 * Allow the user to enter a custom date for the workout
+* Fix bugs in the "generate workout" feature. 
 * Include a profile edit page
 * Create a workout notes section per lift
 * Build progress bars to showcase workouts over time. 

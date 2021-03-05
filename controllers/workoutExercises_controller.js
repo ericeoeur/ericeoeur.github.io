@@ -4,7 +4,7 @@ const User = require('../models/users.js')
 const OneRepMax = require('../models/oneRepMax');
 const WorkoutExercises = require('../models/workoutExercises.js');
 const Workout = express.Router();
-let weightIncrement = 0;
+let weightIncrement = 0; 
 
 // == AUTHTENTICATION CHECK == // 
 const isAuthenticated = (req, res, next) => {
@@ -51,6 +51,8 @@ Workout.get('/generateWorkout',  (req, res) => {
       console.log(userData.oneRepMaxes[i].weight);
     }
 
+  
+
     let generatedSquat = OneExercise({
       liftName: userData.oneRepMaxes[0].liftName,
       weight: (Math.floor(((userData.oneRepMaxes[0].weight / 100) * 75) / 5) * 5) + weightIncrement, //75% RM      
@@ -82,6 +84,9 @@ Workout.get('/generateWorkout',  (req, res) => {
       reps: '5',
       completed: null
     });
+
+    
+
 
 //PROMISE - set promise to save all generated lifts and then add it to the user's workout exercises
     Promise.all([
