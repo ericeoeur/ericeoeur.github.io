@@ -1,5 +1,6 @@
 body{
   background-image: url("/img/tiny_grid.png");
+  font-family: monospace;
 }
 
 /* Hide the WORKOUTid from the ADD LIFT form in the show.ejs page */

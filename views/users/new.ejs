@@ -3,7 +3,6 @@
 
 <head>
   <%- include ('../partials/head.ejs') %>
-
 </head>
 
 <body>
@@ -14,85 +13,120 @@
 
   <!-- Header Title  -->
   <div class="container">
-    <div class="columns is-centered is-vcentered">
-      <img src="/img/barbell.png" alt="austin skyline logo"
-        style="max-height: 275px" class="mt-4">
+    <div class="columns is-mobile is-centered is-vcentered">
+      <div class="column is-half mt-6">
+        <figure class="image is-3by1 ">
+          <img src="/img/barbell.png" alt="barbell" class="logo-image">
+        </figure>
+      </div>
     </div>
-    <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold	has-text-link"> Sign Up for StrengthStr
+
+    <h1 class="is-size-1 is-uppercase has-text-centered has-text-weight-bold	has-text-link is-family-monospace	"> Sign
+      Up for StrengthStr
     </h1>
-    <h2 class="subtitle has-text-centered">Build strength at your level</h1>
+    <h2 class="subtitle has-text-centered is-family-sans-serif	">Build strength at your level</h1>
 
-
-      <div class="container">
-
-        <form action="/users" method="POST">
-
-          <!-- User Name  -->
-                <div class="field">
-            <label class="label">User Name</label>
-            <div class="control">
-              <input class="input is-large" type="text" name="username" required /> <br />
-            </div>
-          </div>
-
-          <!-- Password -->
-          <div class="field">
-            <label class="label">Password</label>
-            <input class="input is-large" type="password" name="password">
-
-            <!-- Age, Height and Weight -->
-
-            <div class="container">
-              <div class="columns">
-
-                <!-- Age -->
-                <div class="column">
-     
-                  <div class="field">
-                    <label class="label">Age</label>
-                    <div class="control">
-                      <input class="input is-large" type="number" name="age" />
-                    </div>
-                  </div>
-                </div>
-
-
-
-                <!-- Height -->
-                <div class="column">
-                  <div class="field">
-                    <label class="label">Height (Inches)</label>
-                    <div class="control">
-                      <input class="input is-large" type="number" name="height" />
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Weight -->
-                <div class="column">
-                  <div class="field">
-                    <label class="label">Weight (Lbs)</label>
-                    <div class="control">
-                      <input class="input is-large" type="number" name="weight" />
-                    </div>
-                  </div>
-                </div>
-
-
+      <div class="container m-5 ">
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <form action="/users" method="POST">
+              <!-- User Name  -->
+              <div class="field">
+                <label class="label is-size-5">User Name</label>
+                <p class="control has-icons-left">
+                  <input class="input is-large" type="text" name="username" required /> <br />
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
               </div>
-            </div>
-          </div>
 
-<!-- ONE REP MAXES -->
-          <div class="container">
-            <h2 class="is-size-3 is-uppercase has-text-centered has-text-weight-bold	has-text-link p-5">One Rep Maxes</h2>
-            <div class="columns">
+              <!-- Password -->
+              <div class="field">
+                <label class="label is-size-5">Password</label>
+                <p class="control has-icons-left">
+                  <input class="input is-large" type="password" name="password">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </p>
+                </p>
+              </div>
+
+              <!-- Age, Height and Weight -->
+              <div class="container">
+                <div class="columns mt-2">
+
+                  <!-- Age -->
+                  <div class="column ">
+
+                    <div class="field">
+                      <label class="label is-size-5">Age</label>
+                      <div class="control has-icons-left">
+                        <input class="input is-large" type="number" name="age" />
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-sort-numeric-up"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Height -->
+                  <div class="column">
+                    <div class="field">
+                      <label class="label is-size-5">Height (Inches)</label>
+                      <div class="control has-icons-left">
+                        <input class="input is-large " type="number" name="height" />
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-arrows-alt-v"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Weight -->
+                  <div class="column">
+                    <div class="field">
+                      <label class="label is-size-5 ">Weight (Lbs)</label>
+                      <div class="control has-icons-left">
+                        <input class="input is-large" type="number" name="weight" />
+                        <span class="icon is-small is-left">
+                          <i class="fas fa-weight-hanging"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ONE REP MAXES -->
+      <div class="container m-5 ">
+        <div class="columns is-centered">
+          <div class="column is-four-fifths">
+            <h2
+              class="is-size-3 is-uppercase has-text-centered has-text-weight-bold	has-text-link mt-5 is-family-monospace">
+              One Rep Maxes</h2>
+            <p class="has-text-centered mb-4 is-family-sans-serif is-size-6	">The one-repetition maximum (1RM) is
+              gold-standard for testing strength capacity of individuals. Enter in the max weight (lbs) you can lift for only
+              one reptition with <span class="has-text-weight-semibold	">correct technique </span>using standard 45lb barbell. </p>
+
+              
+            <div class="columns mt-5">
+
               <!-- One Rep Maxes  - Squat -->
               <div class="column">
                 <div class="field">
-                  <label class="label">Squat</label>
-                  <div class="control">
+                  <label class="label is-size-5">Squat</label>
+                  <div class="control has-icons-left">
                     <input class="input is-large" type="number" name="oneRepMaxSquat" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-dumbbell"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -100,9 +134,12 @@
               <!-- One Rep Maxes  - Bench -->
               <div class="column">
                 <div class="field">
-                  <label class="label">Bench</label>
-                  <div class="control">
+                  <label class="label is-size-5">Bench</label>
+                  <div class="control has-icons-left">
                     <input class="input is-large" type="number" name="oneRepMaxBench" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-dumbbell"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -110,9 +147,12 @@
               <!-- One Rep Maxes  - Press -->
               <div class="column">
                 <div class="field">
-                  <label class="label">Overhead Press</label>
-                  <div class="control">
+                  <label class="label is-size-5">Overhead Press</label>
+                  <div class="control has-icons-left">
                     <input class="input is-large" type="number" name="oneRepMaxPress" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-dumbbell"></i>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -120,26 +160,28 @@
               <!-- One Rep Maxes  - Deadlift -->
               <div class="column">
                 <div class="field">
-                  <label class="label">Deadlift</label>
-                  <div class="control">
+                  <label class="label is-size-5">Deadlift</label>
+                  <div class="control has-icons-left">
                     <input class="input is-large" type="number" name="oneRepMaxDeadlift" />
+                    <span class="icon is-small is-left">
+                      <i class="fas fa-dumbbell"></i>
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
 
-<!-- Submit Button -->
+            <!-- Submit Button -->
             <div class="column">
-              <input class="button is-rounded is-info is-large is-fullwidth mt-6 mb-6" type="submit"
+              <input class="button is-info is-large is-fullwidth  is-family-monospace	mt-6 mb-6" type="submit"
                 name="Submit New User" />
-            </form>
-            </div>
+              </form>
             </div>
           </div>
-          
-          </div>
-     
-      
+        </div>
+      </div>
+  </div>
+  </div>
 
   <!-- FOOTER -->
   <%- include ('../partials/footer.ejs') %>
@@ -147,5 +189,4 @@
 
 
 </body>
-
 </html>
