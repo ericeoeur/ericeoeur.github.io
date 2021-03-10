@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css?family=Teko&display=swap');
+
+body {
+  background-image: url("../images/escheresque_ste.png");
+  font-family: Teko;
+}
+
+.opening {
+  font-family: Teko;
+  text-align: center;
+}
+
+.opening h1{
+  font-size: 6em;
+}
+
+.jeopardy {
+  color: #060CE9; 
+}
+
+.btn-default {
+  background-color: #060CE9;
+  color: #060CE9;
+}
+
+.credits {
+  font-style: italic;
+}
+
+.start-game-button h4 {
+  font-size: 3em;
+  background-color: #060CE9;
+  color: white;
+  border-radius: 2em;
+}
+
+.title{
+  text-align: center;
+  font-family: Teko;
+  font-size: 5em;
+}
+
+.header {
+  background-color: #060CE9;
+  color: #060CE9 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header img {
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 22%;
+}
+
+.time {
+  font-size: 45px;
+}
+
+.score {
+  font-family: Teko;
+  font-size: 2em;
+  background-color: #060CE9;
+  color: white;
+  text-align: center;
+  height: 60px;
+  overflow: hidden;
+}
+
+/* Columns including price for each */
+.col-sm-2{
+  display: flexbox;
+  background-color: #060CE9;
+  padding-top: 20px;
+  border: .5px solid gray;
+  margin: 0 auto;
+}
+
+/* Price Height and Font */
+.col-sm-2 h4{
+height: 110px;
+line-height: 41px;
+padding-top: 10px;
+padding-bottom: 10px;
+}
+
+.col-sm-12 {
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  background-color: #060CE9;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 25px;
+ 
+}
+
+.col-md h2{
+  height: 120px;
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+}
+
+.category-name {
+  font-family: Teko;
+  color: white; 
+  font-size: 3em;
+  line-height: 80%;
+  position:relative;
+  overflow: hidden;
+}
+
+h4 {
+  text-align: center;
+}
+
+h5 {
+  color: goldenrod;
+}
+
+.price {
+  font-size: 4em;
+  font-family: Teko;
+}
+
+.show-price {
+  font-family: Teko;
+  color:  goldenrod;
+  background-color: #060CE9;
+  font-size: 3em;
+  border: 3px solid goldenrod;
+  padding: 10px 10px 3px 0px;
+}
+
+.show-price H4 {
+  line-height: 0.7;
+}
+
+.modal-title {
+ padding: 10px;
+ text-transform: uppercase;
+ color: ghostwhite;
+ line-height: 50%;
+}
+
+.modal-header {
+  background-color: #060CE9;
+  text-align: center;
+}
+
+.modal-body {
+  background-color: goldenrod;
+}
+
+.btn-outline-primary {
+  color: goldenrod; 
+  background-color: #060CE9;
+  background-image: none;
+  border-color: white
+}
+
+.divider {
+  font-family: Teko;
+  font-size: 2em;
+  color: ghostwhite;
+}
+
+.button-row{
+  padding: 2px;
+}
+
+.modal-footer {
+  background-color: goldenrod;
+  justify-content: left;
+  text-align: left;
+}
+
+
+.btn-outline-primary:hover {
+  color: white;
+  background-color: #060CE9;
+  border-color: white;
+}
+
+.timer {
+  text-align: left;
+}
+
+.response-modal{
+  font-family: Teko;
+  font-size: 5em;
+  color: white;
+  text-align: center;
+}
+/* Learned from CSS-TRICKS: https://css-tricks.com/snippets/css/scale-on-hover-with-webkit-transition/ */
+.cost:hover {
+  transform: scale(1.1);
+  }
+
+  .price:hover {
+    -webkit-text-stroke: 2px gold;
+  }
+@media (max-width: 568px) {
+
+  .opening h1{
+    font-size: 4em;
+  }
+  .start-game-button h4 {
+     border-radius: .5em;
+  }
+
+  .price {
+    font-size: 4em;
+  }
+
+  .col-sm-2 {
+    font-size: 2em;
+    padding-top: 30px;
+  }
+
+  .header img {
+    width: 50%;
+  }
+}
+@media (max-width: 800px) {
+  .price {
+    font-size: 3em;
+    overflow: hidden;
+  }
+}
+@media (max-width: 1000px) {
+  .category-name {
+    font-size: 2em;
+    overflow: hidden;
+  }
+}
