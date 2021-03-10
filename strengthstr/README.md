@@ -36,7 +36,7 @@ When a user presses/clicks on a particular lift, a suggested warm-up schema will
   * Auto-generated workouts and warmups 
    
 ## Wireframing and Initial Design Concepts 
-![Wireframe](https://github.com/ericeoeur/ericeoeur.github.io/blob/main/public/img/jeopardy_wireframing.jpg)
+![Wireframe](https://github.com/ericeoeur/ericeoeur.github.io/blob/main/strengthstr/public/img/jeopardy_wireframing.jpg)
 
 ## Future Development
 * Allow the user to enter a custom date for the workout
