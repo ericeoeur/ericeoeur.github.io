@@ -1,6 +1,6 @@
 
 # Project 2: StrengthStr
-![StrengthStr Logo](https://github.com/ericeoeur/ericeoeur.github.io/blob/main/public/img/ss_barbell_mono.png)
+![StrengthStr Logo](https://github.com/ericeoeur/ericeoeur.github.io/blob/main/strengthstr/public/img/ss_barbell_mono.png)
 ## Overview
 
 As a casual powerlifter, I oftentimes find myself using an old composition book to track my progress and lifts. While it has been helpful over the past few years, sometimes I have a hard time reading what I have written, making it difficult for me to figure out what my next workout should look like. I created StrenghtStr as an easy-to-read and mobile-friendly tool to create, track, modify, and generate workouts based off a person's one rep maxes of the four major barbell lifts: squat, bench, overhead press, and deadlift. This project was created for General Assembly's SEI-119 Project 2. 
