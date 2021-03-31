@@ -1,10 +1,10 @@
 # StrengthSTR 2.0 
 
 ## As a user I want 
-get a clear picture of my current growth in strength  
+get a clear picture of my current strength process 
 
 #### So that 
-I can better understand my lifting progress 
+I can better understand my strength progress over time 
 
 #### Acceptance Criteria 
 - see a visual dashboard of my lifting progress (overview)
