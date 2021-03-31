@@ -44,7 +44,7 @@ to create custom workouts
 I can add any type of workout that I want 
 
 #### acceptance criteria 
--ability to add custom workout including workout name, reps, weight, and sets. 
+- ability to add custom workout including workout name, reps, weight, and sets. 
 
 
 ## as a user I want
@@ -53,7 +53,7 @@ automatically created workouts based off one-rep-maxes
 #### so that 
 I can generate a workout based on my current level
 
-####
+#### acceptance criteria 
 - click on a button that will generate a custom workout.
 - workout will increment overtime.  
 
