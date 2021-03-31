@@ -23,7 +23,7 @@ Once the timer is up, the score will be displayed to the user. If the user has a
   * Timer 
 
 ## Wireframing
-![Wireframe](https://github.com/ericeoeur/ericeoeur.github.io/blob/main/jeopardy/images/jeopardy-wireframing.jpg)
+![Wireframe](https://github.com/ericeoeur/ericeoeur.github.io/blob/5fe41745644df3ee7bd5bf98efec4a1f9f133c49/jeopardy/images/jeopardy-wireframing.jpg)
 
 ## Future Development
 * Create an API for a bank of different questions and answers
