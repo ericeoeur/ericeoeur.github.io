@@ -1,0 +1,49 @@
+body{
+  background-image: url("./assets/cream_dust_@2X.png");
+  /* font-family: monospace; */
+}
+
+.nav-profile {
+  background: linear-gradient( rgba(0, 0, 0, 0.522), rgba(0, 0, 0, 0.166) ), url("./assets/inflicted.png");
+  height: 100%;
+}
+
+.columns {
+  /* display:block; */
+  /* height: 100vh; */
+
+}
+
+.side-nav {
+  position: fixed;
+  height: 100%;
+
+}
+
+aside {
+
+}
+
+.my-name {
+  line-height: 45px;
+}
+
+
+.portfolio-main{
+  margin-left: 300px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+
+}
+
+
+
+/* Hide the WORKOUTid from the ADD LIFT form in the show.ejs page */
+.showWorkoutID {
+  display: none
+}
+
+.logo-image{
+  width: 150px
+  
+}
