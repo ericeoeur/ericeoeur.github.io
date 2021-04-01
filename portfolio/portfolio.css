@@ -20,17 +20,13 @@ body{
 
 }
 
-aside {
-
-}
-
 .my-name {
   line-height: 45px;
 }
 
 
 .portfolio-main{
-  margin-left: 300px; /* Same as the width of the sidenav */
+  margin-left: 350px; 
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 0px 10px;
 
@@ -46,4 +42,39 @@ aside {
 .logo-image{
   width: 150px
   
+}
+
+
+.resume-bullet {
+  list-style-type: square;
+  
+}
+
+@media screen and (max-width: 768px) {
+  .nav-profile {
+    height: 100%;
+  }
+  
+  .profile-picture {
+    margin-left: 25%;
+  }
+
+  .side-nav {
+    position: relative;
+    height: 40%;
+    margin-bottom: 10px
+  
+  }
+
+  .portfolio-main{
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 0px 10px;
+  
+  }
+
+
+
+
+
 }
