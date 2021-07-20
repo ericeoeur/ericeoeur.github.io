@@ -11,7 +11,6 @@ body{
 .columns {
   /* display:block; */
   /* height: 100vh; */
-
 }
 
 .links {
@@ -21,7 +20,12 @@ body{
 .side-nav {
   position: fixed;
   height: 100%;
+}
 
+.profile-picture {
+  position: relative;
+  height: 26vw;
+ 
 }
 
 .my-name {
@@ -30,18 +34,13 @@ body{
 
 
 .portfolio-main{
-  margin-left: 350px; 
+  margin-left: 25vw; 
   font-size: 28px; /* Increased text to enable scrolling */
   padding: 0px 10px;
 
 }
 
 
-
-/* Hide the WORKOUTid from the ADD LIFT form in the show.ejs page */
-.showWorkoutID {
-  display: none
-}
 
 .logo-image{
   width: 150px
@@ -57,10 +56,16 @@ body{
 @media screen and (max-width: 768px) {
   .nav-profile {
     height: 100%;
+    width: 100vw;
+    position: static;
   }
   
   .profile-picture {
-    margin-left: 25%;
+    margin-bottom: 50px;
+    margin-top: 10px;
+    padding-left: 10px;
+    height: 75vw;
+
   }
 
   .side-nav {
@@ -71,8 +76,8 @@ body{
   }
 
   .portfolio-main{
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 3px;
+    margin-right: 40px;
     padding: 0px 10px;
   
   }
