@@ -55,9 +55,9 @@ body{
 
 @media screen and (max-width: 768px) {
   .nav-profile {
-    height: 65vw; 
+    height: 355px;
     width: 100vw;
-    position: static;
+    position: relative;
     margin-bottom: 25px;
     padding-bottom: 10px;
   }
@@ -65,8 +65,7 @@ body{
   .profile-picture {
     margin-bottom: 5px;
     margin-top: 25px;
-    height: 75vw;
-    position: relative;
+    height: 70vw;
 
   }
 
@@ -78,9 +77,11 @@ body{
   }
 
   .portfolio-main{
-    margin-left: 3px;
+    margin-left: 1px;
+    margin-top: 10px;
     margin-right: 40px;
     padding: 0px 10px;
+    position:absolute;
   
   }
 
